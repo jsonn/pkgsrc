@@ -1,77 +1,120 @@
-# $NetBSD: Makefile,v 1.1.1.1 1998/11/27 12:48:26 bouyer Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2004/01/11 00:41:12 jlam Exp $
 
-DISTNAME=	samba-2.0.0beta2
-CATEGORIES=	net
-MASTER_SITES=	ftp://ftp.samba.org/pub/samba/beta/
+.include "Makefile.common"
+PKGREVISION=		6
 
-MAINTAINER=	bouyer@netbsd.org
-HOMEPAGE=	http://www.samba.org/
+MAINTAINER=		kim@tac.nyc.ny.us
+HOMEPAGE=		http://www.samba.org/
+COMMENT=		SMB/CIFS protocol server suite for UNIX
 
-CONFLICTS=      samba-1.9.18p8 samba-1.9.18p10
+USE_BUILDLINK3=		yes
+USE_PKGINSTALL=		yes
+INSTALL_EXTRA_TMPL+=	${.CURDIR}/INSTALL
 
-WRKSRC=		${WRKDIR}/${DISTNAME}/source
-GNU_CONFIGURE=	yes
+USE_GNU_READLINE=	# uses rl_event_hook interface to GNU readline
+CONFIGURE_ARGS+=	--with-readline
 
-.include "../../mk/bsd.prefs.mk"
+CONFIGURE_ARGS+=	--with-ssl
+CONFIGURE_ARGS+=	--with-sslinc=${SSLBASE}
+CFLAGS+=		-I${SSLBASE}/include/openssl	# ssl.h, err.h
 
-STARTUP_SCRIPT=	${PREFIX}/etc/rc.d/samba.sh.sample
-SAMPLE_CONFIG=	${PREFIX}/etc/smb.conf.sample
-SAMBA_LOGDIR=	/var/log
-SAMBA_LOCKDIR=	/var/run/samba
-SAMBA_ETCDIR?=	/etc/samba
-SAMBA_PRIVATE?=	${SAMBA_ETCDIR}/private
+REPLACE_PERL+=		script/findsmb.in
 
-MAKE_ENV+=	ETCDIR=${SAMBA_ETCDIR} PRIVDIR=${SAMBA_PRIVATE}
-MAKE_ENV+=	LOGDIR=${SAMBA_LOGDIR} LOCKDIR=${SAMBA_LOCKDIR}
+.if defined(USE_CUPS) && (${USE_CUPS} == "YES")
+.include "../../print/cups/buildlink3.mk"
+BUILD_DEFS+=		USE_CUPS
+CONFIGURE_ARGS+=	--enable-cups
+.endif
 
-PLIST_SRC= ${WRKDIR}/.PLIST-src
+.if defined(USE_PAM)
+.include "../../security/PAM/buildlink3.mk"
+BUILD_DEFS+=		USE_PAM
+CONFIGURE_ARGS+=	--with-pam
+.endif
+
+.if defined(SAMBA_USE_LDAP) && ${SAMBA_USE_LDAP} == "YES"
+.include "../../databases/openldap/buildlink3.mk"
+BUILD_DEFS+=		SAMBA_USE_LDAP
+CONFIGURE_ARGS+=	--with-ldapsam
+PLIST_SUBST+=		SAMBA_LDAP=""
+.else
+PLIST_SUBST+=		SAMBA_LDAP="@comment "
+MESSAGE_SRC=		${.CURDIR}/MESSAGE.smbpasswd
+SMBPASSWD_FILE=		/dev/null ${SAMBA_PRIVATE}/smbpasswd		\
+			${ROOT_USER} ${ROOT_GROUP} 0600
+.endif
+
+# Microsoft DFS support
+CONFIGURE_ARGS+=	--with-msdfs
+
+MESSAGE_SUBST+=		SAMBA_PRIVATE=${SAMBA_PRIVATE}
+MESSAGE_SUBST+=		ROOT_GROUP=${ROOT_GROUP}
+MESSAGE_SUBST+=		ROOT_USER=${ROOT_USER}
+
+DOCDIR=			${PREFIX}/share/doc/${PKGBASE}
+EXAMPLESDIR=		${PREFIX}/share/examples/${PKGBASE}
+
+CONF_FILES=		${EXAMPLESDIR}/smb.conf.default ${SAMBA_ETCDIR}/smb.conf
+SUPPORT_FILES_PERMS=	${SMBPASSWD_FILE}
+SUPPORT_FILES_PERMS+=	${EXAMPLESDIR}/adduser.sh ${SAMBA_ETCDIR}/adduser \
+			${ROOT_USER} ${ROOT_GROUP} 0555
+SUPPORT_FILES_PERMS+=	${EXAMPLESDIR}/deluser.sh ${SAMBA_ETCDIR}/deluser \
+			${ROOT_USER} ${ROOT_GROUP} 0555
+RCD_SCRIPTS=		samba nmbd smbd
+OWN_DIRS=		${SAMBA_ETCDIR} ${SAMBA_LOCKDIR}
+OWN_DIRS_PERMS=		${SAMBA_PRIVATE} ${ROOT_USER} ${ROOT_GROUP} 0500
+
+.if !defined(MKTEMP)
+MKTEMP!=	${TYPE} mktemp 2>&1 | \
+		${AWK} '/not found/ { print "mktemp"; exit } { print $$3 }'
+MAKEFLAGS+=	MKTEMP="${MKTEMP}"
+.endif
+.if !defined(PWD_MKDB)
+PWD_MKDB!=	${TYPE} pwd_mkdb 2>&1 | \
+		${AWK} '/not found/ { print "pwd_mkdb"; exit } { print $$3 }'
+MAKEFLAGS+=	PWD_MKDB="${PWD_MKDB}"
+.endif
+FILES_SUBST+=	MKTEMP=${MKTEMP:Q}
+FILES_SUBST+=	PWD_MKDB=${PWD_MKDB:Q}
+
+# Remove irrelevant files for this package.
+post-extract:
+	${FIND} ${WRKDIR}/${DISTNAME} -name ".cvsignore" -print |	\
+		${XARGS} ${RM} -f
+	${RM} -r ${WRKDIR}/${DISTNAME}/docs/textdocs/outdated
+	${RM} -r ${WRKDIR}/${DISTNAME}/examples/VFS
+	${RM} -r ${WRKDIR}/${DISTNAME}/examples/appliance
+	${RM} -r ${WRKDIR}/${DISTNAME}/examples/autofs
+	${RM} -r ${WRKDIR}/${DISTNAME}/examples/dce-dfs
+	${RM} -r ${WRKDIR}/${DISTNAME}/examples/libsmbclient
+	${RM} -r ${WRKDIR}/${DISTNAME}/examples/svr4-startup
+
+post-build:
+	@${SED} ${FILES_SUBST_SED} ${FILESDIR}/adduser.sh > ${WRKDIR}/adduser.sh
+	@${SED} ${FILES_SUBST_SED} ${FILESDIR}/deluser.sh > ${WRKDIR}/deluser.sh
 
 post-install:
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${PREFIX}/share/doc/samba/faq
-	${MKDIR} ${PREFIX}/share/doc/samba/textdocs
-	for i in ${WRKDIR}/${DISTNAME}/docs/NT4_PlainPassword.reg \
-	    ${WRKDIR}/${DISTNAME}/docs/Win95_PlainPassword.reg \
-	    ${WRKDIR}/${DISTNAME}/docs/THANKS ; do \
-		${INSTALL_DATA} $$i ${PREFIX}/share/doc/samba; \
+	# Install Samba documentation.
+	${INSTALL_DATA_DIR} ${DOCDIR}
+	cd ${WRKDIR}/${DISTNAME}/docs;					\
+	for file in announce textdocs/* Registry/*.reg; do		\
+		${INSTALL_DATA} $$file ${DOCDIR};			\
 	done
-	for i in ${WRKDIR}/${DISTNAME}/docs/faq/* ; do \
-		${INSTALL_DATA} $$i ${PREFIX}/share/doc/samba/faq; \
-	done
-	for i in ${WRKDIR}/${DISTNAME}/docs/textdocs/* ; do \
-		${INSTALL_DATA} $$i ${PREFIX}/share/doc/samba/textdocs; \
-	done
-.endif
-	@${ECHO} "Installing ${STARTUP_SCRIPT} startup file.";           \
-	${ECHO} '#!/bin/sh' > ${STARTUP_SCRIPT};                        \
-	${ECHO} 'smbd=${PREFIX}/sbin/smbd' >> ${STARTUP_SCRIPT};        \
-	${ECHO} 'nmbd=${PREFIX}/sbin/nmbd' >> ${STARTUP_SCRIPT};        \
-	${ECHO} 'if [ -f $$smbd ]; then' >> ${STARTUP_SCRIPT};          \
-	${ECHO} "       ${ECHO} -n ' Samba'" >> ${STARTUP_SCRIPT};      \
-	${ECHO} '       $$smbd -D' >> ${STARTUP_SCRIPT};                \
-	${ECHO} '       $$nmbd -D' >> ${STARTUP_SCRIPT};                \
-	${ECHO} "fi" >> ${STARTUP_SCRIPT};                              \
-	chmod 755 ${STARTUP_SCRIPT};                                    \
-	chown bin.bin ${STARTUP_SCRIPT};
-	@if [ ! -f ${SAMPLE_CONFIG} ]; then                             \
-		${SED} -e 's:__LOGDIR__:${SAMBA_LOGDIR}:g'              \
-		-e 's:__ETCDIR__:${SAMBA_ETCDIR}:g'			\
-		-e 's:__PREFIX__:${PREFIX}:g'				\
-			${FILESDIR}/smb.conf.sample                     \
-			> ${SAMPLE_CONFIG} ;                            \
-	fi
-	${INSTALL_SCRIPT} ${WRKSRC}/script/mksmbpasswd.sh ${PREFIX}/bin
-	if [ ! -d ${SAMBA_PRIVATE} ] ; then				\
-		${MKDIR} ${SAMBA_PRIVATE} ;				\
-		chown root.wheel ${SAMBA_PRIVATE} ;			\
-		chmod 700 ${SAMBA_PRIVATE} ;				\
-	fi
-	if [ ! -f ${SAMBA_PRIVATE}/smbpasswd ] ; then                   \
-		${CAT} /etc/passwd | ${PREFIX}/bin/mksmbpasswd.sh	\
-			> ${SAMBA_PRIVATE}/smbpasswd ;			\
-		chmod 600 ${SAMBA_PRIVATE}/smbpasswd ;                  \
-	fi
-	${SED} -e 's:__SAMBA_PRIVATE__:${SAMBA_PRIVATE}:g' ${PKGDIR}/PLIST \
-		> ${PLIST_SRC}
+
+	# Install Samba examples.
+	${INSTALL_DATA_DIR} ${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/adduser.sh ${EXAMPLESDIR}/adduser.sh
+	${INSTALL_SCRIPT} ${WRKDIR}/deluser.sh ${EXAMPLESDIR}/deluser.sh
+	${CP} -R ${WRKDIR}/${DISTNAME}/examples/* ${EXAMPLESDIR}
+	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${EXAMPLESDIR}
+	${CHMOD} -R ugo-w ${EXAMPLESDIR}
+
+	${INSTALL_SCRIPT} ${WRKSRC}/script/convert_smbpasswd		\
+		${EXAMPLESDIR}/misc
+	${INSTALL_SCRIPT} ${WRKSRC}/script/mksmbpasswd.sh		\
+		${PREFIX}/sbin/mksmbpasswd
+
+.include "../../devel/readline/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

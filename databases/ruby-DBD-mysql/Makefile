@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2004/10/03 00:13:23 tv Exp $
+# $NetBSD: Makefile,v 1.6 2004/10/29 05:59:24 jdolecek Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-mysql-${RUBY_DBI_VERSION}
@@ -28,5 +28,5 @@ post-install:
 		${RUBY_DOCDIR}/dbi/dbd-mysql
 .endfor
 
-.include "../../databases/mysql-client/buildlink3.mk"
+.include "../../mk/mysql.buildlink3.mk"
 .include "../ruby-DBI/Makefile.common"

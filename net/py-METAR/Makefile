@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2005/02/25 19:24:41 drochner Exp $
+# $NetBSD: Makefile,v 1.10 2005/03/03 17:46:36 drochner Exp $
 #
 
 DISTNAME=	pymetar-0.12
@@ -13,6 +13,7 @@ COMMENT=	Downloads weather reports
 PYDISTUTILSPKG=	yes
 PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
 USE_BUILDLINK3=	yes
+PYTHON_VERSIONS_ACCEPTED=	23 24
 
 post-extract:
 	${MV} ${WRKSRC}/bin/weather.py ${WRKSRC}/bin/weather-${PYVERSSUFFIX}.py

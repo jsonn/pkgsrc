@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.2 1999/11/17 21:59:36 tron Exp $
+# $NetBSD: Makefile,v 1.1.1.1 1999/11/17 22:10:45 tron Exp $
 
 DISTNAME=	gnome-chess-0.2.4
 CATEGORIES=	games gnome

@@ -1,20 +1,12 @@
-# $NetBSD: Makefile.common,v 1.1.1.1 2001/07/08 17:26:57 mjl Exp $
+# $NetBSD: Makefile.common,v 1.2 2001/07/30 16:08:36 taca Exp $
 
-VERSION=	0.0.6
-DISTNAME=	ruby-dbi-all-${VERSION}
-CATEGORIES=	databases
-MASTER_SITES=	http://www.ruby-projects.org/downloads/dbi/
+RUBY_DBI_DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
+RUBY_DBI_MASTER_SITES=	http://www.ruby-projects.org/downloads/dbi/
+RUBY_DBI_HOMEPAGE=	http://www.ruby-projects.org/dbi/
 
-MAINTAINER=	packages@netbsd.org
-HOMEPAGE=	http://www.ruby-projects.org/dbi/
-
-WRKSRC=		${WRKDIR}/ruby-dbi-all
-
-do-build:
-	cd ${WRKSRC}; ${RUBY} setup.rb setup
-
-do-install:
-	cd ${WRKSRC}; ${RUBY} setup.rb install
+RUBY_DBI_VERSION=	0.0.8
+DIST_SUBDIR=		ruby
+WRKSRC?=		${WRKDIR}/ruby-dbi-all
 
 .include "../../lang/ruby-base/Makefile.common"
 .include "../../mk/bsd.pkg.mk"

@@ -1,0 +1,10 @@
+$NetBSD: patch-aa,v 1.1 2001/07/30 16:08:37 taca Exp $
+
+--- test/example/teardown.sh.orig	Fri Jun 22 21:28:24 2001
++++ test/example/teardown.sh
+@@ -1,4 +1,4 @@
+-#! /bin/bash
++#!/bin/sh
+ 
+ CONFIG_PATH=`dirname $0`
+ . $CONFIG_PATH/config.sh

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.1 2003/09/10 16:46:12 taca Exp $
+# $NetBSD: Makefile,v 1.2 2003/09/19 10:11:56 wiz Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-mysql-${RUBY_DBI_VERSION}
@@ -10,6 +10,7 @@ HOMEPAGE=	${RUBY_DBI_HOMEPAGE}
 COMMENT=	DBD/mysql for ruby
 
 DISTINFO_FILE=  ${.CURDIR}/../ruby-DBI/distinfo
+PATCHDIR=	${.CURDIR}/../ruby-DBI/patches
 CONFIGURE_ARGS=	--with=dbd_mysql
 USE_RUBY_SETUP=	# defined
 

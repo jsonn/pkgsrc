@@ -1,0 +1,4 @@
+@comment $NetBSD: PLIST,v 1.1.1.1 2001/07/08 17:28:53 mjl Exp $
+${RUBY_SITELIBDIR}/DBD/Pg/Pg.rb
+@dirrm ${RUBY_SITELIBDIR}/DBD/Pg
+@unexec rmdir -p %D/${RUBY_SITELIBDIR}/DBD 2>/dev/null || true

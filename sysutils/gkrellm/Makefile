@@ -1,34 +1,38 @@
-# $NetBSD: Makefile,v 1.1.1.1 2001/03/13 17:53:29 zuntum Exp $
-#
+# $NetBSD: Makefile,v 1.1.1.2 2004/02/24 22:11:28 cube Exp $
+.include "Makefile.common"
 
-DISTNAME=	gkrellm-1.0.6
-CATEGORIES=	sysutils
-MASTER_SITES=	http://newweb.wt.net/~billw/
+GKRELLM_PKGBASE=	gkrellm
+WRKSRC=			${GKRELLM_SRCDIR}
 
-MAINTAINER=	anthony.mallet@ficus.yi.org
-HOMEPAGE=	http://gkrellm.net/
-COMMENT=	GTK based system monitor
+COMMENT=		GTK2 based system monitor
 
-DEPENDS+=	gtk+-1.2.*:../../x11/gtk
-DEPENDS+=	imlib-*:../../graphics/imlib
-DEPENDS+=	pth-*:../../devel/pth
+DEPENDS+=		gkrellm-share-${GKRELLM_VERSION}:../../sysutils/gkrellm-share
 
-USE_X11BASE=	yes
-USE_GMAKE=	yes
+USE_BUILDLINK3=		YES
+USE_X11=		YES
+USE_PKGINSTALL=		YES
 
-BINGRP=         kmem
-BINMODE=        2755
+.include "../../mk/bsd.prefs.mk"
 
-ALL_TARGET=	netbsd
+.if (${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD" || ${OPSYS} == "OpenBSD")
+SPECIAL_PERMS+=		${PREFIX}/bin/gkrellm ${ROOT_USER} kmem 2711
+.endif
 
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/src/gkrellm ${PREFIX}/bin/gkrellm
-	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/gkrellm
-	cd ${WRKSRC} && ${INSTALL_DATA} COPYRIGHT README Themes.html	\
-		${PREFIX}/share/doc/gkrellm
-	${INSTALL_DATA_DIR} ${PREFIX}/include/gkrellm
-	cd ${WRKSRC}/src && ${INSTALL_DATA} gkrellm.h			\
-		gkrellm_public_proto.h gkrellm_private_proto.h 		\
-		${PREFIX}/include/gkrellm
+NOT_FOR_PLATFORM=	IRIX-*
+
+MAKE_ENV+=		MODULES=src LINK_FLAGS=${EXPORT_SYMBOLS_LDFLAGS}
+
+pre-build:
+	${SED} -e s,@@PREFIX@@,${PREFIX}, <${WRKSRC}/src/gkrellm.h >${WRKSRC}/src/gkrellm.h.sed
+	${MV} ${WRKSRC}/src/gkrellm.h.sed ${WRKSRC}/src/gkrellm.h
+
+post-install:
+	${INSTALL_DATA_DIR} ${PREFIX}/lib/gkrellm2
+	${INSTALL_DATA_DIR} ${PREFIX}/lib/gkrellm2/plugins
+	${INSTALL_DATA_DIR} ${PREFIX}/share/gkrellm2/themes
+
+.include "../../x11/gtk2/buildlink3.mk"
+.include "../../devel/glib2/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

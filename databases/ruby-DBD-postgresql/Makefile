@@ -1,12 +1,33 @@
-# $NetBSD: Makefile,v 1.1.1.1 2001/07/08 17:28:53 mjl Exp $
+# $NetBSD: Makefile,v 1.2 2001/07/30 16:11:26 taca Exp $
 
-PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-postgresql-${VERSION}
+DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
+PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-postgresql-${RUBY_DBI_VERSION}
+CATEGORIES=	databases
+MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
+
+MAINTAINER=	packages@netbsd.org
+HOMEPAGE=	${RUBY_DBI_HOMEPAGE}
 COMMENT=	DBD/postgres for ruby
 
-do-configure:
-	cd ${WRKSRC}; ${RUBY} setup.rb config --with=dbd_pg
+CONFIGURE_ARGS=	--with=dbd_pg
+USE_RUBY_SETUP=	# defined
 
-DEPENDS+=	ruby-postgresql-*:../../databases/ruby-postgresql
-DEPENDS+=	ruby-DBI-*:../../databases/ruby-DBI	
+DEPENDS+=	${RUBY_PKGNAMEPREFIX}postgresql>=0.6.4:../../databases/ruby-postgresql
+DEPENDS+=	${RUBY_PKGNAMEPREFIX}DBI>=0.0.6:../../databases/ruby-DBI
 
-.include "../../databases/ruby-DBI/Makefile.common"
+DOCS=		README
+EXAMPLES=	examples/sqlsh.rb examples/sqlsh.rb.new
+
+post-install:
+	${INSTALL_DATA_DIR} ${RUBY_DOCDIR}/dbi/dbd-postgresql
+.for FILE in ${DOCS}
+	${INSTALL_DATA} ${WRKSRC}/lib/dbd_pg/doc/${FILE} \
+		${RUBY_DOCDIR}/dbi/dbd-postgresql
+.endfor
+	${INSTALL_DATA_DIR} ${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql
+.for FILE in ${EXAMPLES}
+	${INSTALL_DATA} ${WRKSRC}/${FILE} \
+		${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql
+.endfor
+
+.include "../ruby-DBI/Makefile.common"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2004/07/24 22:45:15 recht Exp $
+# $NetBSD: Makefile,v 1.12 2004/07/28 23:27:07 wiz Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-postgresql-${RUBY_DBI_VERSION}
@@ -12,6 +12,7 @@ COMMENT=	DBD/postgres for ruby
 DISTINFO_FILE=  ${.CURDIR}/../ruby-DBI/distinfo
 PATCHDIR=	${.CURDIR}/../ruby-DBI/patches
 CONFIGURE_ARGS=	--with=dbd_pg
+USE_BUILDLINK3=	YES
 USE_RUBY_SETUP=	# defined
 
 DEPENDS+= ${RUBY_PKGNAMEPREFIX}DBI>=${RUBY_DBI_VERSION}:../../databases/ruby-DBI

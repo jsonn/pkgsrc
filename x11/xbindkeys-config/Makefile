@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.2 2002/07/11 14:23:37 tron Exp $
+# $NetBSD: Makefile,v 1.1.1.1 2002/07/11 14:25:25 tron Exp $
 
 DISTNAME=	xbindkeys_config-0.1.2
 PKGNAME=	xbindkeys-config-0.1.2

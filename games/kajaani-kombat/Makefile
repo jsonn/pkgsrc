@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.2 2005/01/14 22:16:54 wiz Exp $
+# $NetBSD: Makefile,v 1.1.1.1 2005/01/14 22:17:28 wiz Exp $
 #
 
 DISTNAME=		kajaani-kombat-0.6

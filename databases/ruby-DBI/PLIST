@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.2 2002/01/19 11:25:51 taca Exp $
+@comment $NetBSD: PLIST,v 1.3 2002/01/22 15:02:15 taca Exp $
 ${RUBY_DOCDIR}/dbi/dbi/ChangeLog
 ${RUBY_DOCDIR}/dbi/dbi/ChangeLog.html
 ${RUBY_DOCDIR}/dbi/dbi/DBD_SPEC
@@ -29,5 +29,6 @@ ${RUBY_SITELIBDIR}/dbi/utils.rb
 @dirrm ${RUBY_DOCDIR}/dbi
 @dirrm ${RUBY_EXAMPLESDIR}/dbi/test/example
 @dirrm ${RUBY_EXAMPLESDIR}/dbi/test
+@dirrm ${RUBY_EXAMPLESDIR}/dbi
 @dirrm ${RUBY_SITELIBDIR}/DBD
 @dirrm ${RUBY_SITELIBDIR}/dbi

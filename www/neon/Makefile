@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1.1.1 2002/01/13 19:29:02 agc Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2002/08/03 01:20:10 hubertf Exp $
 
-DISTNAME=		neon-0.18.3
+DISTNAME=		neon-0.21.3
 CATEGORIES=		www
 MASTER_SITES=		http://www.webdav.org/neon/
 
@@ -15,7 +15,7 @@ USE_LIBTOOL=		yes
 LIBTOOL_OVERRIDE=	${WRKSRC}/libtool
 
 GNU_CONFIGURE=		# defined
-CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_DIR}
+CONFIGURE_ARGS+=	--with-ssl
 CONFIGURE_ARGS+=	--enable-libxml
 CONFIGURE_ARGS+=	--enable-shared
 

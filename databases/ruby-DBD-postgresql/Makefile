@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2003/06/02 01:21:01 jschauma Exp $
+# $NetBSD: Makefile,v 1.6 2003/07/17 21:28:59 grant Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-postgresql-${RUBY_DBI_VERSION}
@@ -6,7 +6,7 @@ PKGREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
-MAINTAINER=	tech-pkg@netbsd.org
+MAINTAINER=	tech-pkg@NetBSD.org
 HOMEPAGE=	${RUBY_DBI_HOMEPAGE}
 COMMENT=	DBD/postgres for ruby
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.2 2003/01/11 15:26:45 uebayasi Exp $
+# $NetBSD: Makefile,v 1.1.1.1 2003/01/11 15:29:59 uebayasi Exp $
 
 DISTNAME=	mew-3.1
 CATEGORIES=	mail

@@ -1,3 +1,2 @@
-@comment $NetBSD: PLIST,v 1.1.1.1 1999/11/04 04:38:11 soren Exp $
-bin/pchar
+sbin/pchar
 man/man1/pchar.1

@@ -1,6 +1,7 @@
-$NetBSD: distinfo,v 1.6 2004/11/27 15:39:17 taca Exp $
+$NetBSD: distinfo,v 1.7 2005/02/23 16:33:09 agc Exp $
 
 SHA1 (ruby/ruby-dbi-all-0.0.21.tar.gz) = fb462adfb1816714179d487f14a7986ad02374c5
+RMD160 (ruby/ruby-dbi-all-0.0.21.tar.gz) = 90a5825b18ed89e89dd93389e640adbcf8ccfe95
 Size (ruby/ruby-dbi-all-0.0.21.tar.gz) = 131968 bytes
 SHA1 (patch-aa) = 483fdb6ad9fc09f1b5eb1b6e0fa7d0149f16b092
 SHA1 (patch-ab) = 2c459134f2f33d2d77a0ae323425f1d707b2bf3b

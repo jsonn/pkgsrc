@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.2 2001/07/30 16:11:26 taca Exp $
+$NetBSD: distinfo,v 1.3 2002/01/19 11:30:29 taca Exp $
 
-SHA1 (ruby/ruby-dbi-all-0.0.8.tar.gz) = 620016f069f7f59a17fe4f2e8d2691eacc171586
-Size (ruby/ruby-dbi-all-0.0.8.tar.gz) = 61165 bytes
+SHA1 (ruby/ruby-dbi-all-0.0.12.tar.gz) = 15de01feac2c08660b148d37450d22caa9ead9a7
+Size (ruby/ruby-dbi-all-0.0.12.tar.gz) = 84524 bytes

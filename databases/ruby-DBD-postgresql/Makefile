@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2001/07/30 16:11:26 taca Exp $
+# $NetBSD: Makefile,v 1.3 2002/01/19 11:30:29 taca Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-postgresql-${RUBY_DBI_VERSION}
@@ -16,7 +16,7 @@ DEPENDS+=	${RUBY_PKGNAMEPREFIX}postgresql>=0.6.4:../../databases/ruby-postgresql
 DEPENDS+=	${RUBY_PKGNAMEPREFIX}DBI>=0.0.6:../../databases/ruby-DBI
 
 DOCS=		README
-EXAMPLES=	examples/sqlsh.rb examples/sqlsh.rb.new
+EXAMPLES=	examples/sqlsh.rb.new
 
 post-install:
 	${INSTALL_DATA_DIR} ${RUBY_DOCDIR}/dbi/dbd-postgresql

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2004/03/16 02:01:10 taca Exp $
+# $NetBSD: Makefile,v 1.10 2004/07/02 20:55:06 wiz Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-postgresql-${RUBY_DBI_VERSION}
@@ -31,5 +31,5 @@ post-install:
 		${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql
 .endfor
 
-.include "../postgresql-lib/buildlink2.mk"
+.include "../postgresql-lib/buildlink3.mk"
 .include "../ruby-DBI/Makefile.common"

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2004/10/29 05:59:24 jdolecek Exp $
+# $NetBSD: Makefile,v 1.7 2004/11/27 15:40:20 taca Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
-PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-mysql-${RUBY_DBI_VERSION}
-PKGREVISION=	1
+PKGNAME=	${RUBY_PKGPREFIX}-DBD-mysql-${RUBY_DBI_VERSION}
 CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
@@ -12,14 +11,13 @@ COMMENT=	DBD/mysql for ruby
 
 DISTINFO_FILE=  ${.CURDIR}/../ruby-DBI/distinfo
 PATCHDIR=	${.CURDIR}/../ruby-DBI/patches
+USE_BUILDLINK3=	yes
+USE_RUBY_SETUP=	yes
 CONFIGURE_ARGS=	--with=dbd_mysql
-USE_RUBY_SETUP=	# defined
 
-DEPENDS+=	${RUBY_PKGNAMEPREFIX}DBI>=${RUBY_DBI_VERSION}:../../databases/ruby-DBI
+DEPENDS+= ${RUBY_PKGPREFIX}-DBI>=${RUBY_DBI_VERSION}:../../databases/ruby-DBI
 
 DOCS=		HISTORY README
-
-USE_BUILDLINK3=	yes
 
 post-install:
 	${INSTALL_DATA_DIR} ${RUBY_DOCDIR}/dbi/dbd-mysql
@@ -28,5 +26,7 @@ post-install:
 		${RUBY_DOCDIR}/dbi/dbd-mysql
 .endfor
 
-.include "../../mk/mysql.buildlink3.mk"
 .include "../ruby-DBI/Makefile.common"
+.include "../../lang/ruby/modules.mk"
+.include "../../mk/mysql.buildlink3.mk"
+.include "../../mk/bsd.pkg.mk"

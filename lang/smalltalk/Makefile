@@ -1,16 +1,25 @@
-# $NetBSD: Makefile,v 1.1.1.1 2000/10/23 16:19:24 agc Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2001/07/10 22:31:06 mjl Exp $
 #
 
-DISTNAME=	smalltalk-1.8.2
+DISTNAME=	smalltalk-1.95.4
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU:=smalltalk/}
 
 MAINTAINER=	packages@netbsd.org
-HOMEPAGE=	http://www.gnu.org/software/smalltalk/smalltalk.html
+HOMEPAGE=	http://www.smalltalk.org/versions/GNUSmalltalk.html
+COMMENT=	GNU Smalltalk: A smalltalk-80 implementation
 
-GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
+DEPENDS+=	readline-*:../../devel/readline
 
-INFO_FILES=	gst.info
+CONFIGURE_ARGS=	--with-included-regex --with-readline=${PREFIX}
+GNU_CONFIGURE=	YES
+USE_GMAKE=	YES
+USE_LIBTOOL=	YES
+USE_GNU_READLINE=YES
 
+LTCONFIG_OVERRIDE=	${WRKSRC}/ltconfig
+
+.include "../../devel/readline/buildlink.mk"
+.include "../../lang/tcl/buildlink.mk"
+.include "../../x11/tk/buildlink.mk"
 .include "../../mk/bsd.pkg.mk"

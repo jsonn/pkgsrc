@@ -1,11 +1,11 @@
-@comment $NetBSD: PLIST,v 1.1 2001/11/01 00:12:48 zuntum Exp $
+@comment $NetBSD: PLIST,v 1.2 2002/01/19 11:25:51 taca Exp $
 ${RUBY_DOCDIR}/dbi/dbi/ChangeLog
-${RUBY_DOCDIR}/dbi/dbi/DBD_SPEC
-${RUBY_DOCDIR}/dbi/dbi/DBI_SPEC
-${RUBY_DOCDIR}/dbi/dbi/ToDo
 ${RUBY_DOCDIR}/dbi/dbi/ChangeLog.html
+${RUBY_DOCDIR}/dbi/dbi/DBD_SPEC
 ${RUBY_DOCDIR}/dbi/dbi/DBD_SPEC.html
+${RUBY_DOCDIR}/dbi/dbi/DBI_SPEC
 ${RUBY_DOCDIR}/dbi/dbi/DBI_SPEC.html
+${RUBY_DOCDIR}/dbi/dbi/ToDo
 ${RUBY_DOCDIR}/dbi/dbi/ToDo.html
 ${RUBY_DOCDIR}/dbi/index.html
 ${RUBY_DOCDIR}/dbi/index.rd
@@ -19,6 +19,7 @@ ${RUBY_EXAMPLESDIR}/dbi/test/example/teardown.sh
 ${RUBY_EXAMPLESDIR}/dbi/test/testdbi.rb
 @exec test -d ${RUBY_SITELIBDIR}/DBD || mkdir -p ${RUBY_SITELIBDIR}/DBD
 ${RUBY_SITELIBDIR}/dbi.rb
+${RUBY_SITELIBDIR}/dbi/columninfo.rb
 ${RUBY_SITELIBDIR}/dbi/dbi.rb
 ${RUBY_SITELIBDIR}/dbi/row.rb
 ${RUBY_SITELIBDIR}/dbi/sql.rb

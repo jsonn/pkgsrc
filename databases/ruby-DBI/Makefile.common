@@ -1,10 +1,10 @@
-# $NetBSD: Makefile.common,v 1.2 2001/07/30 16:08:36 taca Exp $
+# $NetBSD: Makefile.common,v 1.3 2002/01/19 11:25:50 taca Exp $
 
 RUBY_DBI_DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 RUBY_DBI_MASTER_SITES=	http://www.ruby-projects.org/downloads/dbi/
 RUBY_DBI_HOMEPAGE=	http://www.ruby-projects.org/dbi/
 
-RUBY_DBI_VERSION=	0.0.8
+RUBY_DBI_VERSION=	0.0.12
 DIST_SUBDIR=		ruby
 WRKSRC?=		${WRKDIR}/ruby-dbi-all
 

@@ -1,3 +1,5 @@
+$NetBSD: patch-ac,v 1.1.1.2 1999/10/25 14:13:36 hubertf Exp $
+
 *** Configure.bak	Mon Mar 11 18:47:43 1996
 --- Configure	Tue Mar 12 14:52:18 1996
 ***************

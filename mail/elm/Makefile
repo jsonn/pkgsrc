@@ -1,28 +1,27 @@
-# New ports collection makefile for:    elm
-# See also: http://www.ozone.fmi.fi/KEH/
-# Version required:     2.4.25.ME+32
-# Date created:         26 June 1995
-# Whom:                 ache
-#
-# $Id: Makefile,v 1.1.1.1 1998/01/23 12:19:45 bouyer Exp $
+# $NetBSD: Makefile,v 1.1.1.2 1999/10/25 14:13:35 hubertf Exp $
 #
 
-DISTNAME=       elm-2.4ME+32
-CATEGORIES=	mail
-MASTER_SITES=   ftp://ftp.ozone.fmi.fi/KEH/ \
-		ftp://ftp.funet.fi/pub/unix/mail/elm/elm-2.4ME+/ \
-		ftp://ftp.ibp.fr/pub/unix/mail/elm-me/
+DISTNAME=		elm-2.4ME+54
+CATEGORIES=		mail
+MASTER_SITES=		ftp://ftp.ozone.fmi.fi/KEH/ \
+			ftp://ftp.funet.fi/pub/unix/mail/elm/elm-2.4ME+/ \
+			ftp://ftp.ibp.fr/pub/unix/mail/elm-me/
 
-MAINTAINER=	ache@FreeBSD.ORG
+MAINTAINER=		packages@netbsd.org
+HOMEPAGE=		http://www.myxa.com/elm/
 
-WRKSRC=         ${WRKDIR}/elm2.4.ME+.32
-MAN1=           answer.1 checkalias.1 elm.1 elmalias.1 fastmail.1 \
-		listalias.1 messages.1 newalias.1 printmail.1 readmsg.1
+HAS_CONFIGURE=		Yes
+CONFIGURE_SCRIPT=	Configure
+CONFIGURE_ENV=		PREFIX="${PREFIX}"
+CONFIGURE_ARGS=		-S
 
-HAS_CONFIGURE=  Yes
-CONFIGURE_SCRIPT= Configure
-CONFIGURE_ENV=  PREFIX="${PREFIX}"
-CONFIGURE_ARGS= -S
+WRKSRC=			${WRKDIR}/elm2.4.ME+.54
+
+pre-configure:
+	${CP} ${FILESDIR}/config.sh ${WRKSRC}/
+	${CP} ${FILESDIR}/elm.mimecharsets ${WRKSRC}/bin/
+	${MV} ${WRKSRC}/nls/LANGS ${WRKSRC}/nls/LANGS.tmpl
+	${SED} -e 's:__PREFIX:'${PREFIX}':g'< ${WRKSRC}/nls/LANGS.tmpl > ${WRKSRC}/nls/LANGS
 
 post-install:
 	cd ${WRKSRC}/nls; ${MAKE} install
@@ -34,4 +33,4 @@ post-install:
 			${FILESDIR}/elm.mimetypes ${PREFIX}/lib; \
 	fi
 
-.include <bsd.port.mk>
+.include "../../mk/bsd.pkg.mk"

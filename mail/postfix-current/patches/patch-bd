@@ -1,21 +1,12 @@
-$NetBSD: patch-bd,v 1.1.1.1 2000/08/14 04:33:24 itojun Exp $
+$NetBSD: patch-bd,v 1.1.1.2 2004/03/06 15:04:13 grant Exp $
 
---- qmgr/Makefile.orig	Wed Apr 26 20:25:56 2000
-+++ qmgr/Makefile	Wed Apr 26 20:39:45 2000
-@@ -0,0 +1,16 @@
-+#	$NetBSD: patch-bd,v 1.1.1.1 2000/08/14 04:33:24 itojun Exp $
-+.include "../conf/main.cf"
-+PROG=	qmgr
-+BINDIR=${daemon_directory}
-+
-+SRCS	= qmgr.c qmgr_active.c qmgr_transport.c qmgr_queue.c qmgr_entry.c \
-+	qmgr_message.c qmgr_deliver.c qmgr_move.c qmgr_rcpt_list.c \
-+	qmgr_defer.c qmgr_enable.c qmgr_scan.c qmgr_bounce.c
-+
-+DPADD+= ${LIBPMASTER} ${LIBPGLOBAL} ${LIBPUTIL}
-+LDADD+= ${LIBPMASTER} ${LIBPGLOBAL} ${LIBPUTIL} ${AUXLIBS}
-+
-+# XXX
-+NOMAN=1
-+
-+.include <bsd.prog.mk>
+--- src/cleanup/cleanup_init.c.orig	2004-01-06 11:27:08.000000000 +1100
++++ src/cleanup/cleanup_init.c
+@@ -112,6 +112,7 @@ char   *var_prop_extension;		/* propagat
+ char   *var_always_bcc;			/* big brother */
+ char   *var_rcpt_witheld;		/* recipients not disclosed */
+ char   *var_masq_classes;		/* what to masquerade */
++bool    var_canon_env_rcpt;		/* canonicalize envelope recipient */
+ int     var_qattr_count_limit;		/* named attribute limit */
+ int     var_virt_recur_limit;		/* maximum virtual alias recursion */
+ int     var_virt_expan_limit;		/* maximum virtual alias expansion */

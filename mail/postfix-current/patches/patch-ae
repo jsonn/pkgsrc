@@ -1,21 +1,40 @@
-$NetBSD: patch-ae,v 1.1.1.1 2000/08/14 04:33:24 itojun Exp $
+$NetBSD: patch-ae,v 1.1.1.2 2004/03/06 15:04:12 grant Exp $
 
---- conf/Makefile.orig	Sun May 30 18:49:12 1999
-+++ conf/Makefile	Sun May 30 18:49:12 1999
-@@ -0,0 +1,16 @@
-+#	$NetBSD: patch-ae,v 1.1.1.1 2000/08/14 04:33:24 itojun Exp $
-+.include "../conf/main.cf"
+--- src/global/mail_params.h.orig	2004-01-18 02:04:00.000000000 +1100
++++ src/global/mail_params.h
+@@ -64,7 +64,7 @@ extern uid_t var_owner_uid;
+ extern gid_t var_owner_gid;
+ 
+ #define VAR_SGID_GROUP		"setgid_group"
+-#define DEF_SGID_GROUP		"postdrop"
++#define DEF_SGID_GROUP		"maildrop"
+ extern char *var_sgid_group;
+ extern gid_t var_sgid_gid;
+ 
+@@ -202,13 +202,13 @@ extern char *var_queue_dir;
+   */
+ #define VAR_DAEMON_DIR		"daemon_directory"
+ #ifndef DEF_DAEMON_DIR
+-#define DEF_DAEMON_DIR		"/usr/libexec/postfix"
++#define DEF_DAEMON_DIR		"__PREFIX/libexec/postfix"
+ #endif
+ extern char *var_daemon_dir;
+ 
+ #define VAR_COMMAND_DIR		"command_directory"
+ #ifndef DEF_COMMAND_DIR
+-#define DEF_COMMAND_DIR		"/usr/sbin"
++#define DEF_COMMAND_DIR		"__PREFIX/sbin"
+ #endif
+ extern char *var_command_dir;
+ 
+@@ -334,6 +334,10 @@ extern char *var_send_canon_maps;
+ #define DEF_RCPT_CANON_MAPS	""
+ extern char *var_rcpt_canon_maps;
+ 
++#define VAR_CANON_ENV_RCPT	"canonicalize_envelope_recipient"
++#define DEF_CANON_ENV_RCPT	1
++extern bool var_canon_env_rcpt;
 +
-+BINDIR=		${share_directory}
-+
-+
-+FILES=		LICENSE Makefile access aliases canonical main.cf master.cf \
-+		relocated sample-aliases.cf sample-canonical.cf \
-+		sample-debug.cf sample-ldap.cf sample-local.cf sample-misc.cf \
-+		sample-pcre.cf sample-rate.cf sample-regexp.cf \
-+		sample-relocated.cf sample-resource.cf sample-rewrite.cf \
-+		sample-smtp.cf sample-smtpd.cf sample-transport.cf \
-+		sample-virtual.cf transport virtual
-+SCRIPTS=	postfix-script-sgid postfix-script-nosgid
-+
-+.include <bsd.prog.mk>
+ #define VAR_SEND_BCC_MAPS	"sender_bcc_maps"
+ #define DEF_SEND_BCC_MAPS	""
+ extern char *var_send_bcc_maps;

@@ -1,13 +1,11 @@
-$NetBSD: patch-aa,v 1.1.1.1 1999/02/27 17:00:08 sakamoto Exp $
-
---- common.c.orig	Sun Feb 21 21:13:50 1999
-+++ common.c	Sun Feb 28 01:50:06 1999
-@@ -1012,7 +1012,7 @@
-   
-   for (b=0; b<=1; b++) {
-     base.info[b].user_name = 
--      (char *) malloc(sizeof(char) * strlen(user));
-+      (char *) malloc(sizeof(char) * strlen(user) + 1);
-     strcpy(base.info[b].user_name, user);
-     base.info[b].uid_displayed = u;
-   }
+--- configure.orig	Thu May 11 23:13:30 2000
++++ configure	Thu May 11 23:14:53 2000
+@@ -1706,7 +1706,7 @@
+ 
+   # It would also be nice to do this for all -L options, not just this one.
+   if test -n "$x_libraries"; then
+-    X_LIBS="$X_LIBS -L$x_libraries"
++    X_LIBS="$X_LIBS -L$x_libraries -Wl,-R$x_libraries"
+     # For Solaris; some versions of Sun CC require a space after -R and
+     # others require no space.  Words are not sufficient . . . .
+     case "`(uname -sr) 2>/dev/null`" in

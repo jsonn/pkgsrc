@@ -1,12 +1,13 @@
-Arena was the testbed browser for HTML 3.0 created by the W3C
-(www.w3.org).  It is now being maintained and improved by Yggdrasil
-Computing (www.yggdrasil.com).
+"Parchive" implements a RAID-like system for multi-part archives. Such
+archives are commonly posted to Usenet binary newsgroups. Typically, a
+poster will construct 2 to 5 parity files for a multi-part archive
+consisting of somewhere in the neighborhood of 15 to 50 equal sized parts.
+These parity files contain a Reed-Solomon encoding of the original files.
+He'll then post all of them along with the original parts, so if any number
+of those original parts are lost or corrupted in transit (up to the number
+of parity files), a receiver may reconstruct them from only that number
+of parity files.
 
-The original description from the W3C: 
-
-Arena's primary purpose is to be a testbed for new features of the web. In
-the past, we have implemented HTML3 features including tables and math.
-Currently, style sheets are in focus along with new graphics formats such
-as PNG. Also, Arena is a testing tool for the W3C Reference Library. The
-library provides a common platform which will ensure future compatibility
-on the web. If you are a browser vendor, it will save you time. 
+Though quickly growing in popularity for it's intended application, the
+format of the parity files is sufficiently general to be useful for other
+applicatons as well. The format itself is in the public domain.

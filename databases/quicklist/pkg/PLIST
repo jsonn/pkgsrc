@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1.1.1 2000/04/26 06:36:31 garbled Exp $
+@comment $NetBSD: PLIST,v 1.1.1.2 2001/01/04 01:12:25 wiz Exp $
 share/doc/quicklist/gtksheet/AUTHORS
 share/doc/quicklist/gtksheet/ChangeLog
 share/doc/quicklist/gtksheet/TODO

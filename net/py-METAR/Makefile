@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2003/06/02 01:17:46 jschauma Exp $
+# $NetBSD: Makefile,v 1.3 2003/07/17 22:51:42 grant Exp $
 #
 
 DISTNAME=	pymetar-0.4
@@ -6,7 +6,7 @@ PKGNAME=	${PYPKGPREFIX}-pymetar-0.4
 CATEGORIES=	net
 MASTER_SITES=	http://unattached.i-no.de/pkgs/
 
-MAINTAINER=	tech-pkg@netbsd.org
+MAINTAINER=	tech-pkg@NetBSD.org
 HOMEPAGE=	http://unattached.i-no.de/software-pymetar.shtml
 COMMENT=	downloads weather reports
 

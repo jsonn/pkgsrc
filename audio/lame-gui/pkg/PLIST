@@ -1,2 +1,2 @@
-@comment $NetBSD: PLIST,v 1.1.1.1 1999/09/30 16:44:59 explorer Exp $
-bin/lame
+@comment $NetBSD: PLIST,v 1.1.1.2 1999/11/03 23:53:46 hubertf Exp $
+bin/lame-gui

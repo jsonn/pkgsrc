@@ -1,6 +1,16 @@
-# $NetBSD: Makefile,v 1.1.1.1 1999/09/30 16:44:58 explorer Exp $
+# $NetBSD: Makefile,v 1.1.1.2 1999/11/03 23:53:43 hubertf Exp $
 #
 
-LAME_GUI=	yes
+.include "../lame/Makefile.common"
 
-.include "../lame/Makefile"
+PKGNAME=	lame-gui-${VERS}
+
+DEPENDS=	gtk+-1.2.*:../../x11/gtk
+
+MAINTAINER=	hubertf@netbsd.org
+HOMEPAGE=	http://hive.me.gu.edu.au/not_lame/
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/lame ${PREFIX}/bin/lame-gui
+
+.include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.6 2003/09/10 16:13:37 taca Exp $
+@comment $NetBSD: PLIST,v 1.7 2005/01/04 13:02:44 taca Exp $
 ${RUBY_DOCDIR}/dbi/ChangeLog
 ${RUBY_DOCDIR}/dbi/LICENSE
 ${RUBY_DOCDIR}/dbi/DBD_SPEC
@@ -19,7 +19,7 @@ ${RUBY_EXAMPLESDIR}/dbi/test/example/example.cfg
 ${RUBY_EXAMPLESDIR}/dbi/test/example/setup.sh
 ${RUBY_EXAMPLESDIR}/dbi/test/example/teardown.sh
 ${RUBY_EXAMPLESDIR}/dbi/test/testdbi.rb
-@exec test -d ${RUBY_SITELIBDIR}/DBD || ${MKDIR} ${RUBY_SITELIBDIR}/DBD
+@exec test -d %D/${RUBY_SITELIBDIR}/DBD || ${MKDIR} %D/${RUBY_SITELIBDIR}/DBD
 ${RUBY_SITELIBDIR}/dbi.rb
 ${RUBY_SITELIBDIR}/dbi/columninfo.rb
 ${RUBY_SITELIBDIR}/dbi/dbi.rb
@@ -35,3 +35,5 @@ ${RUBY_SITELIBDIR}/dbi/version.rb
 @dirrm ${RUBY_EXAMPLESDIR}/dbi
 @dirrm ${RUBY_SITELIBDIR}/DBD
 @dirrm ${RUBY_SITELIBDIR}/dbi
+@exec test -d %D/${RUBY_SITEARCHLIBDIR}/DBD || ${MKDIR} %D/${RUBY_SITEARCHLIBDIR}/DBD
+@dirrm ${RUBY_SITEARCHLIBDIR}/DBD

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.5 2003/09/10 16:13:37 taca Exp $
+# $NetBSD: Makefile,v 1.6 2004/03/16 02:01:10 taca Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGNAMEPREFIX}DBI-${RUBY_DBI_VERSION}
-CATEGORIES=	databases
+CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
 MAINTAINER=	tech-pkg@NetBSD.org

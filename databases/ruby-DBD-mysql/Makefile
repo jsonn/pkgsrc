@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.2 2003/09/19 10:11:56 wiz Exp $
+# $NetBSD: Makefile,v 1.3 2004/03/16 02:01:10 taca Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-mysql-${RUBY_DBI_VERSION}
-CATEGORIES=	databases
+CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
 MAINTAINER=	tech-pkg@NetBSD.org

@@ -1,0 +1,32 @@
+@comment $NetBSD: PLIST,v 1.1 2001/11/01 00:12:48 zuntum Exp $
+${RUBY_DOCDIR}/dbi/dbi/ChangeLog
+${RUBY_DOCDIR}/dbi/dbi/DBD_SPEC
+${RUBY_DOCDIR}/dbi/dbi/DBI_SPEC
+${RUBY_DOCDIR}/dbi/dbi/ToDo
+${RUBY_DOCDIR}/dbi/dbi/ChangeLog.html
+${RUBY_DOCDIR}/dbi/dbi/DBD_SPEC.html
+${RUBY_DOCDIR}/dbi/dbi/DBI_SPEC.html
+${RUBY_DOCDIR}/dbi/dbi/ToDo.html
+${RUBY_DOCDIR}/dbi/index.html
+${RUBY_DOCDIR}/dbi/index.rd
+${RUBY_DOCDIR}/dbi/rubyStyle.css
+${RUBY_EXAMPLESDIR}/dbi/persistence.rb
+${RUBY_EXAMPLESDIR}/dbi/test/README
+${RUBY_EXAMPLESDIR}/dbi/test/example/config.sh
+${RUBY_EXAMPLESDIR}/dbi/test/example/example.cfg
+${RUBY_EXAMPLESDIR}/dbi/test/example/setup.sh
+${RUBY_EXAMPLESDIR}/dbi/test/example/teardown.sh
+${RUBY_EXAMPLESDIR}/dbi/test/testdbi.rb
+@exec test -d ${RUBY_SITELIBDIR}/DBD || mkdir -p ${RUBY_SITELIBDIR}/DBD
+${RUBY_SITELIBDIR}/dbi.rb
+${RUBY_SITELIBDIR}/dbi/dbi.rb
+${RUBY_SITELIBDIR}/dbi/row.rb
+${RUBY_SITELIBDIR}/dbi/sql.rb
+${RUBY_SITELIBDIR}/dbi/trace.rb
+${RUBY_SITELIBDIR}/dbi/utils.rb
+@dirrm ${RUBY_DOCDIR}/dbi/dbi
+@dirrm ${RUBY_DOCDIR}/dbi
+@dirrm ${RUBY_EXAMPLESDIR}/dbi/test/example
+@dirrm ${RUBY_EXAMPLESDIR}/dbi/test
+@dirrm ${RUBY_SITELIBDIR}/DBD
+@dirrm ${RUBY_SITELIBDIR}/dbi

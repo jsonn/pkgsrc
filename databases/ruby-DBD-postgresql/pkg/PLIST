@@ -1,8 +1,0 @@
-@comment $NetBSD: PLIST,v 1.2 2001/07/30 16:11:26 taca Exp $
-${RUBY_DOCDIR}/dbi/dbd-postgresql/README
-${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql/sqlsh.rb
-${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql/sqlsh.rb.new
-${RUBY_SITELIBDIR}/DBD/Pg/Pg.rb
-@dirrm ${RUBY_DOCDIR}/dbi/dbd-postgresql
-@dirrm ${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql
-@dirrm ${RUBY_SITELIBDIR}/DBD/Pg

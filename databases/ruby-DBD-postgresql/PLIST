@@ -1,0 +1,8 @@
+@comment $NetBSD: PLIST,v 1.1 2001/11/01 00:12:48 zuntum Exp $
+${RUBY_DOCDIR}/dbi/dbd-postgresql/README
+${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql/sqlsh.rb
+${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql/sqlsh.rb.new
+${RUBY_SITELIBDIR}/DBD/Pg/Pg.rb
+@dirrm ${RUBY_DOCDIR}/dbi/dbd-postgresql
+@dirrm ${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql
+@dirrm ${RUBY_SITELIBDIR}/DBD/Pg

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2003/07/21 17:11:11 martti Exp $
+# $NetBSD: Makefile,v 1.5 2003/09/21 09:27:24 jmc Exp $
 #
 
 DISTNAME=	pymetar-0.4
@@ -13,6 +13,7 @@ COMMENT=	Downloads weather reports
 PYDISTUTILSPKG=	yes
 PYTHON_PATCH_SCRIPTS=	bin/pymet${PYVERSSUFFIX}
 PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
+USE_BUILDLINK2=	yes
 
 post-extract:
 	${MV} ${WRKSRC}/bin/pymet ${WRKSRC}/bin/pymet${PYVERSSUFFIX}

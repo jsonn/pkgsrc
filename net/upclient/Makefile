@@ -1,31 +1,41 @@
-# $NetBSD: Makefile,v 1.1.1.1 1999/04/06 20:09:59 hubertf Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2002/05/07 22:20:59 hubertf Exp $
 #
 
-DISTNAME=	upclient-3.02
+DISTNAME=	upclient-4.2.1.23
+PKGREVISION=	1
 CATEGORIES=	net
-MASTER_SITES=	http://uptime.hexon.cx/download/ \
-		ftp://uptime.hexon.cx/pub/
+MASTER_SITES=	http://uptimes.atomicvoid.net/files/
 
 MAINTAINER=	hubertf@netbsd.org
-HOMEPAGE=	http://uptime.hexon.cx/
+HOMEPAGE=	http://www.uptimes.net/
+COMMENT=	Keeps track of your server uptime, and compares it to other hosts
 
 ALL_TARGET=	bsd
-MESSAGE_FILE=	${WRKDIR}/.MESSAGE
 
-post-extract:
+post-patch:
+	${MV} ${WRKSRC}/scripts/upchk ${WRKSRC}/scripts/upchk.bak
 	${SED} \
 		-e 's|@PREFIX@|${PREFIX}|g' \
-		${PKGDIR}/MESSAGE >${MESSAGE_FILE}
+		>${WRKSRC}/scripts/upchk <${WRKSRC}/scripts/upchk.bak
+
+do-build:
+	cd ${WRKSRC}/src && ${MAKE} ${ALL_TARGET}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/upclient ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/src/upclient ${PREFIX}/bin
 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/upclient
-	${INSTALL_DATA} ${WRKSRC}/CHANGES ${PREFIX}/share/doc/upclient
+	${INSTALL_DATA} ${WRKSRC}/AUTHORS ${PREFIX}/share/doc/upclient
 	${INSTALL_DATA} ${WRKSRC}/COPYING ${PREFIX}/share/doc/upclient
+	${INSTALL_DATA} ${WRKSRC}/HISTORY ${PREFIX}/share/doc/upclient
 	${INSTALL_DATA} ${WRKSRC}/README ${PREFIX}/share/doc/upclient
-	${INSTALL_DATA} ${WRKSRC}/upclient.conf ${PREFIX}/etc/upclient.conf.example
+	${INSTALL_DATA} ${WRKSRC}/FAQ ${PREFIX}/share/doc/upclient
+	${INSTALL_DATA} ${WRKSRC}/INSTALL ${PREFIX}/share/doc/upclient
+	${INSTALL_DATA} ${WRKSRC}/conf/upclient.conf ${PREFIX}/etc
 	${SED} \
 		-e 's|@PREFIX@|${PREFIX}|g' \
-		${FILESDIR}/upclient.sh >${PREFIX}/etc/rc.d/upclient.sh
+		-e 's|@INSTALL@|${INSTALL}|g' \
+		-e 's|@SU@|${SU}|g' \
+		${FILESDIR}/upclient.sh >${PREFIX}/etc/rc.d/upclient
+	${CHMOD} +x ${PREFIX}/etc/rc.d/upclient
 
 .include "../../mk/bsd.pkg.mk"

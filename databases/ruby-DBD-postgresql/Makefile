@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.12 2004/07/28 23:27:07 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2004/11/27 15:40:53 taca Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
-PKGNAME=	${RUBY_PKGNAMEPREFIX}DBD-postgresql-${RUBY_DBI_VERSION}
+PKGNAME=	${RUBY_PKGPREFIX}-DBD-postgresql-${RUBY_DBI_VERSION}
 CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
@@ -9,13 +9,13 @@ MAINTAINER=	tech-pkg@NetBSD.org
 HOMEPAGE=	${RUBY_DBI_HOMEPAGE}
 COMMENT=	DBD/postgres for ruby
 
-DISTINFO_FILE=  ${.CURDIR}/../ruby-DBI/distinfo
-PATCHDIR=	${.CURDIR}/../ruby-DBI/patches
+DISTINFO_FILE?=	${.CURDIR}/../ruby-DBI/distinfo
+PATCHDIR?=	${.CURDIR}/../ruby-DBI/patches
+USE_BUILDLINK3=	yes
+USE_RUBY_SETUP=	yes
 CONFIGURE_ARGS=	--with=dbd_pg
-USE_BUILDLINK3=	YES
-USE_RUBY_SETUP=	# defined
 
-DEPENDS+= ${RUBY_PKGNAMEPREFIX}DBI>=${RUBY_DBI_VERSION}:../../databases/ruby-DBI
+DEPENDS+= ${RUBY_PKGPREFIX}-DBI>=${RUBY_DBI_VERSION}:../../databases/ruby-DBI
 
 DOCS=		README
 EXAMPLES=	examples/sqlsh.rb.new
@@ -32,5 +32,7 @@ post-install:
 		${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql
 .endfor
 
-.include "../../mk/pgsql.buildlink3.mk"
 .include "../ruby-DBI/Makefile.common"
+.include "../../lang/ruby/modules.mk"
+.include "../../mk/pgsql.buildlink3.mk"
+.include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1.1.1 2004/06/03 10:07:27 shannonjr Exp $
+@comment $NetBSD: PLIST,v 1.1.1.2 2004/06/30 11:02:16 shannonjr Exp $
 lib/florist/ada_streams.ads
 lib/florist/ada_streams.ali
 lib/florist/ada_task_identification.ads

@@ -1,4 +1,4 @@
-$NetBSD: patch-configure.in,v 1.1.1.1 2004/06/03 10:07:27 shannonjr Exp $
+$NetBSD: patch-configure.in,v 1.1.1.2 2004/06/30 11:02:16 shannonjr Exp $
 
 --- configure.in.orig	Tue Jun  3 03:55:13 2003
 +++ configure.in	Tue Jun  3 03:58:10 2003

@@ -1,5 +1,5 @@
 ===========================================================================
-$NetBSD: MESSAGE,v 1.1.1.1 2004/06/03 10:07:27 shannonjr Exp $
+$NetBSD: MESSAGE,v 1.1.1.2 2004/06/30 11:02:16 shannonjr Exp $
 
 To compile against the Florist packages,
 add:

@@ -1,4 +1,4 @@
-$NetBSD: patch-c-posix.c,v 1.1.1.1 2004/06/03 10:07:27 shannonjr Exp $
+$NetBSD: patch-c-posix.c,v 1.1.1.2 2004/06/30 11:02:16 shannonjr Exp $
 
 --- c-posix.c.orig	2002-10-24 02:03:51.000000000 -0600
 +++ c-posix.c

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2004/03/16 02:01:10 taca Exp $
+# $NetBSD: Makefile,v 1.7 2004/11/27 15:39:17 taca Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
-PKGNAME=	${RUBY_PKGNAMEPREFIX}DBI-${RUBY_DBI_VERSION}
+PKGNAME=	${RUBY_PKGPREFIX}-DBI-${RUBY_DBI_VERSION}
 CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
@@ -9,8 +9,8 @@ MAINTAINER=	tech-pkg@NetBSD.org
 HOMEPAGE=	${RUBY_DBI_HOMEPAGE}
 COMMENT=	DBI for ruby
 
+USE_RUBY_SETUP=	yes
 CONFIGURE_ARGS=	--with=dbi
-USE_RUBY_SETUP=	# defined
 
 REPLACE_RUBY=	test/testdbi.rb
 DOCS=		ChangeLog LICENSE
@@ -40,3 +40,5 @@ post-install:
 	${INSTALL_DATA_DIR} ${RUBY_SITELIBDIR}/DBD
 
 .include "Makefile.common"
+.include "../../lang/ruby/modules.mk"
+.include "../../mk/bsd.pkg.mk"

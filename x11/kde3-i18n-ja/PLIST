@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1.1.1 2003/03/12 11:04:31 markd Exp $
+@comment $NetBSD: PLIST,v 1.1.1.2 2004/02/06 10:02:10 markd Exp $
 share/doc/kde/HTML/ja/common/1.png
 share/doc/kde/HTML/ja/common/10.png
 share/doc/kde/HTML/ja/common/2.png
@@ -257,12 +257,14 @@ share/kde/locale/ja/LC_MESSAGES/desktop_kdesdk.mo
 share/kde/locale/ja/LC_MESSAGES/desktop_kdetoys.mo
 share/kde/locale/ja/LC_MESSAGES/desktop_kdeutils.mo
 share/kde/locale/ja/LC_MESSAGES/dirfilterplugin.mo
+share/kde/locale/ja/LC_MESSAGES/dockbarextension.mo
 share/kde/locale/ja/LC_MESSAGES/domtreeviewer.mo
 share/kde/locale/ja/LC_MESSAGES/drkonqi.mo
 share/kde/locale/ja/LC_MESSAGES/dub.mo
 share/kde/locale/ja/LC_MESSAGES/extensionproxy.mo
 share/kde/locale/ja/LC_MESSAGES/ffrs.mo
 share/kde/locale/ja/LC_MESSAGES/filetypes.mo
+share/kde/locale/ja/LC_MESSAGES/flashkard.mo
 share/kde/locale/ja/LC_MESSAGES/fontinst.mo
 share/kde/locale/ja/LC_MESSAGES/gideon.mo
 share/kde/locale/ja/LC_MESSAGES/htmlsearch.mo
@@ -434,7 +436,6 @@ share/kde/locale/ja/LC_MESSAGES/kfile_xbm.mo
 share/kde/locale/ja/LC_MESSAGES/kfindpart.mo
 share/kde/locale/ja/LC_MESSAGES/kfloppy.mo
 share/kde/locale/ja/LC_MESSAGES/kfmclient.mo
-share/kde/locale/ja/LC_MESSAGES/kfmexec.mo
 share/kde/locale/ja/LC_MESSAGES/kfontviewpart.mo
 share/kde/locale/ja/LC_MESSAGES/kfouleggs.mo
 share/kde/locale/ja/LC_MESSAGES/kgantt.mo
@@ -466,6 +467,7 @@ share/kde/locale/ja/LC_MESSAGES/kio_sftp.mo
 share/kde/locale/ja/LC_MESSAGES/kio_smb.mo
 share/kde/locale/ja/LC_MESSAGES/kio_smbro.mo
 share/kde/locale/ja/LC_MESSAGES/kio_smtp.mo
+share/kde/locale/ja/LC_MESSAGES/kioexec.mo
 share/kde/locale/ja/LC_MESSAGES/kit.mo
 share/kde/locale/ja/LC_MESSAGES/kiten.mo
 share/kde/locale/ja/LC_MESSAGES/kjobviewer.mo
@@ -482,6 +484,7 @@ share/kde/locale/ja/LC_MESSAGES/klock.mo
 share/kde/locale/ja/LC_MESSAGES/kmahjongg.mo
 share/kde/locale/ja/LC_MESSAGES/kmail.mo
 share/kde/locale/ja/LC_MESSAGES/kmailcvt.mo
+share/kde/locale/ja/LC_MESSAGES/kmathtool.mo
 share/kde/locale/ja/LC_MESSAGES/kmcop.mo
 share/kde/locale/ja/LC_MESSAGES/kmenuedit.mo
 share/kde/locale/ja/LC_MESSAGES/kmessedwords.mo
@@ -491,6 +494,7 @@ share/kde/locale/ja/LC_MESSAGES/kmines.mo
 share/kde/locale/ja/LC_MESSAGES/kminipagerapplet.mo
 share/kde/locale/ja/LC_MESSAGES/kmix.mo
 share/kde/locale/ja/LC_MESSAGES/kmoon.mo
+share/kde/locale/ja/LC_MESSAGES/kmplot.mo
 share/kde/locale/ja/LC_MESSAGES/kmrml.mo
 share/kde/locale/ja/LC_MESSAGES/knewsticker.mo
 share/kde/locale/ja/LC_MESSAGES/knode.mo
@@ -515,10 +519,12 @@ share/kde/locale/ja/LC_MESSAGES/kpaint.mo
 share/kde/locale/ja/LC_MESSAGES/kpartapp.mo
 share/kde/locale/ja/LC_MESSAGES/kpartsaver.mo
 share/kde/locale/ja/LC_MESSAGES/kpat.mo
+share/kde/locale/ja/LC_MESSAGES/kpercentage.mo
 share/kde/locale/ja/LC_MESSAGES/kpersonalizer.mo
 share/kde/locale/ja/LC_MESSAGES/kpf.mo
 share/kde/locale/ja/LC_MESSAGES/kpilot.mo
 share/kde/locale/ja/LC_MESSAGES/kpoker.mo
+share/kde/locale/ja/LC_MESSAGES/kpovmodeler.mo
 share/kde/locale/ja/LC_MESSAGES/kppp.mo
 share/kde/locale/ja/LC_MESSAGES/kppplogview.mo
 share/kde/locale/ja/LC_MESSAGES/kprinter.mo
@@ -570,6 +576,7 @@ share/kde/locale/ja/LC_MESSAGES/ktux.mo
 share/kde/locale/ja/LC_MESSAGES/kuick_plugin.mo
 share/kde/locale/ja/LC_MESSAGES/kuickshow.mo
 share/kde/locale/ja/LC_MESSAGES/kuser.mo
+share/kde/locale/ja/LC_MESSAGES/kverbos.mo
 share/kde/locale/ja/LC_MESSAGES/kview.mo
 share/kde/locale/ja/LC_MESSAGES/kview_scale.mo
 share/kde/locale/ja/LC_MESSAGES/kviewbrowserplugin.mo
@@ -627,6 +634,7 @@ share/kde/locale/ja/LC_MESSAGES/passwords.mo
 share/kde/locale/ja/LC_MESSAGES/pitchablespeed.mo
 share/kde/locale/ja/LC_MESSAGES/ppdtranslations.mo
 share/kde/locale/ja/LC_MESSAGES/qeditor.mo
+share/kde/locale/ja/LC_MESSAGES/quanta.mo
 share/kde/locale/ja/LC_MESSAGES/quicklauncher.mo
 share/kde/locale/ja/LC_MESSAGES/secpolicy.mo
 share/kde/locale/ja/LC_MESSAGES/spy.mo

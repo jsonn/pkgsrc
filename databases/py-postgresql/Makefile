@@ -1,47 +1,39 @@
-# $NetBSD: Makefile,v 1.1.1.1 1999/10/04 17:36:48 jlam Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2004/08/30 00:35:11 darcy Exp $
 
-DISTNAME=	PyGreSQL-2.4
-PKGNAME=	py-postgresql-2.4
-CATEGORIES=	databases
+DISTNAME=		PyGreSQL-3.5
+PKGNAME=		${PYPKGPREFIX}-postgresql-3.5
+CATEGORIES=		databases python
 MASTER_SITES=	ftp://ftp.druid.net/pub/distrib/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	darcy@NetBSD.org
-HOMEPAGE=	http://www.druid.net/pygresql/
+MAINTAINER=		darcy@NetBSD.org
+HOMEPAGE=		http://www.PyGreSQL.org/
+COMMENT=		Python interface to PostgreSQL
 
-DEPENDS+=	python-1.5.2:../../lang/python
-DEPENDS+=	postgresql-6.5.2:../../databases/postgresql
+MAKE_ENV+=		MANDIR=${LOCALBASE}/man
+MAKE_ENV+=		BINDIR=${LOCALBASE}/bin
+USE_BUILDLINK3=	yes
+USE_GNU_TOOLS+=	make
 
-ALL_TARGET=	default
+MAKEFILE=		GNUmakefile
+MAKE_ENV+=		INSTALLED_LIBPQ=1
+#MAKEFLAGS+=		PYTHON_VERSION=${PYVERSSUFFIX}
 
-PYTHON=		${LOCALBASE}/bin/python
-PYTHON_LIBDIR=	${LOCALBASE}/lib/python1.5
-PLIST_SUBST+=	PYTHON_LIBDIR=lib/python1.5
+PY_PATCHPLIST=	yes
+PLIST_SUBST+=	PYPKGPREFIX=${PYPKGPREFIX}
 
-.include "../../mk/bsd.prefs.mk"
-
-PGUSER?=	pgsql
-PGPREFIX=	${LOCALBASE}/${PGUSER}	# PostgreSQL home directory
-
-do-configure:
-	${SED}	-e "s,@PGPREFIX@,${PGPREFIX},g" \
-		${FILESDIR}/Setup.in > ${WRKSRC}/Setup.in
-	${CP} ${PYTHON_LIBDIR}/config/Makefile.pre.in ${WRKSRC}
-	cd ${WRKSRC}; ${MAKE} -f Makefile.pre.in boot
-
-post-build:
-	cd ${WRKSRC}; ${PYTHON} ${PYTHON_LIBDIR}/compileall.py .
-	cd ${WRKSRC}; ${PYTHON} -O ${PYTHON_LIBDIR}/compileall.py .
+PYDISTUTILSPKG=	yes
+PYBINMODULE=	yes
+DOCDIR=			${PREFIX}/share/doc/${PYPKGPREFIX}-postgresql
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/*.py ${WRKSRC}/*.py[co] \
-		${PYTHON_LIBDIR}/site-packages
-	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/py-postgresql/tutorial
-	${INSTALL_DATA} ${WRKSRC}/README \
-		${PREFIX}/share/doc/py-postgresql
-	for file in ${WRKSRC}/tutorial/*.py; do \
-		${INSTALL_DATA} $${file} \
-			${PREFIX}/share/doc/py-postgresql/tutorial; \
+	${INSTALL_DATA_DIR} ${DOCDIR}/tutorial
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCDIR}
+	for inst_file in ${WRKSRC}/tutorial/*.py; do   \
+		${INSTALL_DATA} $${inst_file} ${DOCDIR}/tutorial;        \
 	done
 
+.include "../../lang/python/extension.mk"
+.include "../../mk/pgsql.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
+

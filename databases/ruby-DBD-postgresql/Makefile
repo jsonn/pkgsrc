@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2005/04/11 21:45:15 tv Exp $
+# $NetBSD: Makefile,v 1.16 2005/11/02 11:07:22 taca Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGPREFIX}-DBD-postgresql-${RUBY_DBI_VERSION}
@@ -12,8 +12,8 @@ COMMENT=	DBD/postgres for ruby
 
 DISTINFO_FILE?=	${.CURDIR}/../ruby-DBI/distinfo
 PATCHDIR?=	${.CURDIR}/../ruby-DBI/patches
-USE_RUBY_SETUP=	yes
-CONFIGURE_ARGS=	--with=dbd_pg
+USE_RUBY_SETUP=		yes
+CONFIGURE_ARGS+=	--with=dbd_pg
 
 DEPENDS+= ${RUBY_PKGPREFIX}-DBI>=${RUBY_DBI_VERSION}:../../databases/ruby-DBI
 
@@ -32,7 +32,7 @@ post-install:
 		${RUBY_EXAMPLESDIR}/dbi/dbd-postgresql
 .endfor
 
-.include "../ruby-DBI/Makefile.common"
+.include "../../databases/ruby-DBI/Makefile.common"
 .include "../../lang/ruby/modules.mk"
 .include "../../mk/pgsql.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.9 2005/03/06 17:19:05 taca Exp $
+# $NetBSD: Makefile,v 1.10 2005/11/02 11:06:08 taca Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGPREFIX}-DBI-${RUBY_DBI_VERSION}
@@ -10,8 +10,8 @@ MAINTAINER=	tech-pkg@NetBSD.org
 HOMEPAGE=	${RUBY_DBI_HOMEPAGE}
 COMMENT=	DBI for ruby
 
-USE_RUBY_SETUP=	yes
-CONFIGURE_ARGS=	--with=dbi
+USE_RUBY_SETUP=		yes
+CONFIGURE_ARGS+=	--with=dbi
 
 REPLACE_RUBY=	test/testdbi.rb
 DOCS=		ChangeLog LICENSE

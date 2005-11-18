@@ -1,22 +1,22 @@
-# $NetBSD: Makefile,v 1.1.1.1 2003/02/14 22:15:38 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.1.1.2 2005/11/18 12:04:50 gdt Exp $
 
-DISTNAME=	gqview-1.3.0
+DISTNAME=	gqview-2.1.1
 CATEGORIES=	graphics x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=gqview/}
 
-MAINTAINER=	wiz@netbsd.org
+MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	http://gqview.sourceforge.net/
 COMMENT=	GTK2-based graphic file viewer (development version)
 
-BUILD_USES_MSGFMT=	# defined
+BUILD_USES_MSGFMT=	yes
 
-USE_BUILDLINK2=		# defined
-USE_X11BASE=		# defined
-GNU_CONFIGURE=		# defined
-USE_PKGLOCALEDIR=	# defined
-CONFIGURE_ENV+=		ac_cv_path_GNOME_CONFIG=no
+USE_TOOLS+=		pkg-config
+GNU_CONFIGURE=		yes
+USE_DIRS+=		xdg-1.1
+USE_PKGLOCALEDIR=	yes
 
-.include "../../x11/gtk2/buildlink2.mk"
+.include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../graphics/png/buildlink3.mk"
+.include "../../x11/gtk2/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.11 2005/04/11 21:46:58 tv Exp $
+# $NetBSD: Makefile,v 1.12 2005/12/05 20:50:48 rillig Exp $
 #
 
 DISTNAME=	pymetar-0.12
@@ -11,7 +11,7 @@ HOMEPAGE=	http://www.schwarzvogel.de/software-pymetar.shtml
 COMMENT=	Downloads weather reports
 
 PYDISTUTILSPKG=	yes
-PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
+PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX:Q}
 PYTHON_VERSIONS_ACCEPTED=	23 24
 
 post-extract:

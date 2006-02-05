@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.7 2006/01/03 15:07:28 taca Exp $
+# $NetBSD: Makefile,v 1.8 2006/02/05 23:08:37 joerg Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGPREFIX}-DBD-sqlite-${RUBY_DBI_VERSION}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 

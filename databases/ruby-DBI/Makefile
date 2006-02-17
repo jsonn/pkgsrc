@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2005/11/02 11:06:08 taca Exp $
+# $NetBSD: Makefile,v 1.11 2006/02/17 17:54:38 wiz Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGPREFIX}-DBI-${RUBY_DBI_VERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
@@ -24,19 +24,19 @@ TESTS=		README testdbi.rb example/config.sh example/example.cfg \
 
 post-install:
 	${INSTALL_DATA_DIR} ${RUBY_DOCDIR}/dbi/html
-.for FILE in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${FILE} ${RUBY_DOCDIR}/dbi/${FILE}
+.for file in ${DOCS}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${RUBY_DOCDIR}/dbi/${file}
 .endfor
-.for FILE in ${DOCS_DBI}
-	${INSTALL_DATA} ${WRKSRC}/doc/${FILE} ${RUBY_DOCDIR}/dbi/${FILE}
+.for file in ${DOCS_DBI}
+	${INSTALL_DATA} ${WRKSRC}/doc/${file} ${RUBY_DOCDIR}/dbi/${file}
 .endfor
 	${INSTALL_DATA_DIR} ${RUBY_EXAMPLESDIR}/dbi/test/example
-.for FILE in ${EXAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/${FILE} ${RUBY_EXAMPLESDIR}/dbi
+.for file in ${EXAMPLES}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${RUBY_EXAMPLESDIR}/dbi
 .endfor
-.for FILE in ${TESTS}
-	${INSTALL_DATA} ${WRKSRC}/test/${FILE} \
-		${RUBY_EXAMPLESDIR}/dbi/test/${FILE}
+.for file in ${TESTS}
+	${INSTALL_DATA} ${WRKSRC}/test/${file} \
+		${RUBY_EXAMPLESDIR}/dbi/test/${file}
 .endfor
 	${INSTALL_DATA_DIR} ${RUBY_SITELIBDIR}/DBD
 	${INSTALL_DATA_DIR} ${RUBY_SITEARCHLIBDIR}/DBD

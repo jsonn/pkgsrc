@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2006/03/04 21:29:11 jlam Exp $
+# $NetBSD: Makefile,v 1.13 2006/03/09 14:50:31 ghen Exp $
 
 DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
 PKGNAME=	${RUBY_PKGPREFIX}-DBI-${RUBY_DBI_VERSION}
@@ -21,6 +21,11 @@ DOCS_DBI=	DBD_SPEC DBI_SPEC ToDo index.rd sf_logo.html \
 EXAMPLES=	examples/persistence.rb
 TESTS=		README testdbi.rb example/config.sh example/example.cfg \
 		example/setup.sh example/teardown.sh
+
+REPLACE_INTERPRETER+=	bash
+_REPLACE.bash.old=	.*/bin/bash
+_REPLACE.bash.new=	${SH:Q}
+_REPLACE_FILES.bash=	test/example/teardown.sh
 
 post-install:
 	${INSTALL_DATA_DIR} ${RUBY_DOCDIR}/dbi/html

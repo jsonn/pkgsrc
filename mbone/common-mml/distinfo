@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.1.1.1 2006/04/11 17:57:08 minskim Exp $
+
+SHA1 (common-1.2.16.tar.gz) = 361bdabd36d114df97943bed648fc6abff741c56
+RMD160 (common-1.2.16.tar.gz) = e86aad6c4d5f4f3d8c19a89698e2faca7e0e21a2
+Size (common-1.2.16.tar.gz) = 247163 bytes

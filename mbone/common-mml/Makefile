@@ -1,27 +1,27 @@
-# $NetBSD: Makefile,v 1.1.1.1 2000/12/17 09:46:00 hubertf Exp $
-#
+# $NetBSD: Makefile,v 1.1.1.2 2006/04/11 17:57:08 minskim Exp $
 
-DISTNAME=	common-1.2.0
-PKGNAME=	common-mml-1.2.0
-CATEGORIES=	mbone
-MASTER_SITES=	http://www-mice.cs.ucl.ac.uk/multimedia/software/common/
+DISTNAME=		common-${VERSION}
+PKGNAME=		common-mml-${VERSION}
+CATEGORIES=	 	mbone
+MASTER_SITES=		http://www-mice.cs.ucl.ac.uk/multimedia/software/common/
 
-MAINTAINER=	hubertf@netbsd.org
-HOMEPAGE=	http://www-mice.cs.ucl.ac.uk/multimedia/software/common/index.html
+MAINTAINER=		psham@cs.nmsu.edu
+HOMEPAGE=		http://www-mice.cs.ucl.ac.uk/multimedia/software/common/
+COMMENT=		Common multimedia library required by mbone tools
 
-.include "../../mk/bsd.prefs.mk"
+VERSION=		1.2.16
 
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-WRKSRC=		${WRKDIR}/common
+WRKSRC=			${WRKDIR}/common
+GNU_CONFIGURE=		yes
+USE_LIBTOOL=		yes
 
-# this does ipv6 ONLY ;(
-# .if ${USE_INET6} == "YES"
-# CONFIGURE_ARGS+=	--enable-ipv6
-# .endif
+INCDIR=			${PREFIX}/include/common-mml
+DOCDIR=			${PREFIX}/share/doc/common-mml
 
-post-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/include/common-mml
-	${INSTALL_DATA} ${WRKSRC}/*.h ${PREFIX}/include/common-mml
+do-install:
+	${INSTALL_DATA_DIR} ${INCDIR} ${DOCDIR}
+	${INSTALL_DATA} ${WRKSRC}/src/*.h ${INCDIR}
+	${INSTALL_DATA} ${WRKSRC}/src/*.a ${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/doc/html/*.html ${DOCDIR}
 
 .include "../../mk/bsd.pkg.mk"

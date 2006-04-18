@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.2 2006/04/18 08:59:49 tron Exp $
+# $NetBSD: Makefile,v 1.1.1.1 2006/04/18 09:01:36 tron Exp $
 
 DISTNAME=		suse_openmotif-${SUSE_VERSION}
 CATEGORIES=		emulators

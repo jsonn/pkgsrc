@@ -1,0 +1,6 @@
+@comment $NetBSD: PLIST,v 1.1.1.1 2006/07/03 08:40:13 dogcow Exp $
+bin/transmission-gtk
+bin/transmissioncli
+man/man1/transmissioncli.1
+share/locale/fr/LC_MESSAGES/transmission-gtk.mo
+share/locale/it/LC_MESSAGES/transmission-gtk.mo

@@ -1,0 +1,19 @@
+$NetBSD: patch-ab,v 1.1 2006/07/19 10:02:05 joerg Exp $
+
+--- mk/common.mk.orig	2006-07-19 09:44:49.000000000 +0000
++++ mk/common.mk
+@@ -16,13 +16,7 @@ TMPLDFLAGS += -lbind -lsocket
+ endif
+ endif
+ 
+-ifeq ($(PTHREAD),yes)
+-ifeq ($(SYSTEM),FreeBSD)
+-TMPLDFLAGS += -pthread
+-else
+-TMPLDFLAGS += -lpthread
+-endif
+-endif
++TMPLDFLAGS+=	${PTHREAD_LDFLAGS} ${PTHREAD_LIBS}
+ 
+ ifeq ($(OPENSSL),yes)
+ TMPCFLAGS  += -DHAVE_OPENSSL

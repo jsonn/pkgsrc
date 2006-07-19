@@ -1,0 +1,19 @@
+$NetBSD: patch-aa,v 1.1 2006/07/19 10:02:05 joerg Exp $
+
+--- configure.orig	2006-07-19 09:44:16.000000000 +0000
++++ configure
+@@ -274,13 +274,9 @@ EOF
+     PTHREAD=yes
+     ;;
+ 
+-  FreeBSD|NetBSD|OpenBSD|Linux)
++  *)
+     PTHREAD=yes
+     ;;
+-
+-  *)
+-    echo "Unsupported operating system"
+-    exit 1 ;;
+ esac
+ echo "System:  $SYSTEM"
+ 

@@ -1,29 +1,17 @@
-@comment $NetBSD: PLIST,v 1.8 2006/02/17 17:54:38 wiz Exp $
+@comment $NetBSD: PLIST,v 1.9 2006/08/17 13:05:08 taca Exp $
 bin/sqlsh.rb
 ${RUBY_DOCDIR}/dbi/ChangeLog
 ${RUBY_DOCDIR}/dbi/LICENSE
 ${RUBY_DOCDIR}/dbi/DBD_SPEC
 ${RUBY_DOCDIR}/dbi/DBI_SPEC
-${RUBY_DOCDIR}/dbi/ToDo
-${RUBY_DOCDIR}/dbi/index.rd
-${RUBY_DOCDIR}/dbi/sf_logo.html
 ${RUBY_DOCDIR}/dbi/html/ChangeLog.html
 ${RUBY_DOCDIR}/dbi/html/DBD_SPEC.html
 ${RUBY_DOCDIR}/dbi/html/DBI_SPEC.html
-${RUBY_DOCDIR}/dbi/html/ToDo.html
 ${RUBY_DOCDIR}/dbi/html/index.html
 ${RUBY_DOCDIR}/dbi/html/rubyStyle.css
 ${RUBY_EXAMPLESDIR}/dbi/persistence.rb
-${RUBY_EXAMPLESDIR}/dbi/test/README
-${RUBY_EXAMPLESDIR}/dbi/test/example/config.sh
-${RUBY_EXAMPLESDIR}/dbi/test/example/example.cfg
-${RUBY_EXAMPLESDIR}/dbi/test/example/setup.sh
-${RUBY_EXAMPLESDIR}/dbi/test/example/teardown.sh
-${RUBY_EXAMPLESDIR}/dbi/test/testdbi.rb
-@exec test -d %D/${RUBY_SITELIBDIR}/DBD || ${MKDIR} %D/${RUBY_SITELIBDIR}/DBD
 ${RUBY_SITELIBDIR}/dbi.rb
 ${RUBY_SITELIBDIR}/dbi/columninfo.rb
-${RUBY_SITELIBDIR}/dbi/dbi.rb
 ${RUBY_SITELIBDIR}/dbi/row.rb
 ${RUBY_SITELIBDIR}/dbi/sql.rb
 ${RUBY_SITELIBDIR}/dbi/trace.rb
@@ -31,10 +19,5 @@ ${RUBY_SITELIBDIR}/dbi/utils.rb
 ${RUBY_SITELIBDIR}/dbi/version.rb
 @dirrm ${RUBY_DOCDIR}/dbi/html
 @dirrm ${RUBY_DOCDIR}/dbi
-@dirrm ${RUBY_EXAMPLESDIR}/dbi/test/example
-@dirrm ${RUBY_EXAMPLESDIR}/dbi/test
 @dirrm ${RUBY_EXAMPLESDIR}/dbi
-@dirrm ${RUBY_SITELIBDIR}/DBD
 @dirrm ${RUBY_SITELIBDIR}/dbi
-@exec test -d %D/${RUBY_SITEARCHLIBDIR}/DBD || ${MKDIR} %D/${RUBY_SITEARCHLIBDIR}/DBD
-@dirrm ${RUBY_SITEARCHLIBDIR}/DBD

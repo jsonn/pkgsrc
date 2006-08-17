@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2006/03/11 10:07:49 ghen Exp $
+# $NetBSD: Makefile,v 1.15 2006/08/17 13:05:08 taca Exp $
 
-DISTNAME=	ruby-dbi-all-${RUBY_DBI_VERSION}
+DISTNAME=	${RUBY_DBI_DISTNAME}
 PKGNAME=	${RUBY_PKGPREFIX}-DBI-${RUBY_DBI_VERSION}
-PKGREVISION=	2
 CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
@@ -13,19 +12,13 @@ COMMENT=	DBI for ruby
 USE_RUBY_SETUP=		yes
 CONFIGURE_ARGS+=	--with=dbi
 
-REPLACE_RUBY=	test/testdbi.rb
 DOCS=		ChangeLog LICENSE
-DOCS_DBI=	DBD_SPEC DBI_SPEC ToDo index.rd sf_logo.html \
+DOCS_DBI=	DBD_SPEC DBI_SPEC \
 		html/ChangeLog.html html/DBD_SPEC.html html/DBI_SPEC.html \
-		html/ToDo.html html/index.html html/rubyStyle.css
+		html/index.html html/rubyStyle.css
 EXAMPLES=	examples/persistence.rb
-TESTS=		README testdbi.rb example/config.sh example/example.cfg \
-		example/setup.sh example/teardown.sh
 
-REPLACE_INTERPRETER+=	bash
-REPLACE.bash.old=	.*/bin/bash
-REPLACE.bash.new=	${SH}
-REPLACE_FILES.bash=	test/example/teardown.sh
+OWN_DIRS+=	${RUBY_SITELIBDIR}/DBD ${RUBY_SITEARCHLIBDIR}/DBD
 
 post-install:
 	${INSTALL_DATA_DIR} ${RUBY_DOCDIR}/dbi/html
@@ -35,16 +28,10 @@ post-install:
 .for file in ${DOCS_DBI}
 	${INSTALL_DATA} ${WRKSRC}/doc/${file} ${RUBY_DOCDIR}/dbi/${file}
 .endfor
-	${INSTALL_DATA_DIR} ${RUBY_EXAMPLESDIR}/dbi/test/example
+	${INSTALL_DATA_DIR} ${RUBY_EXAMPLESDIR}/dbi
 .for file in ${EXAMPLES}
 	${INSTALL_DATA} ${WRKSRC}/${file} ${RUBY_EXAMPLESDIR}/dbi
 .endfor
-.for file in ${TESTS}
-	${INSTALL_DATA} ${WRKSRC}/test/${file} \
-		${RUBY_EXAMPLESDIR}/dbi/test/${file}
-.endfor
-	${INSTALL_DATA_DIR} ${RUBY_SITELIBDIR}/DBD
-	${INSTALL_DATA_DIR} ${RUBY_SITEARCHLIBDIR}/DBD
 
 .include "Makefile.common"
 .include "../../lang/ruby/modules.mk"

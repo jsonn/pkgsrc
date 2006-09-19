@@ -1,7 +1,7 @@
-$NetBSD: patch-ab,v 1.1 2006/07/19 10:02:05 joerg Exp $
+$NetBSD: patch-ab,v 1.2 2006/09/19 21:29:18 rillig Exp $
 
---- mk/common.mk.orig	2006-07-19 09:44:49.000000000 +0000
-+++ mk/common.mk
+--- mk/common.mk.orig	2006-06-25 23:34:31.000000000 +0200
++++ mk/common.mk	2006-09-19 23:10:19.000000000 +0200
 @@ -16,13 +16,7 @@ TMPLDFLAGS += -lbind -lsocket
  endif
  endif
@@ -17,3 +17,14 @@ $NetBSD: patch-ab,v 1.1 2006/07/19 10:02:05 joerg Exp $
  
  ifeq ($(OPENSSL),yes)
  TMPCFLAGS  += -DHAVE_OPENSSL
+@@ -74,8 +68,8 @@ endef
+ 
+ define INSTALL_MAN_RULE
+ 	@echo "Install $<"
+-	@$(MKDIR) $(PREFIX)/man/man1
+-	@$(CP) $< $(PREFIX)/man/man1/
++	@$(MKDIR) $(PREFIX)/${PKGMANDIR}/man1
++	@$(CP) $< $(PREFIX)/${PKGMANDIR}/man1/
+ endef
+ 
+ RM    = rm -Rf

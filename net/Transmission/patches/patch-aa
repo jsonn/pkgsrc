@@ -1,7 +1,16 @@
-$NetBSD: patch-aa,v 1.1 2006/07/19 10:02:05 joerg Exp $
+$NetBSD: patch-aa,v 1.2 2006/09/19 21:29:18 rillig Exp $
 
---- configure.orig	2006-07-19 09:44:16.000000000 +0000
-+++ configure
+--- configure.orig	2006-06-25 23:34:41.000000000 +0200
++++ configure	2006-09-19 23:20:08.000000000 +0200
+@@ -173,7 +173,7 @@ gtk_test()
+   verbose gtk_test
+   if runcmd pkg-config gtk+-2.0
+   then
+-    if runcmd expr `pkg-config --modversion gtk+-2.0` '>=' 2.6.0
++    if runcmd pkg-config --atleast-version=2.6.0 gtk+-2.0
+     then
+       cat > testconf.c << EOF
+       #include <gtk/gtk.h>
 @@ -274,13 +274,9 @@ EOF
      PTHREAD=yes
      ;;

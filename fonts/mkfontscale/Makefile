@@ -1,17 +1,24 @@
-# $NetBSD: Makefile,v 1.1.1.1 2002/05/20 12:30:29 wiz Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2006/11/03 16:41:30 joerg Exp $
 #
 
-DISTNAME=	mkfontscale-20020418
-CATEGORIES=	fonts
-MASTER_SITES=	http://www.pps.jussieu.fr/~jch/software/files/
+DISTNAME=		mkfontscale-1.0.2
+CATEGORIES=		fonts x11
+MASTER_SITES=		http://xorg.freedesktop.org/releases/individual/app/
+EXTRACT_SUFX=		.tar.bz2
 
-MAINTAINER=	rxg@netbsd.org
-HOMEPAGE=	http://www.pps.jussieu.fr/~jch/software/files/
-COMMENT=	create an index of scalable font files for X
+MAINTAINER=		joerg@NetBSD.org
+HOMEPAGE=		http://xorg.freedesktop.org/
+COMMENT=		X11 Scalable Font Index Generator
 
-USE_IMAKE=	yes
+PKG_INSTALLATION_TYPES=	overwrite pkgviews
+PKG_DESTDIR_SUPPORT=	user-destdir
 
-WRKSRC=		${WRKDIR}/mkfontscale
+GNU_CONFIGURE=		yes
+USE_TOOLS+=		pkg-config
 
-.include "../../graphics/freetype2/buildlink.mk"
+.include "../../devel/zlib/buildlink3.mk"
+.include "../../graphics/freetype2/buildlink3.mk"
+.include "../../fonts/libfontenc/buildlink3.mk"
+.include "../../x11/xproto/buildlink3.mk"
+
 .include "../../mk/bsd.pkg.mk"

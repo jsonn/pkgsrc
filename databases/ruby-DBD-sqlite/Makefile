@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2006/08/17 13:07:45 taca Exp $
+# $NetBSD: Makefile,v 1.11 2007/02/22 19:26:19 wiz Exp $
 
 DISTNAME=	${RUBY_DBI_DISTNAME}
 PKGNAME=	${RUBY_PKGPREFIX}-DBD-sqlite-${RUBY_DBI_VERSION}
@@ -9,7 +9,7 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	${RUBY_DBI_HOMEPAGE}
 COMMENT=	DBD/SQLite for ruby
 
-DISTINFO_FILE=  	${.CURDIR}/../ruby-DBI/distinfo
+DISTINFO_FILE=	${.CURDIR}/../ruby-DBI/distinfo
 PATCHDIR=		${.CURDIR}/../ruby-DBI/patches
 RUBY_HAS_ARCHLIB=	yes
 USE_RUBY_SETUP=		yes

@@ -1,13 +1,14 @@
-$NetBSD: patch-ab,v 1.2 2006/09/19 21:29:18 rillig Exp $
+$NetBSD: patch-ab,v 1.3 2007/05/27 09:16:37 tnn Exp $
 
---- mk/common.mk.orig	2006-06-25 23:34:31.000000000 +0200
-+++ mk/common.mk	2006-09-19 23:10:19.000000000 +0200
-@@ -16,13 +16,7 @@ TMPLDFLAGS += -lbind -lsocket
+--- mk/common.mk.orig	2007-05-02 21:15:51.000000000 +0200
++++ mk/common.mk
+@@ -16,14 +16,7 @@ TMPLDFLAGS += -lbind -lsocket
  endif
  endif
  
 -ifeq ($(PTHREAD),yes)
--ifeq ($(SYSTEM),FreeBSD)
+-ifneq ($(filter FreeBSD OpenBSD,$(SYSTEM)),)
+-TMPCFLAGS  += -pthread
 -TMPLDFLAGS += -pthread
 -else
 -TMPLDFLAGS += -lpthread
@@ -17,14 +18,14 @@ $NetBSD: patch-ab,v 1.2 2006/09/19 21:29:18 rillig Exp $
  
  ifeq ($(OPENSSL),yes)
  TMPCFLAGS  += -DHAVE_OPENSSL
-@@ -74,8 +68,8 @@ endef
+@@ -103,8 +96,8 @@ endef
  
  define INSTALL_MAN_RULE
  	@echo "Install $<"
--	@$(MKDIR) $(PREFIX)/man/man1
--	@$(CP) $< $(PREFIX)/man/man1/
+-	@$(MKDIR) $(DESTDIR)$(PREFIX)/man/man1
+-	@$(CP) $< $(DESTDIR)$(PREFIX)/man/man1/
 +	@$(MKDIR) $(PREFIX)/${PKGMANDIR}/man1
 +	@$(CP) $< $(PREFIX)/${PKGMANDIR}/man1/
  endef
  
- RM    = rm -Rf
+ define INSTALL_DESKTOP_RULE

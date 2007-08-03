@@ -1,0 +1,30 @@
+$NetBSD: patch-ad,v 1.1 2007/08/03 22:34:24 tnn Exp $
+
+--- gtk/ipc.c.orig	2007-05-02 21:15:26.000000000 +0200
++++ gtk/ipc.c
+@@ -43,6 +43,11 @@
+ #include "tr_prefs.h"
+ #include "util.h"
+ 
++#ifndef SUN_LEN
++#define SUN_LEN(su) \
++	(sizeof(*(su)) - sizeof((su)->sun_path) + strlen((su)->sun_path))
++#endif
++
+ /* IPC protocol version */
+ #define PROTO_VERS_MIN          ( 1 )
+ #define PROTO_VERS_MAX          ( 1 )
+@@ -212,11 +217,11 @@ serv_bind(struct constate *con) {
+   rmsock();
+   gl_sockpath = cf_sockname();
+ 
+-  if(0 > (con->fd = socket(AF_LOCAL, SOCK_STREAM, 0)))
++  if(0 > (con->fd = socket(AF_UNIX, SOCK_STREAM, 0)))
+     goto fail;
+ 
+   bzero(&sa, sizeof(sa));
+-  sa.sun_family = AF_LOCAL;
++  sa.sun_family = AF_UNIX;
+   strncpy(sa.sun_path, gl_sockpath, sizeof(sa.sun_path) - 1);
+ 
+   /* unlink any existing socket file before trying to create ours */

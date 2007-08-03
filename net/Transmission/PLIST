@@ -1,16 +1,16 @@
-@comment $NetBSD: PLIST,v 1.2 2007/05/27 09:16:37 tnn Exp $
-bin/transmission-gtk
+@comment $NetBSD: PLIST,v 1.3 2007/08/03 22:34:23 tnn Exp $
+${GTK}bin/transmission-gtk
 bin/transmissioncli
-man/man1/transmission-gtk.1
+${GTK}man/man1/transmission-gtk.1
 man/man1/transmissioncli.1
-share/applications/transmission-gtk.desktop
-share/locale/bg/LC_MESSAGES/transmission-gtk.mo
-share/locale/es/LC_MESSAGES/transmission-gtk.mo
-share/locale/fi/LC_MESSAGES/transmission-gtk.mo
-share/locale/fr/LC_MESSAGES/transmission-gtk.mo
-share/locale/it/LC_MESSAGES/transmission-gtk.mo
-share/locale/pl/LC_MESSAGES/transmission-gtk.mo
-share/locale/ro/LC_MESSAGES/transmission-gtk.mo
-share/locale/ru/LC_MESSAGES/transmission-gtk.mo
-share/locale/sv/LC_MESSAGES/transmission-gtk.mo
-share/pixmaps/transmission.png
+${GTK}share/applications/transmission-gtk.desktop
+${GTK}share/locale/bg/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/es/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/fi/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/fr/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/it/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/pl/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/ro/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/ru/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/sv/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/pixmaps/transmission.png

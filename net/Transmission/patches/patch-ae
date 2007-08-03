@@ -1,0 +1,15 @@
+$NetBSD: patch-ae,v 1.1 2007/08/03 22:34:24 tnn Exp $
+
+--- libtransmission/net.c.orig	2007-05-02 21:15:24.000000000 +0200
++++ libtransmission/net.c
+@@ -24,6 +24,10 @@
+ 
+ #include "transmission.h"
+ 
++#if defined(SYS_HPUX) && defined(IP_ADD_MEMBERSHIP)
++#undef IP_ADD_MEMBERSHIP
++#endif
++
+ /***********************************************************************
+  * DNS resolution
+  **********************************************************************/

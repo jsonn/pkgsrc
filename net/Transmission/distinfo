@@ -1,8 +1,10 @@
-$NetBSD: distinfo,v 1.4 2007/05/27 09:16:37 tnn Exp $
+$NetBSD: distinfo,v 1.5 2007/08/03 22:34:23 tnn Exp $
 
 SHA1 (Transmission-0.72.tar.gz) = 5305f81f5a1cdd323e825ef6dfa563b7f2d18ba0
 RMD160 (Transmission-0.72.tar.gz) = 7c03cd1fe86a19bb3d648e0f8b33d7991828d714
 Size (Transmission-0.72.tar.gz) = 1336993 bytes
-SHA1 (patch-aa) = bca5031e7d3808029cb6cacf5f0677112e001438
-SHA1 (patch-ab) = 610ad78926873c35abfb4ff1fd089f61c5efc252
+SHA1 (patch-aa) = ca479efbb941ca07755bb7c822a482b110daf40c
+SHA1 (patch-ab) = b93143b7a6cefa22dcb8fbd1d04814a61e818825
 SHA1 (patch-ac) = c5aaa6319c21e595ed778d05b9fb69a633d0cc28
+SHA1 (patch-ad) = 7f056dbafdac8b8d33b746a95e3f7c6109a05de5
+SHA1 (patch-ae) = 4a8b62917021a2b9402cd347b5fcf17f43e0418e

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.4 2007/08/09 11:40:20 tnn Exp $
+@comment $NetBSD: PLIST,v 1.5 2007/08/24 18:42:53 tnn Exp $
 bin/transmission-daemon
 ${GTK}bin/transmission-gtk
 bin/transmission-proxy
@@ -17,7 +17,10 @@ ${GTK}share/locale/fr/LC_MESSAGES/transmission-gtk.mo
 ${GTK}share/locale/it/LC_MESSAGES/transmission-gtk.mo
 ${GTK}share/locale/nl/LC_MESSAGES/transmission-gtk.mo
 ${GTK}share/locale/pl/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/pt/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/pt_BR/LC_MESSAGES/transmission-gtk.mo
 ${GTK}share/locale/ro/LC_MESSAGES/transmission-gtk.mo
 ${GTK}share/locale/ru/LC_MESSAGES/transmission-gtk.mo
+${GTK}share/locale/sk/LC_MESSAGES/transmission-gtk.mo
 ${GTK}share/locale/sv/LC_MESSAGES/transmission-gtk.mo
 ${GTK}share/pixmaps/transmission.png

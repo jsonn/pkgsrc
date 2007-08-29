@@ -1,8 +1,10 @@
-# $NetBSD: Makefile,v 1.10 2007/08/28 20:05:25 tnn Exp $
+# $NetBSD: Makefile,v 1.11 2007/08/29 08:05:07 tnn Exp $
 #
 
+# xxx remove DIST_SUBDIR with the next transmission release
 DISTNAME=		Transmission-0.81
 PKGREVISION=		1
+DIST_SUBDIR=		${PKGNAME_NOREV}
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 

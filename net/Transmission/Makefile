@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.13 2007/10/30 22:31:57 tnn Exp $
+# $NetBSD: Makefile,v 1.14 2007/11/03 14:31:08 tnn Exp $
 #
-
 DISTNAME=		transmission-0.91
 PKGNAME=		Transmission-0.91
 CATEGORIES=		net
@@ -24,7 +23,7 @@ LDFLAGS+=		${BUILDLINK_LDADD.getopt}
 #.include "../../devel/libevent/buildlink3.mk"
 
 CONFIGURE_ENV+=		"OPENSSL_CFLAGS=-I${SSLBASE}/include"
-CONFIGURE_ENV+=		"OPENSSL_LIBS=-I${SSLBASE}/lib -lcrypto -lssl"
+CONFIGURE_ENV+=		"OPENSSL_LIBS=-L${SSLBASE}/lib -lcrypto -lssl"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../devel/libgetopt/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"

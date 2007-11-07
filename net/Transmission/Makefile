@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2007/11/03 14:31:08 tnn Exp $
+# $NetBSD: Makefile,v 1.15 2007/11/07 11:41:42 tnn Exp $
 #
-DISTNAME=		transmission-0.91
-PKGNAME=		Transmission-0.91
+DISTNAME=		transmission-0.92
+PKGNAME=		Transmission-0.92
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -12,6 +12,7 @@ COMMENT=		Free, lightweight BitTorrent client
 
 PKG_DESTDIR_SUPPORT=	user-destdir
 USE_TOOLS+=		gmake pkg-config
+EXTRACT_USING=		gtar
 
 GNU_CONFIGURE=		yes
 LDFLAGS+=		${BUILDLINK_LDADD.getopt}

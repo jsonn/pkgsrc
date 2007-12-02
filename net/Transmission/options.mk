@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.2 2007/10/30 22:31:58 tnn Exp $
+# $NetBSD: options.mk,v 1.3 2007/12/02 02:51:16 tnn Exp $
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -11,7 +11,6 @@ PKG_SUGGESTED_OPTIONS=	gtk
 .if !empty(PKG_OPTIONS:Mgtk)
 . include "../../x11/gtk2/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-gtk
-USE_TOOLS+=		intltool msgfmt
 USE_DIRS+=		xdg-1.1
 PLIST_SUBST+=		GTK=
 .else

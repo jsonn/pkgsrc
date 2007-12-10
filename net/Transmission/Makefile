@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.16 2007/12/02 02:51:15 tnn Exp $
+# $NetBSD: Makefile,v 1.17 2007/12/10 10:18:22 tnn Exp $
 #
-DISTNAME=		transmission-0.94
-PKGNAME=		Transmission-0.94
+DISTNAME=		transmission-0.95
+PKGNAME=		Transmission-0.95
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -16,6 +16,11 @@ EXTRACT_USING=		gtar
 
 GNU_CONFIGURE=		yes
 LDFLAGS+=		${BUILDLINK_LDADD.getopt}
+
+.include "../../mk/bsd.prefs.mk"
+.if !empty(OPSYS:M*BSD)
+CPPFLAGS+=		-DBSD
+.endif
 
 .include "options.mk"
 

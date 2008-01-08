@@ -1,9 +1,9 @@
-@comment $NetBSD: PLIST,v 1.6 2007/10/30 22:31:58 tnn Exp $
+@comment $NetBSD: PLIST,v 1.7 2008/01/08 02:45:49 tnn Exp $
 ${GTK}bin/transmission
-bin/transmission-cli
 bin/transmission-daemon
 bin/transmission-proxy
 bin/transmission-remote
+bin/transmissioncli
 man/man1/transmission-daemon.1
 man/man1/transmission-proxy.1
 man/man1/transmission-remote.1

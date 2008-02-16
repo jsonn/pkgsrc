@@ -1,0 +1,17 @@
+$NetBSD: patch-aa,v 1.8 2008/02/16 23:10:06 tnn Exp $
+
+--- third-party/miniupnp/upnpreplyparse.h.orig	2008-01-29 21:48:55.000000000 +0100
++++ third-party/miniupnp/upnpreplyparse.h
+@@ -8,11 +8,7 @@
+ #ifndef __UPNPREPLYPARSE_H__
+ #define __UPNPREPLYPARSE_H__
+ 
+-#if defined(NO_SYS_QUEUE_H) || defined(WIN32)
+-#include "bsdqueue.h"
+-#else
+-#include <sys/queue.h>
+-#endif
++#include "../libevent/compat/sys/queue.h"
+ 
+ #ifdef __cplusplus
+ extern "C" {

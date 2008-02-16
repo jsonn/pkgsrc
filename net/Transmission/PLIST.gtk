@@ -1,0 +1,43 @@
+@comment $NetBSD: PLIST.gtk,v 1.1 2008/02/16 23:10:06 tnn Exp $
+bin/transmission
+man/man1/transmission.1
+share/applications/transmission.desktop
+share/icons/hicolor/16x16/apps/transmission.png
+share/icons/hicolor/22x22/apps/transmission.png
+share/icons/hicolor/24x24/apps/transmission.png
+share/icons/hicolor/32x32/apps/transmission.png
+share/icons/hicolor/48x48/apps/transmission.png
+share/icons/hicolor/scalable/apps/transmission.svg
+share/locale/de/LC_MESSAGES/transmission.mo
+share/locale/es/LC_MESSAGES/transmission.mo
+share/locale/fi/LC_MESSAGES/transmission.mo
+share/locale/fr/LC_MESSAGES/transmission.mo
+share/locale/hu/LC_MESSAGES/transmission.mo
+share/locale/it/LC_MESSAGES/transmission.mo
+share/locale/nl/LC_MESSAGES/transmission.mo
+share/locale/pl/LC_MESSAGES/transmission.mo
+share/locale/pt/LC_MESSAGES/transmission.mo
+share/locale/pt_BR/LC_MESSAGES/transmission.mo
+share/locale/ro/LC_MESSAGES/transmission.mo
+share/locale/ru/LC_MESSAGES/transmission.mo
+share/locale/sk/LC_MESSAGES/transmission.mo
+share/locale/sv/LC_MESSAGES/transmission.mo
+share/locale/tr/LC_MESSAGES/transmission.mo
+share/locale/zh_CN/LC_MESSAGES/transmission.mo
+share/pixmaps/transmission.png
+@comment in xdg-dirs: @dirrm share/pixmaps
+@dirrm share/icons/hicolor/scalable/apps
+@dirrm share/icons/hicolor/scalable
+@dirrm share/icons/hicolor/48x48/apps
+@dirrm share/icons/hicolor/48x48
+@dirrm share/icons/hicolor/32x32/apps
+@dirrm share/icons/hicolor/32x32
+@dirrm share/icons/hicolor/24x24/apps
+@dirrm share/icons/hicolor/24x24
+@dirrm share/icons/hicolor/22x22/apps
+@dirrm share/icons/hicolor/22x22
+@dirrm share/icons/hicolor/16x16/apps
+@dirrm share/icons/hicolor/16x16
+@dirrm share/icons/hicolor
+@comment in xdg-dirs: @dirrm share/icons
+@comment in xdg-dirs: @dirrm share/applications

@@ -1,0 +1,9 @@
+@comment $NetBSD: PLIST.common,v 1.1 2008/02/16 23:10:06 tnn Exp $
+bin/transmission-daemon
+bin/transmission-proxy
+bin/transmission-remote
+bin/transmissioncli
+man/man1/transmission-daemon.1
+man/man1/transmission-proxy.1
+man/man1/transmission-remote.1
+man/man1/transmissioncli.1

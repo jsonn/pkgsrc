@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2008/02/17 01:41:28 tnn Exp $
+# $NetBSD: Makefile,v 1.26 2008/02/17 02:51:56 tnn Exp $
 #
 DISTNAME=		transmission-1.05
 PKGNAME=		Transmission-1.05
@@ -17,6 +17,8 @@ EXTRACT_USING=		gtar
 
 GNU_CONFIGURE=		yes
 LDFLAGS+=		${BUILDLINK_LDADD.getopt}
+# Tell libtool to link all internal libraries statically
+LDFLAGS+=		-static
 
 .include "../../mk/bsd.prefs.mk"
 .if !empty(OPSYS:M*BSD)

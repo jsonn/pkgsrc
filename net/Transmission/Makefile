@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.26 2008/02/17 02:51:56 tnn Exp $
+# $NetBSD: Makefile,v 1.27 2008/02/18 13:19:15 tnn Exp $
 #
 DISTNAME=		transmission-1.05
 PKGNAME=		Transmission-1.05
+PKGREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2

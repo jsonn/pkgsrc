@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.gtk,v 1.1 2008/02/16 23:10:06 tnn Exp $
+@comment $NetBSD: PLIST.gtk,v 1.2 2008/02/18 13:19:15 tnn Exp $
 bin/transmission
 man/man1/transmission.1
 share/applications/transmission.desktop
@@ -26,18 +26,18 @@ share/locale/tr/LC_MESSAGES/transmission.mo
 share/locale/zh_CN/LC_MESSAGES/transmission.mo
 share/pixmaps/transmission.png
 @comment in xdg-dirs: @dirrm share/pixmaps
-@dirrm share/icons/hicolor/scalable/apps
-@dirrm share/icons/hicolor/scalable
-@dirrm share/icons/hicolor/48x48/apps
-@dirrm share/icons/hicolor/48x48
-@dirrm share/icons/hicolor/32x32/apps
-@dirrm share/icons/hicolor/32x32
-@dirrm share/icons/hicolor/24x24/apps
-@dirrm share/icons/hicolor/24x24
-@dirrm share/icons/hicolor/22x22/apps
-@dirrm share/icons/hicolor/22x22
-@dirrm share/icons/hicolor/16x16/apps
-@dirrm share/icons/hicolor/16x16
-@dirrm share/icons/hicolor
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/scalable/apps
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/scalable
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/48x48/apps
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/48x48
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/32x32/apps
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/32x32
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/24x24/apps
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/24x24
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/22x22/apps
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/22x22
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/16x16/apps
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor/16x16
+@comment in hicolor-icon-theme: @dirrm share/icons/hicolor
 @comment in xdg-dirs: @dirrm share/icons
 @comment in xdg-dirs: @dirrm share/applications

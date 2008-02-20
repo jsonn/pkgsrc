@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.1.1.1 2007/11/03 17:24:41 drochner Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2008/02/20 11:21:54 xtraeme Exp $
 #
 
-DISTNAME=	gtksourceview-2.0.1
-PKGNAME=	gtksourceview2-2.0.1
+DISTNAME=	gtksourceview-${DISTVER}
+PKGNAME=	gtksourceview2-${DISTVER}
+#PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtksourceview/2.0/}
 EXTRACT_SUFX=	.tar.bz2
@@ -16,13 +17,16 @@ USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake intltool msgfmt perl pkg-config
 
-PKGCONFIG_OVERRIDE=	gtksourceview-2.0.pc.in
+PKGCONFIG_OVERRIDE=	gtksourceview-1.0.pc.in
 
 CONFIGURE_ARGS+=	--disable-build-tests
+
+DISTVER=		2.0.2
 
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
+.include "../../print/libgnomeprint/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

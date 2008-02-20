@@ -1,53 +1,65 @@
-# $NetBSD: Makefile,v 1.1.1.1 2006/01/24 04:00:37 xtraeme Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2008/02/20 10:08:41 xtraeme Exp $
 
-DISTNAME=	ffmpeg-0.4.9-pre1
-PKGNAME=	ffmpeg-devel-0.4.9pre1
+DISTNAME=	ffmpeg-${DISTVERSION}
+PKGNAME=	ffmpeg-devel-${DISTVERSION:S/-//g}
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=ffmpeg/}
+MASTER_SITES=	${MASTER_SITE_FREEBSD}
+EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	zul@NetBSD-fr.org
-HOMEPAGE=	http://ffmpeg.sourceforge.net/
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	http://ffmpeg.mplayerhq.hu/
 COMMENT=	MPEG decoding, encoding and streaming software
 
+DISTVERSION=	2007-10-04
+#PKG_DESTDIR_SUPPORT=	user-destdir
+
 HAS_CONFIGURE=	YES
-USE_TOOLS+=	gmake
 USE_LIBTOOL=	YES
+USE_TOOLS+=	gmake texi2html pod2man
 
-CONFLICTS+=	ffmpeg-[0-9]*
+CONFLICTS+=	ffmpeg-devel-[0-9]*
 
-REPLACE_PERL=	doc/texi2pod.pl
+REPLACE_PERL+=	doc/texi2pod.pl
 
-CONF_FILES=	${PREFIX}/share/examples/ffmpeg/ffserver.conf \
+SUBST_CLASSES+=		conf
+SUBST_STAGE.conf=	post-patch
+SUBST_FILES.conf=	ffserver.c
+SUBST_SED.conf=		-e 's,/etc/ffserver.conf,${PKG_SYSCONFDIR}/ffserver.conf,g'
+SUBST_MESSAGE.conf=	Fixing configuration path.
+
+PLIST_SRC+=	${PKGDIR}/PLIST
+
+CONF_FILES+=	${PREFIX}/share/examples/ffmpeg/ffserver.conf \
 		${PKG_SYSCONFDIR}/ffserver.conf
 
 MAKE_ENV+=	EXTRA_LIBS=${LIBGETOPT:Q} \
-		FFSERVER_CONF=${PKG_SYSCONFDIR}/ffserver.conf \
 		LOCALBASE=${LOCALBASE:Q}
 
-CONFIGURE_ARGS=		--cc=${CC:Q} --prefix=${PREFIX:Q}
-CONFIGURE_ARGS+=	--enable-pp --disable-vhook --disable-debug
-CONFIGURE_ARGS+=	--enable-gpl
-CONFIGURE_ARGS+=	--enable-ffplay
+CONFIGURE_ARGS+=	--mandir=${PREFIX}/${PKGMANDIR} \
+			--cc=${CC:Q} \
+			--prefix=${PREFIX:Q} \
+			--disable-vhook \
+			--disable-debug \
+			--enable-pp \
+			--enable-gpl \
+			--enable-memalign-hack \
+			--enable-pthreads \
+			--enable-shared
+
+
+INSTALLATION_DIRS=	lib share/examples/ffmpeg share/doc/ffmpeg
 
 .include "options.mk"
 
 post-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/ffmpeg \
-		${PREFIX}/share/doc/ffmpeg \
-		${PREFIX}/include/ffmpeg/libpostproc
 	${INSTALL_DATA} ${WRKSRC}/libavcodec/apiexample.c \
-		${PREFIX}/share/doc/ffmpeg
+		${DESTDIR}${PREFIX}/share/doc/ffmpeg
 	${INSTALL_DATA} ${WRKSRC}/README ${WRKSRC}/doc/TODO \
-		${PREFIX}/share/doc/ffmpeg
-	${INSTALL_DATA} ${WRKSRC}/doc/*.txt ${PREFIX}/share/doc/ffmpeg
+		${DESTDIR}${PREFIX}/share/doc/ffmpeg
+	${INSTALL_DATA} ${WRKSRC}/doc/*.txt ${DESTDIR}${PREFIX}/share/doc/ffmpeg
 	${INSTALL_DATA} ${WRKSRC}/doc/ffserver.conf \
-		${PREFIX}/share/examples/ffmpeg
-	# ffplay not installed
-	if [ -f ${PREFIX}/man/man1/ffplay.1 ]; then \
-	${RM} ${PREFIX}/man/man1/ffplay.1 ; \
-	fi
-	${INSTALL_DATA} ${WRKSRC}/libavcodec/libpostproc/postprocess.h \
-		${PREFIX}/include/ffmpeg/libpostproc
+		${DESTDIR}${PREFIX}/share/examples/ffmpeg
 
+.include "../../mk/pthread.buildlink3.mk"
 .include "../../devel/libgetopt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

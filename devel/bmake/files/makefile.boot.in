@@ -1,5 +1,5 @@
 # RCSid:
-#	$Id: makefile.boot.in,v 1.1.1.1 2005/12/02 00:03:00 sjg Exp $
+#	$Id: makefile.boot.in,v 1.1.1.2 2008/03/09 19:39:33 joerg Exp $
 
 #
 # modify MACHINE and MACHINE_ARCH as appropriate for your target architecture
@@ -13,17 +13,23 @@ MKDEP=$(srcdir)/mkdeps.sh -n -i/usr/include
 MKDEP_OPTS=-A
 MK=${prefix}/share/mk
 MKSRC=@mksrc@
-DEFAULT_MAKESYSPATH=/usr/share/mk:/usr/local/share/mk:/opt/share/mk
-CFLAGS=-I. -I$(srcdir) @DEFS@ @CPPFLAGS@ ${XDEFS} -D_PATH_DEFSYSPATH=\"@default_sys_path@\"
+# this is what we build into bmake
+DEFAULT_SYS_PATH = @default_sys_path@
+# this is what we might use during bootstrap
+BOOTSTRAP_SYS_PATH= `pwd`/mk:${MK}:${MKSRC}:${DEFAULT_SYS_PATH}:/usr/share/mk:/usr/local/share/mk:/opt/share/mk
+
+CFLAGS= @CFLAGS@ -I. -I$(srcdir) @DEFS@ @CPPFLAGS@ ${XDEFS} \
+	   -D_PATH_DEFSYSPATH=\"${DEFAULT_SYS_PATH}\"
 MDEFS="-D@force_machine@MACHINE=\"@machine@\"" "-DMACHINE_ARCH=\"@machine_arch@\""
 
 OBJ=arch.o buf.o compat.o cond.o dir.o for.o hash.o job.o main.o make.o \
     parse.o str.o suff.o targ.o trace.o var.o util.o getopt.o sigcompat.o @LIBOBJS@
 
-BMAKE_ENV= CC="$(CC)" LIBC= MAKEFLAGS= MAKESYSPATH=`pwd`/mk:${MKSRC}:${MK}:${DEFAULT_MAKESYSPATH}
+BMAKE_ENV= CC="$(CC)" LIBC= MAKEFLAGS= MAKESYSPATH=${BOOTSTRAP_SYS_PATH}
 
 bootstrap:	bmake.boot .mk.done
 	${BMAKE_ENV} ./bmake.boot -f Makefile 
+	${BMAKE_ENV} ./bmake.boot -f Makefile bmake.1
 	${BMAKE_ENV} `pwd`/bmake -f Makefile test
 	
 bmake:	bmake.boot

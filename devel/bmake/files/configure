@@ -308,7 +308,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CPP EGREP INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA ac_exe_suffix LIBOBJS machine force_machine machine_arch mksrc default_sys_path prefix_sys_path INSTALL GCC diff_u LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT CPP EGREP INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA ac_exe_suffix LIBOBJS machine force_machine machine_arch mksrc default_sys_path INSTALL GCC diff_u LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -846,7 +846,7 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-defshell=SHELL  explicitly set DEFSHELL to either /bin/sh or /bin/ksh
+  --with-defshell=SHELL  use SHELL by default - must be sh compatible, use sh or ksh to pick the internal definitions
   --with-machine=MACHINE  explicitly set MACHINE
   --with-force-machine=MACHINE  set FORCE_MACHINE
   --with-force-machine-arch=MACHINE  set FORCE_MACHINE_ARCH
@@ -1285,27 +1285,14 @@ yes)   { { echo "$as_me:$LINENO: error: bad value ${withval} given for bmake DEF
 echo "$as_me: error: bad value ${withval} given for bmake DEFSHELL" >&2;}
    { (exit 1); exit 1; }; } ;;
 no)    ;;
-*)     case "/$with_defshell" in
-       */csh) DEFSHELL=0;;	   # kidding right?
-       */sh)  DEFSHELL=1;;
-       */ksh) DEFSHELL=2;;
-       *) { { echo "$as_me:$LINENO: error: bad value ${withval} given for bmake DEFSHELL - only /bin/sh and /bin/ksh are valid" >&5
-echo "$as_me: error: bad value ${withval} given for bmake DEFSHELL - only /bin/sh and /bin/ksh are valid" >&2;}
-   { (exit 1); exit 1; }; } ;;
+*)     case "$with_defshell" in
+       sh)  DEFSHELL_INDEX=DEFSHELL_INDEX_SH;;	# it's the default anyway
+       ksh) DEFSHELL_INDEX=DEFSHELL_INDEX_KSH;;
+       csh) DEFSHELL_INDEX=DEFSHELL_INDEX_CSH;;	# kidding right?
+       *)   defshell_path=$with_defshell;;	# better be sh compatible!
        esac
-       case "$with_defshell" in
-       /bin/*) ;;
-       /*) { { echo "$as_me:$LINENO: error: bad value ${withval} - DEFSHELL must reside in /bin" >&5
-echo "$as_me: error: bad value ${withval} - DEFSHELL must reside in /bin" >&2;}
-   { (exit 1); exit 1; }; };;
-       esac
-
-cat >>confdefs.h <<_ACEOF
-#define DEFSHELL ${DEFSHELL:-1}
-_ACEOF
-
        ;;
-esac
+       esac
 fi;
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -5427,8 +5414,13 @@ fi
 
 
 
+
+
+
+
 for ac_func in \
 	asprintf \
+	emalloc \
 	getcwd \
 	getenv \
 	getopt \
@@ -5441,10 +5433,13 @@ for ac_func in \
 	sigvec \
 	snprintf \
 	strdup \
+	estrndup \
+	strndup \
 	strerror \
 	strftime \
 	strtod \
 	strtol \
+	unsetenv \
 	vasprintf \
 	vsnprintf \
 	wait3 \
@@ -5927,7 +5922,24 @@ do
 done
 mksrc=`echo $mksrc | sed "s,$srcdir,\\\${srcdir},"`
 echo "Using: MKSRC=$mksrc" 1>&6
+if test -x /usr/xpg4/bin/sh; then
+        defshell_path=${defshell_path:-/usr/xpg4/bin/sh}
+fi
+if test -n "$defshell_path"; then
+	echo "Using: SHELL=$defshell_path"  >&6
 
+cat >>confdefs.h <<_ACEOF
+#define DEFSHELL_CUSTOM "$defshell_path"
+_ACEOF
+
+fi
+if test -n "$DEFSHELL_INDEX"; then
+
+cat >>confdefs.h <<_ACEOF
+#define DEFSHELL_INDEX $DEFSHELL_INDEX
+_ACEOF
+
+fi
 
 
 
@@ -6569,7 +6581,6 @@ s,@force_machine@,$force_machine,;t t
 s,@machine_arch@,$machine_arch,;t t
 s,@mksrc@,$mksrc,;t t
 s,@default_sys_path@,$default_sys_path,;t t
-s,@prefix_sys_path@,$prefix_sys_path,;t t
 s,@INSTALL@,$INSTALL,;t t
 s,@GCC@,$GCC,;t t
 s,@diff_u@,$diff_u,;t t

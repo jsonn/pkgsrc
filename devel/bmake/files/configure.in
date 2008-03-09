@@ -1,6 +1,6 @@
 dnl
 dnl RCSid:
-dnl	$Id: configure.in,v 1.1.1.1 2005/12/02 00:02:59 sjg Exp $
+dnl	$Id: configure.in,v 1.1.1.2 2008/03/09 19:39:33 joerg Exp $
 dnl
 dnl Process this file with autoconf to produce a configure script
 dnl
@@ -9,23 +9,19 @@ AC_CONFIG_HEADER(config.h)
 
 dnl
 AC_ARG_WITH(defshell,
-[  --with-defshell=SHELL  explicitly set DEFSHELL to either /bin/sh or /bin/ksh],
+[  --with-defshell=SHELL  use SHELL by default - must be sh compatible, use sh or ksh to pick the internal definitions],
 [case "${withval}" in
 yes)   AC_MSG_ERROR(bad value ${withval} given for bmake DEFSHELL) ;;
 no)    ;;
-*)     case "/$with_defshell" in
-       */csh) DEFSHELL=0;;	   # kidding right?
-       */sh)  DEFSHELL=1;;
-       */ksh) DEFSHELL=2;;
-       *) AC_MSG_ERROR(bad value ${withval} given for bmake DEFSHELL - only /bin/sh and /bin/ksh are valid) ;;
+*)     case "$with_defshell" in
+       sh)  DEFSHELL_INDEX=DEFSHELL_INDEX_SH;;	# it's the default anyway
+       ksh) DEFSHELL_INDEX=DEFSHELL_INDEX_KSH;;
+       csh) DEFSHELL_INDEX=DEFSHELL_INDEX_CSH;;	# kidding right?
+       *)   defshell_path=$with_defshell;;	# better be sh compatible!
        esac
-       case "$with_defshell" in
-       /bin/*) ;;
-       /*) AC_MSG_ERROR(bad value ${withval} - DEFSHELL must reside in /bin);;
-       esac
-       AC_DEFINE_UNQUOTED(DEFSHELL, ${DEFSHELL:-1}, Shell spec to use by default)
        ;;
-esac])
+       esac])
+dnl
 dnl
 dnl Checks for programs.
 AC_PROG_CC
@@ -97,6 +93,7 @@ AC_FUNC_WAIT3
 dnl Keep this list sorted
 AC_CHECK_FUNCS( \
 	asprintf \
+	emalloc \
 	getcwd \
 	getenv \
 	getopt \
@@ -109,10 +106,13 @@ AC_CHECK_FUNCS( \
 	sigvec \
 	snprintf \
 	strdup \
+	estrndup \
+	strndup \
 	strerror \
 	strftime \
 	strtod \
 	strtol \
+	unsetenv \
 	vasprintf \
 	vsnprintf \
 	wait3 \
@@ -277,6 +277,17 @@ do
 done
 mksrc=`echo $mksrc | sed "s,$srcdir,\\\${srcdir},"`
 echo "Using: MKSRC=$mksrc" 1>&6
+dnl On some systems we want a different default shell by default
+if test -x /usr/xpg4/bin/sh; then
+        defshell_path=${defshell_path:-/usr/xpg4/bin/sh}
+fi
+if test -n "$defshell_path"; then
+	echo "Using: SHELL=$defshell_path"  >&6
+	AC_DEFINE_UNQUOTED(DEFSHELL_CUSTOM, "$defshell_path", Path of default shell)
+fi
+if test -n "$DEFSHELL_INDEX"; then
+       AC_DEFINE_UNQUOTED(DEFSHELL_INDEX, $DEFSHELL_INDEX, Shell spec to use by default)
+fi        
 dnl
 AC_SUBST(machine)
 AC_SUBST(force_machine)

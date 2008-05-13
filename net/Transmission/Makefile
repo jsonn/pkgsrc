@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.29 2008/04/04 21:18:20 tnn Exp $
+# $NetBSD: Makefile,v 1.30 2008/05/13 11:49:17 tnn Exp $
 #
-DISTNAME=		transmission-1.10
-PKGNAME=		Transmission-1.10
+DISTNAME=		transmission-1.20
+PKGNAME=		Transmission-1.20
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -37,5 +37,6 @@ CONFIGURE_ENV+=		"OPENSSL_CFLAGS=-I${SSLBASE}/include"
 CONFIGURE_ENV+=		"OPENSSL_LIBS=-L${SSLBASE}/lib -lcrypto -lssl"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../devel/libgetopt/buildlink3.mk"
+.include "../../www/curl/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

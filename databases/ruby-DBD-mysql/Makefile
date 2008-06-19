@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.15 2007/02/22 19:26:19 wiz Exp $
+# $NetBSD: Makefile,v 1.16 2008/06/19 14:44:06 taca Exp $
 
 DISTNAME=	${RUBY_DBI_DISTNAME}
 PKGNAME=	${RUBY_PKGPREFIX}-DBD-mysql-${RUBY_DBI_VERSION}
+PKGREVISION=	1
 CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
@@ -9,20 +10,20 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	${RUBY_DBI_HOMEPAGE}
 COMMENT=	DBD/mysql for ruby
 
+DEPENDS+= ${RUBY_PKGPREFIX}-DBI>=${RUBY_DBI_VERSION}:../../databases/ruby-DBI
+
 DISTINFO_FILE=	${.CURDIR}/../ruby-DBI/distinfo
 PATCHDIR=	${.CURDIR}/../ruby-DBI/patches
 USE_RUBY_SETUP=		yes
 CONFIGURE_ARGS+=	--with=dbd_mysql
-
-DEPENDS+= ${RUBY_PKGPREFIX}-DBI>=${RUBY_DBI_VERSION}:../../databases/ruby-DBI
+INSTALLATION_DIRS=	${RUBY_DOC}/dbi/dbd-mysql
 
 DOCS=		HISTORY README
 
 post-install:
-	${INSTALL_DATA_DIR} ${RUBY_DOCDIR}/dbi/dbd-mysql
-.for FILE in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/doc/dbd/mysql/${FILE} \
-		${RUBY_DOCDIR}/dbi/dbd-mysql
+.for f in ${DOCS}
+	${INSTALL_DATA} ${WRKSRC}/doc/dbd/mysql/${f} \
+		${DESTDIR}${PREFIX}/${RUBY_DOC}/dbi/dbd-mysql
 .endfor
 
 .include "../../databases/ruby-DBI/Makefile.common"

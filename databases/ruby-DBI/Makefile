@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.15 2006/08/17 13:05:08 taca Exp $
+# $NetBSD: Makefile,v 1.16 2008/06/19 14:43:56 taca Exp $
 
 DISTNAME=	${RUBY_DBI_DISTNAME}
 PKGNAME=	${RUBY_PKGPREFIX}-DBI-${RUBY_DBI_VERSION}
+PKGREVISION=	1
 CATEGORIES=	databases ruby
 MASTER_SITES=	${RUBY_DBI_MASTER_SITES}
 
@@ -18,19 +19,19 @@ DOCS_DBI=	DBD_SPEC DBI_SPEC \
 		html/index.html html/rubyStyle.css
 EXAMPLES=	examples/persistence.rb
 
-OWN_DIRS+=	${RUBY_SITELIBDIR}/DBD ${RUBY_SITEARCHLIBDIR}/DBD
+OWN_DIRS+=	${RUBY_VENDORLIB}/DBD ${RUBY_VENDORARCHLIB}/DBD
+
+INSTALLATION_DIRS=	${RUBY_DOC}/dbi/html ${RUBY_EG}/dbi
 
 post-install:
-	${INSTALL_DATA_DIR} ${RUBY_DOCDIR}/dbi/html
-.for file in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${file} ${RUBY_DOCDIR}/dbi/${file}
+.for f in ${DOCS}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/${RUBY_DOC}/dbi/${f}
 .endfor
-.for file in ${DOCS_DBI}
-	${INSTALL_DATA} ${WRKSRC}/doc/${file} ${RUBY_DOCDIR}/dbi/${file}
+.for f in ${DOCS_DBI}
+	${INSTALL_DATA} ${WRKSRC}/doc/${f} ${DESTDIR}${PREFIX}/${RUBY_DOC}/dbi/${f}
 .endfor
-	${INSTALL_DATA_DIR} ${RUBY_EXAMPLESDIR}/dbi
-.for file in ${EXAMPLES}
-	${INSTALL_DATA} ${WRKSRC}/${file} ${RUBY_EXAMPLESDIR}/dbi
+.for f in ${EXAMPLES}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/${RUBY_EG}/dbi
 .endfor
 
 .include "Makefile.common"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.7 2007/03/17 15:52:33 taca Exp $
+# $NetBSD: Makefile.common,v 1.8 2008/06/19 14:43:56 taca Exp $
 
 RUBY_DBI_DISTNAME=	dbi-${RUBY_DBI_VERSION}
 RUBY_DBI_MASTER_SITES=	http://rubyforge.org/frs/download.php/12368/
@@ -6,3 +6,6 @@ RUBY_DBI_HOMEPAGE=	http://rubyforge.org/projects/ruby-dbi/
 
 RUBY_DBI_VERSION=	0.1.1
 WRKSRC=			${WRKDIR}/ruby-dbi
+
+CONFIGURE_ARGS+=	--rb-dir=${PREFIX}/${RUBY_VENDORLIB} \
+			--so-dir=${PREFIX}/${RUBY_VENDORARCHLIB}

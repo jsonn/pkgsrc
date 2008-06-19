@@ -1,23 +1,23 @@
-@comment $NetBSD: PLIST,v 1.9 2006/08/17 13:05:08 taca Exp $
+@comment $NetBSD: PLIST,v 1.10 2008/06/19 14:43:56 taca Exp $
 bin/sqlsh.rb
-${RUBY_DOCDIR}/dbi/ChangeLog
-${RUBY_DOCDIR}/dbi/LICENSE
-${RUBY_DOCDIR}/dbi/DBD_SPEC
-${RUBY_DOCDIR}/dbi/DBI_SPEC
-${RUBY_DOCDIR}/dbi/html/ChangeLog.html
-${RUBY_DOCDIR}/dbi/html/DBD_SPEC.html
-${RUBY_DOCDIR}/dbi/html/DBI_SPEC.html
-${RUBY_DOCDIR}/dbi/html/index.html
-${RUBY_DOCDIR}/dbi/html/rubyStyle.css
-${RUBY_EXAMPLESDIR}/dbi/persistence.rb
-${RUBY_SITELIBDIR}/dbi.rb
-${RUBY_SITELIBDIR}/dbi/columninfo.rb
-${RUBY_SITELIBDIR}/dbi/row.rb
-${RUBY_SITELIBDIR}/dbi/sql.rb
-${RUBY_SITELIBDIR}/dbi/trace.rb
-${RUBY_SITELIBDIR}/dbi/utils.rb
-${RUBY_SITELIBDIR}/dbi/version.rb
-@dirrm ${RUBY_DOCDIR}/dbi/html
-@dirrm ${RUBY_DOCDIR}/dbi
-@dirrm ${RUBY_EXAMPLESDIR}/dbi
-@dirrm ${RUBY_SITELIBDIR}/dbi
+${RUBY_DOC}/dbi/ChangeLog
+${RUBY_DOC}/dbi/LICENSE
+${RUBY_DOC}/dbi/DBD_SPEC
+${RUBY_DOC}/dbi/DBI_SPEC
+${RUBY_DOC}/dbi/html/ChangeLog.html
+${RUBY_DOC}/dbi/html/DBD_SPEC.html
+${RUBY_DOC}/dbi/html/DBI_SPEC.html
+${RUBY_DOC}/dbi/html/index.html
+${RUBY_DOC}/dbi/html/rubyStyle.css
+${RUBY_EG}/dbi/persistence.rb
+${RUBY_VENDORLIB}/dbi.rb
+${RUBY_VENDORLIB}/dbi/columninfo.rb
+${RUBY_VENDORLIB}/dbi/row.rb
+${RUBY_VENDORLIB}/dbi/sql.rb
+${RUBY_VENDORLIB}/dbi/trace.rb
+${RUBY_VENDORLIB}/dbi/utils.rb
+${RUBY_VENDORLIB}/dbi/version.rb
+@dirrm ${RUBY_DOC}/dbi/html
+@dirrm ${RUBY_DOC}/dbi
+@dirrm ${RUBY_EG}/dbi
+@dirrm ${RUBY_VENDORLIB}/dbi

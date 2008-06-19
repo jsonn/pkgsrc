@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.6 2008/02/18 13:19:15 tnn Exp $
+# $NetBSD: options.mk,v 1.7 2008/06/19 08:15:48 tnn Exp $
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -9,8 +9,9 @@ PKG_SUGGESTED_OPTIONS=	gtk
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mgtk)
-. include "../../x11/gtk2/buildlink3.mk"
 . include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+. include "../../sysutils/libnotify/buildlink3.mk"
+. include "../../x11/gtk2/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-gtk
 USE_DIRS+=		xdg-1.1
 PLIST_SRC+=		${PKGDIR}/PLIST.gtk

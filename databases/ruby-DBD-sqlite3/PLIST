@@ -1,0 +1,3 @@
+@comment $NetBSD: PLIST,v 1.1.1.1 2008/06/22 15:47:15 taca Exp $
+${RUBY_VENDORLIB}/DBD/SQLite3/SQLite3.rb
+@dirrm ${RUBY_VENDORLIB}/DBD/SQLite3

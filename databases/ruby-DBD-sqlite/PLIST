@@ -1,3 +1,3 @@
-@comment $NetBSD: PLIST,v 1.2 2008/06/19 14:44:06 taca Exp $
-${RUBY_VENDORARCHLIB}/DBD/SQLite/SQLite.${RUBY_DLEXT}
-@dirrm ${RUBY_VENDORARCHLIB}/DBD/SQLite
+@comment $NetBSD: PLIST,v 1.3 2008/06/22 15:45:36 taca Exp $
+${RUBY_VENDORLIB}/DBD/SQLite/SQLite.rb
+@dirrm ${RUBY_VENDORLIB}/DBD/SQLite

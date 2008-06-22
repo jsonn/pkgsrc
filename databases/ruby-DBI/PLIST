@@ -1,14 +1,8 @@
-@comment $NetBSD: PLIST,v 1.10 2008/06/19 14:43:56 taca Exp $
+@comment $NetBSD: PLIST,v 1.11 2008/06/22 15:44:06 taca Exp $
 bin/sqlsh.rb
 ${RUBY_DOC}/dbi/ChangeLog
 ${RUBY_DOC}/dbi/LICENSE
-${RUBY_DOC}/dbi/DBD_SPEC
-${RUBY_DOC}/dbi/DBI_SPEC
-${RUBY_DOC}/dbi/html/ChangeLog.html
-${RUBY_DOC}/dbi/html/DBD_SPEC.html
-${RUBY_DOC}/dbi/html/DBI_SPEC.html
-${RUBY_DOC}/dbi/html/index.html
-${RUBY_DOC}/dbi/html/rubyStyle.css
+${RUBY_DOC}/dbi/README
 ${RUBY_EG}/dbi/persistence.rb
 ${RUBY_VENDORLIB}/dbi.rb
 ${RUBY_VENDORLIB}/dbi/columninfo.rb
@@ -17,7 +11,7 @@ ${RUBY_VENDORLIB}/dbi/sql.rb
 ${RUBY_VENDORLIB}/dbi/trace.rb
 ${RUBY_VENDORLIB}/dbi/utils.rb
 ${RUBY_VENDORLIB}/dbi/version.rb
-@dirrm ${RUBY_DOC}/dbi/html
 @dirrm ${RUBY_DOC}/dbi
 @dirrm ${RUBY_EG}/dbi
 @dirrm ${RUBY_VENDORLIB}/dbi
+@unexec ${RMDIR} %D/${RUBY_VENDORLIB}/DBD 2>/dev/null || ${TRUE}

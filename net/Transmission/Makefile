@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2008/06/19 08:15:48 tnn Exp $
+# $NetBSD: Makefile,v 1.33 2008/08/09 13:47:43 tnn Exp $
 #
-DISTNAME=		transmission-1.22
-PKGNAME=		Transmission-1.22
+DISTNAME=		transmission-1.32
+PKGNAME=		Transmission-1.32
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -19,6 +19,12 @@ GNU_CONFIGURE=		yes
 LDFLAGS+=		${BUILDLINK_LDADD.getopt} ${BUILDLINK_LDADD.gettext}
 # Tell libtool to link all internal libraries statically
 LDFLAGS+=		-static
+
+SUBST_CLASSES+=			fix-paths
+SUBST_STAGE.fix-paths=		pre-configure
+SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
+SUBST_FILES.fix-paths=		libtransmission/platform.c
+SUBST_SED.fix-paths=		-e 's,"/usr/local/share/:/usr/share/,"${PREFIX}/share/,g'
 
 .include "../../mk/bsd.prefs.mk"
 .if !empty(OPSYS:M*BSD)

@@ -1,10 +1,10 @@
-# $NetBSD: Makefile.common,v 1.9 2008/06/22 15:44:06 taca Exp $
+# $NetBSD: Makefile.common,v 1.10 2008/08/16 02:45:06 taca Exp $
 
 RUBY_DBI_DISTNAME=	dbi-${RUBY_DBI_VERSION}
-RUBY_DBI_MASTER_SITES=	http://rubyforge.org/frs/download.php/33959/
+RUBY_DBI_MASTER_SITES=	http://rubyforge.org/frs/download.php/41303/
 RUBY_DBI_HOMEPAGE=	http://rubyforge.org/projects/ruby-dbi/
 
-RUBY_DBI_VERSION=	0.2.0
+RUBY_DBI_VERSION=	0.2.2
 WRKSRC=			${WRKDIR}/dbi-${RUBY_DBI_VERSION}
 
 CONFIGURE_ARGS+=	--rb-dir=${PREFIX}/${RUBY_VENDORLIB} \

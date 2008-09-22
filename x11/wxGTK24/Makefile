@@ -1,15 +1,25 @@
-# $NetBSD: Makefile,v 1.1.1.1 2005/08/07 11:27:28 wiz Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2008/09/22 19:43:11 joerg Exp $
 #
 
 .include "Makefile.common"
 
-PKGREVISION=		6
+PKGREVISION=		2
 COMMENT=		GTK-based implementation of the wxWidgets GUI library
-CONFLICTS+=		wxGTK<=2.4.2nb5
+
+post-build:
+	set -e; cd ${WRKSRC}/locale; \
+	for lang in ca cs da de el es fi fr hu id it ja nl pl ru sl sv tr uk \
+	    zh_CN zh_TW; do \
+		${TOOLS_PATH.msgfmt} -c -o $${lang}.mo $${lang}.po; \
+	done
+	set -e; cd ${WRKSRC}/locale/msw; \
+	for lang in it; do \
+	    ${TOOLS_PATH.msgfmt} -c -o $${lang}.mo $${lang}.po; \
+	done
 
 post-install:
-	${INSTALL_DATA_DIR} ${DOCDIR}
-	${INSTALL_DATA} ${WRKSRC}/LICENCE.txt ${DOCDIR}/LICENSE
+	${INSTALL_DATA_DIR} ${DESTDIR}${DOCDIR}
+	${INSTALL_DATA} ${WRKSRC}/LICENCE.txt ${DESTDIR}${DOCDIR}/LICENSE
 
-.include "../../graphics/glu/buildlink3.mk"
+.include "../../mk/oss.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

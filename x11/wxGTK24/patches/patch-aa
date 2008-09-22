@@ -1,36 +1,78 @@
-$NetBSD: patch-aa,v 1.1.1.1 2005/08/07 11:27:29 wiz Exp $
+$NetBSD: patch-aa,v 1.1.1.2 2008/09/22 19:43:11 joerg Exp $
 
---- configure.orig	Sun Sep 21 11:31:30 2003
-+++ configure
-@@ -11498,9 +11498,10 @@ SEARCH_INCLUDE="\
-     /usr/local/x11r5/include  \
-     /usr/lpp/Xamples/include  \
+--- configure.orig	2006-03-22 00:42:05.000000000 +0100
++++ configure	2006-10-08 06:26:28.000000000 +0200
+@@ -1820,7 +1820,7 @@ _ACEOF
+ 
+     DEFAULT_DEFAULT_wxUSE_MOTIF=1
+   ;;
+-  *-*-freebsd*)
++  *-*-freebsd* | *-*-dragonfly*)
+     USE_BSD=1
+     USE_FREEBSD=1
+     cat >>confdefs.h <<\_ACEOF
+@@ -23445,7 +23445,8 @@ SEARCH_INCLUDE="\
+     /usr/XFree86/include/X11  \
+     /usr/pkg/include          \
                                \
 -    /usr/openwin/share/include"
 +    /usr/openwin/share/include\
 +    ${BUILDLINK_DIR}/include"
  
--SEARCH_LIB="`echo "$SEARCH_INCLUDE" | sed s/include/lib/g` "
-+SEARCH_LIB="`echo "$SEARCH_INCLUDE" | sed s/include/lib/g`"
+ echo "$as_me:$LINENO: checking for libraries directory" >&5
+ echo $ECHO_N "checking for libraries directory... $ECHO_C" >&6
+@@ -36663,6 +36664,9 @@ echo "$as_me: WARNING: BeOS threads are 
+                     THREAD_OPTS="-mt $THREAD_OPTS"
+                 fi
+                 ;;
++	  *-*-dragonfly*)
++                THREAD_OPTS="-pthread $THREAD_OPTS"
++		;;
+           *-*-freebsd*)
+                                                 THREAD_OPTS="-kthread lthread $THREAD_OPTS c_r"
+                 ;;
+@@ -36797,7 +36801,7 @@ echo $ECHO_N "checking if more special f
+                                                                                                                 LDFLAGS="-L/usr/lib/threads $LDFLAGS"
+                 flag="-D_THREAD_SAFE"
+                 ;;
+-            *-freebsd*)
++            *-freebsd*|*-*-dragonfly*)
+                 flag="-D_THREAD_SAFE"
+                 ;;
+             *-hp-hpux* )
+@@ -42959,7 +42963,7 @@ echo "$as_me: WARNING: GStreamer install
  
  
- cat > confcache <<\EOF
-@@ -16104,8 +16105,8 @@ esac
- WX_LIBRARY_NAME_STATIC="lib${WX_LIBRARY}.a"
- WX_LIBRARY_NAME_STATIC_GL="lib${WX_LIBRARY_GL}.a"
  
--WXCONFIG_LIBS="-l${WX_LIBRARY}"
--WXCONFIG_LIBS_STATIC="lib${WX_LIBRARY}.a"
-+WXCONFIG_LIBS="-l${WX_LIBRARY_BASENAME}"
-+WXCONFIG_LIBS_STATIC="lib${WX_LIBRARY_BASENAME}.a"
+-        if test "x$GST_INSPECT" == "x"; then
++        if test "x$GST_INSPECT" = "x"; then
+             # Extract the first word of "gst-inspect", so it can be a program name with args.
+ set dummy gst-inspect; ac_word=$2
+ echo "$as_me:$LINENO: checking for $ac_word" >&5
+@@ -44788,7 +44792,7 @@ echo "${ECHO_T}$bakefile_cv_gcc31" >&6
+             SHARED_LD_CXX="\${CXX} -dynamiclib -single_module -headerpad_max_install_names -o"
+         fi
  
- if test "$wxUSE_OPENGL" = "yes"; then
-     WXCONFIG_LIBS_GL="-l${WX_LIBRARY_GL} ${OPENGL_LIBS}"
-@@ -22777,6 +22778,7 @@ s%@WX_RELEASE_NUMBER@%$WX_RELEASE_NUMBER
- s%@WX_LIBRARY_NAME_STATIC@%$WX_LIBRARY_NAME_STATIC%g
- s%@WX_LIBRARY_NAME_SHARED@%$WX_LIBRARY_NAME_SHARED%g
- s%@WX_LIBRARY_BASENAME@%$WX_LIBRARY_BASENAME%g
-+s%@WX_LIBRARY_GL@%$WX_LIBRARY_GL%g
- s%@WX_LIBRARY_IMPORTLIB@%$WX_LIBRARY_IMPORTLIB%g
- s%@WX_TARGET_LIBRARY@%$WX_TARGET_LIBRARY%g
- s%@WX_LIBRARY_LINK1@%$WX_LIBRARY_LINK1%g
+-        if test "x$GCC" == "xyes"; then
++        if test "x$GCC" = "xyes"; then
+             PIC_FLAG="-dynamic -fPIC"
+         fi
+         if test "x$XLCC" = "xyes"; then
+@@ -45354,7 +45358,7 @@ EOF
+       ;;
+ 
+       powerpc-apple-macos* | \
+-      *-*-freebsd* | *-*-openbsd* | *-*-netbsd* | *-*-k*bsd*-gnu | \
++      *-*-dragonfly* | *-*-freebsd* | *-*-openbsd* | *-*-netbsd* | *-*-k*bsd*-gnu | \
+       *-*-sunos4* | \
+       *-*-osf* | \
+       *-*-dgux5* | \
+@@ -45396,7 +45400,7 @@ echo "$as_me: error: unknown system type
+     SONAME_FLAG=
+ 
+     case "${BAKEFILE_HOST}" in
+-      *-*-linux* | *-*-freebsd* | *-*-k*bsd*-gnu )
++      *-*-linux* | *-*-freebsd* | *-*-k*bsd*-gnu | *-*-dragonfly*)
+         SONAME_FLAG="-Wl,-soname,"
+         USE_SOVERSION=1
+         USE_SOVERLINUX=1

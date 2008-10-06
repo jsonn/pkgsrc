@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.gtk,v 1.7 2008/08/23 06:12:06 tnn Exp $
+@comment $NetBSD: PLIST.gtk,v 1.8 2008/10/06 17:37:56 tnn Exp $
 bin/transmission
 man/man1/transmission.1
 share/applications/transmission.desktop
@@ -11,6 +11,7 @@ share/icons/hicolor/scalable/apps/transmission.svg
 share/locale/ar/LC_MESSAGES/transmission.mo
 share/locale/bg/LC_MESSAGES/transmission.mo
 share/locale/ca/LC_MESSAGES/transmission.mo
+share/locale/ckb/LC_MESSAGES/transmission.mo
 share/locale/cs/LC_MESSAGES/transmission.mo
 share/locale/da/LC_MESSAGES/transmission.mo
 share/locale/de/LC_MESSAGES/transmission.mo

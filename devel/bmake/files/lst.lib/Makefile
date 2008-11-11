@@ -1,4 +1,4 @@
-#	$NetBSD: Makefile,v 1.1.1.2 2008/03/09 19:39:35 joerg Exp $
+#	$NetBSD: Makefile,v 1.1.1.3 2008/11/11 19:32:32 joerg Exp $
 
 OBJ=lstAppend.o lstDupl.o lstInit.o lstOpen.o lstAtEnd.o lstEnQueue.o \
     lstInsert.o lstAtFront.o lstIsAtEnd.o lstClose.o lstFind.o lstIsEmpty.o \

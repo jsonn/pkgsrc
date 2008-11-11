@@ -1,4 +1,4 @@
-/*	$NetBSD: parse.c,v 1.1.1.3 2008/11/11 14:28:30 joerg Exp $	*/
+/*	$NetBSD: parse.c,v 1.1.1.4 2008/11/11 19:32:28 joerg Exp $	*/
 
 /*
  * Copyright (c) 1988, 1989, 1990, 1993
@@ -69,14 +69,14 @@
  */
 
 #ifndef MAKE_NATIVE
-static char rcsid[] = "$NetBSD: parse.c,v 1.1.1.3 2008/11/11 14:28:30 joerg Exp $";
+static char rcsid[] = "$NetBSD: parse.c,v 1.1.1.4 2008/11/11 19:32:28 joerg Exp $";
 #else
 #include <sys/cdefs.h>
 #ifndef lint
 #if 0
 static char sccsid[] = "@(#)parse.c	8.3 (Berkeley) 3/19/94";
 #else
-__RCSID("$NetBSD: parse.c,v 1.1.1.3 2008/11/11 14:28:30 joerg Exp $");
+__RCSID("$NetBSD: parse.c,v 1.1.1.4 2008/11/11 19:32:28 joerg Exp $");
 #endif
 #endif /* not lint */
 #endif

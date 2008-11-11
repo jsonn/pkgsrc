@@ -1,5 +1,5 @@
 dnl RCSid:
-dnl	$Id: aclocal.m4,v 1.1.1.1 2005/12/02 00:02:59 sjg Exp $
+dnl	$Id: aclocal.m4,v 1.1.1.2 2008/11/11 19:32:16 joerg Exp $
 dnl
 
 dnl 

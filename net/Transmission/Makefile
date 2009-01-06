@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.38 2008/11/25 16:32:17 tnn Exp $
+# $NetBSD: Makefile,v 1.39 2009/01/06 21:41:27 tnn Exp $
 #
-DISTNAME=		transmission-1.40
-PKGNAME=		Transmission-1.40
+DISTNAME=		transmission-1.42
+PKGNAME=		Transmission-1.42
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -24,7 +24,7 @@ SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-configure
 SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
 SUBST_FILES.fix-paths=		libtransmission/platform.c
-SUBST_SED.fix-paths=		-e 's,"/usr/local/share/:/usr/share/,"${PREFIX}/share/,g'
+SUBST_SED.fix-paths=		-e 's,"/usr/local/share:/usr/share,"${PREFIX}/share/,g'
 
 .include "../../mk/bsd.prefs.mk"
 .if !empty(OPSYS:M*BSD)

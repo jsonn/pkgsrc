@@ -1,2 +1,17 @@
-EE is an easy to use text editor, intended to be usable with little or no
-instruction.
+The editor 'ee' (easy editor) is intended to be a simple, easy to use
+terminal-based screen oriented editor that requires no instruction to
+use.  Its primary use would be for people who are new to computers, or who
+use computers only for things like e-mail.
+
+ee's simplified interface is highlighted by the use of pop-up menus which
+make it possible for users to carry out tasks without the need to
+remember commands.  An information window at the top of the screen shows
+the user the operations available with control-keys.
+
+ee allows users to use full eight-bit characters.  If the host system has
+the capabilities, ee can use message catalogs, which would allow users to
+translate the message catalog into other languages which use eight-bit
+characters.  See the file ee.i18n.guide for more details.
+
+ee relies on the virtual memory abilities of the platform it is running on
+and does not have its own memory management capabilities.

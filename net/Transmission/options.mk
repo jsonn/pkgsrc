@@ -1,9 +1,9 @@
-# $NetBSD: options.mk,v 1.10 2009/02/16 12:33:16 drochner Exp $
+# $NetBSD: options.mk,v 1.11 2009/02/16 22:29:49 tnn Exp $
 
 .include "../../mk/bsd.prefs.mk"
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.Transmission
-PKG_SUPPORTED_OPTIONS=	gtk # wxwidgets # wx currently doesn't build.
+PKG_SUPPORTED_OPTIONS=	gtk
 PKG_SUGGESTED_OPTIONS=	gtk
 
 .include "../../mk/bsd.options.mk"
@@ -20,15 +20,4 @@ PLIST_SRC+=		${PKGDIR}/PLIST.gtk
 CONFIGURE_ARGS+=	--without-gtk
 pre-configure:
 	touch ${WRKSRC}/po/Makefile
-.endif
-
-.if !empty(PKG_OPTIONS:Mwxwidgets)
-. include "../../x11/wxGTK26/buildlink3.mk"
-CONFIGURE_ARGS+=	--with-wx
-USE_LANGUAGES+=		c c++
-.  if empty(PKG_OPTIONS:Mgtk)
-PKG_FAIL_REASON+=	"The wxwidgets option needs the gtk option."
-.  endif
-.else
-CONFIGURE_ARGS+=	--disable-wx
 .endif

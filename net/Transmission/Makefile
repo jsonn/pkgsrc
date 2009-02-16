@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.39 2009/01/06 21:41:27 tnn Exp $
+# $NetBSD: Makefile,v 1.40 2009/02/16 22:29:49 tnn Exp $
 #
-DISTNAME=		transmission-1.42
-PKGNAME=		Transmission-1.42
+DISTNAME=		transmission-1.50
+PKGNAME=		Transmission-1.50
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -19,6 +19,8 @@ GNU_CONFIGURE=		yes
 LDFLAGS+=		${BUILDLINK_LDADD.getopt} ${BUILDLINK_LDADD.gettext}
 # Tell libtool to link all internal libraries statically
 LDFLAGS+=		-static
+
+CONFIGURE_ARGS+=	--disable-wx
 
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-configure

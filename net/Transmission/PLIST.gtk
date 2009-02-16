@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.gtk,v 1.10 2009/01/06 21:41:27 tnn Exp $
+@comment $NetBSD: PLIST.gtk,v 1.11 2009/02/16 22:29:49 tnn Exp $
 bin/transmission
 man/man1/transmission.1
 share/applications/transmission.desktop
@@ -10,6 +10,7 @@ share/icons/hicolor/48x48/apps/transmission.png
 share/icons/hicolor/scalable/apps/transmission.svg
 share/locale/ar/LC_MESSAGES/transmission.mo
 share/locale/bg/LC_MESSAGES/transmission.mo
+share/locale/br/LC_MESSAGES/transmission.mo
 share/locale/ca/LC_MESSAGES/transmission.mo
 share/locale/ckb/LC_MESSAGES/transmission.mo
 share/locale/cs/LC_MESSAGES/transmission.mo
@@ -35,6 +36,8 @@ share/locale/is/LC_MESSAGES/transmission.mo
 share/locale/it/LC_MESSAGES/transmission.mo
 share/locale/ja/LC_MESSAGES/transmission.mo
 share/locale/ka/LC_MESSAGES/transmission.mo
+share/locale/kk/LC_MESSAGES/transmission.mo
+share/locale/ko/LC_MESSAGES/transmission.mo
 share/locale/ku/LC_MESSAGES/transmission.mo
 share/locale/li/LC_MESSAGES/transmission.mo
 share/locale/lt/LC_MESSAGES/transmission.mo
@@ -59,6 +62,7 @@ share/locale/sv/LC_MESSAGES/transmission.mo
 share/locale/te/LC_MESSAGES/transmission.mo
 share/locale/tr/LC_MESSAGES/transmission.mo
 share/locale/uk/LC_MESSAGES/transmission.mo
+share/locale/vi/LC_MESSAGES/transmission.mo
 share/locale/zh_CN/LC_MESSAGES/transmission.mo
 share/locale/zh_TW/LC_MESSAGES/transmission.mo
 share/pixmaps/transmission.png

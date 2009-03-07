@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.common,v 1.4 2008/11/25 16:32:17 tnn Exp $
+@comment $NetBSD: PLIST.common,v 1.5 2009/03/07 08:34:59 tnn Exp $
 bin/transmission-daemon
 bin/transmission-remote
 bin/transmissioncli
@@ -13,9 +13,6 @@ share/transmission/web/images/buttons/toolbar_buttons.png
 share/transmission/web/images/buttons/torrent_buttons.png
 share/transmission/web/images/favicon.ico
 share/transmission/web/images/favicon.png
-share/transmission/web/images/graphics/browser_firefox.gif
-share/transmission/web/images/graphics/browser_opera.gif
-share/transmission/web/images/graphics/browser_safari.gif
 share/transmission/web/images/graphics/chrome.png
 share/transmission/web/images/graphics/filter_bar.png
 share/transmission/web/images/graphics/filter_icon.png
@@ -38,6 +35,8 @@ share/transmission/web/javascript/torrent.js
 share/transmission/web/javascript/transmission.js
 share/transmission/web/javascript/transmission.remote.js
 share/transmission/web/stylesheets/common.css
+share/transmission/web/stylesheets/ie6.css
+share/transmission/web/stylesheets/ie7.css
 share/transmission/web/stylesheets/iphone.css
 @dirrm share/transmission/web/stylesheets
 @dirrm share/transmission/web/javascript/jquery

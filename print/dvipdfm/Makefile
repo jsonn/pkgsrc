@@ -1,32 +1,25 @@
-# $NetBSD: Makefile,v 1.1.1.1 2002/05/08 11:54:02 markd Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2009/04/12 02:32:09 minskim Exp $
 
-DISTNAME=	dvipdfm-0.13.2c
-CATEGORIES=	print converters
-MASTER_SITES=	ftp://ftp.kettering.edu/pub/outgoing/mwicks/dvipdfm/
+DISTNAME=	dvipdfm-0.13.2d
+CATEGORIES=	print
+MASTER_SITES=	http://gaspra.kettering.edu/dvipdfm/
 
-MAINTAINER=	markd@netbsd.org
-HOMEPAGE=	http://gaspra.kettering.edu/dvipdfm
-COMMENT=	a DVI to PDF translator
+MAINTAINER=	minskim@NetBSD.org
+HOMEPAGE=	http://gaspra.kettering.edu/dvipdfm/
+COMMENT=	DVI driver to product PDF directly
 
-DEPENDS+=       teTeX-bin>=1.0.6:../../print/teTeX-bin
-DEPENDS+=	ghostscript{,-nox11}-[6-9]*:../../print/ghostscript
+CONFLICTS+=	teTeX-bin<=3.0nb27
+DEPENDS+=	tex-bin-dvipdfm-[0-9]*:../../print/tex-bin-dvipdfm
 
-WRKSRC=		${WRKDIR}/dvipdfm
-GNU_CONFIGURE=		# defined
-CONFIGURE_ARGS+=	--datadir=${PREFIX}/share
-CPPFLAGS=	-I${LOCALBASE}/include
+PKG_DESTDIR_SUPPORT=	user-destdir
 
-.include "../../mk/bsd.prefs.mk"
+WRKSRC=		${WRKDIR}/${PKGBASE}
+GNU_CONFIGURE=	yes
 
-.if defined(PAPERSIZE)
-post-patch:
-	${MV} ${WRKSRC}/config ${WRKSRC}/config.in
-	PAPER=`${ECHO} ${PAPERSIZE} | ${TR} '[A-Z]' '[a-z]'`;             \
-	${SED} -e "s/^p letter/p $$PAPER/"  ${WRKSRC}/config.in > ${WRKSRC}/config
-.endif
+INSTALL_MAKE_FLAGS+=	prefix=${DESTDIR}${PREFIX}
+INSTALL_MAKE_FLAGS+=	mandir=${DESTDIR}${PREFIX}/${PKGMANDIR}
 
-post-install:
-	mktexlsr
-
-.include "../../graphics/png/buildlink.mk"
+.include "../../devel/zlib/buildlink3.mk"
+.include "../../graphics/png/buildlink3.mk"
+.include "../../print/kpathsea/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

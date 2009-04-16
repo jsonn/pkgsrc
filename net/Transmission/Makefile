@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.43 2009/03/07 08:34:59 tnn Exp $
+# $NetBSD: Makefile,v 1.44 2009/04/16 17:28:52 tnn Exp $
 #
-DISTNAME=		transmission-1.51
-PKGNAME=		Transmission-1.51
+DISTNAME=		transmission-1.52
+PKGNAME=		Transmission-1.52
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -31,6 +31,14 @@ SUBST_SED.fix-paths=		-e 's,"/usr/local/share:/usr/share,"${PREFIX}/share/,g'
 .include "../../mk/bsd.prefs.mk"
 .if !empty(OPSYS:M*BSD)
 CPPFLAGS+=		-DBSD
+.endif
+
+.if ${OPSYS} == "NetBSD"
+SUBST_CLASSES+=		tg
+SUBST_STAGE.tg=		pre-configure
+SUBST_MESSAGE.tg=	removing thousands grouping flag from %f (PR lib/40714)
+SUBST_FILES.tg=		daemon/remote.c gtk/util.c */*.po
+SUBST_SED.tg=		-e "s,%\([.0-9]*\)'\([.0-9]*\)f,%\1\2f,g"
 .endif
 
 PLIST_SRC+=		${PKGDIR}/PLIST.common

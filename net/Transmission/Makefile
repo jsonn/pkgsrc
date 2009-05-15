@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.45 2009/04/19 19:46:15 tnn Exp $
+# $NetBSD: Makefile,v 1.46 2009/05/15 09:43:55 tnn Exp $
 #
-DISTNAME=		transmission-1.52
-PKGNAME=		Transmission-1.52
-PKGREVISION=		1
+DISTNAME=		transmission-1.61
+PKGNAME=		Transmission-1.61
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -23,12 +22,6 @@ LDFLAGS+=		-static
 
 CONFIGURE_ARGS+=	--disable-wx
 
-SUBST_CLASSES+=			fix-paths
-SUBST_STAGE.fix-paths=		pre-configure
-SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
-SUBST_FILES.fix-paths=		libtransmission/platform.c
-SUBST_SED.fix-paths=		-e 's,"/usr/local/share:/usr/share,"${PREFIX}/share/,g'
-
 .include "../../mk/bsd.prefs.mk"
 .if !empty(OPSYS:M*BSD)
 CPPFLAGS+=		-DBSD
@@ -38,8 +31,8 @@ CPPFLAGS+=		-DBSD
 SUBST_CLASSES+=		tg
 SUBST_STAGE.tg=		pre-configure
 SUBST_MESSAGE.tg=	removing thousands grouping flag from %f (PR lib/40714)
-SUBST_FILES.tg=		daemon/remote.c gtk/util.c */*.po
-SUBST_SED.tg=		-e "s,%\([.0-9]*\)'\([.0-9]*\)f,%\1\2f,g"
+SUBST_FILES.tg=		daemon/remote.c gtk/util.c qt/utils.cc */*.po
+SUBST_SED.tg=		-e "s,%\\([.0-9]*\\)'\\([.0-9]*\\)f,%\\1\\2f,g"
 .endif
 
 PLIST_SRC+=		${PKGDIR}/PLIST.common
@@ -50,8 +43,8 @@ PLIST_SRC+=		${PKGDIR}/PLIST.common
 #BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.2
 #.include "../../devel/libevent/buildlink3.mk"
 
-CONFIGURE_ENV+=		"OPENSSL_CFLAGS=-I${SSLBASE}/include"
-CONFIGURE_ENV+=		"OPENSSL_LIBS=-L${SSLBASE}/lib -lcrypto -lssl"
+ALL_ENV+=		"OPENSSL_CFLAGS=-I${SSLBASE}/include"
+ALL_ENV+=		"OPENSSL_LIBS=-L${SSLBASE}/lib -lcrypto -lssl"
 .include "../../devel/libgetopt/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"

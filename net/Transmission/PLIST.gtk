@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.gtk,v 1.11 2009/02/16 22:29:49 tnn Exp $
+@comment $NetBSD: PLIST.gtk,v 1.12 2009/05/15 09:43:55 tnn Exp $
 bin/transmission
 man/man1/transmission.1
 share/applications/transmission.desktop
@@ -9,8 +9,11 @@ share/icons/hicolor/32x32/apps/transmission.png
 share/icons/hicolor/48x48/apps/transmission.png
 share/icons/hicolor/scalable/apps/transmission.svg
 share/locale/ar/LC_MESSAGES/transmission.mo
+share/locale/ast/LC_MESSAGES/transmission.mo
+share/locale/be@latin/LC_MESSAGES/transmission.mo
 share/locale/bg/LC_MESSAGES/transmission.mo
 share/locale/br/LC_MESSAGES/transmission.mo
+share/locale/bs/LC_MESSAGES/transmission.mo
 share/locale/ca/LC_MESSAGES/transmission.mo
 share/locale/ckb/LC_MESSAGES/transmission.mo
 share/locale/cs/LC_MESSAGES/transmission.mo
@@ -60,6 +63,7 @@ share/locale/sq/LC_MESSAGES/transmission.mo
 share/locale/sr/LC_MESSAGES/transmission.mo
 share/locale/sv/LC_MESSAGES/transmission.mo
 share/locale/te/LC_MESSAGES/transmission.mo
+share/locale/th/LC_MESSAGES/transmission.mo
 share/locale/tr/LC_MESSAGES/transmission.mo
 share/locale/uk/LC_MESSAGES/transmission.mo
 share/locale/vi/LC_MESSAGES/transmission.mo

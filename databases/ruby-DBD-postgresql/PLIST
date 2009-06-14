@@ -1,5 +1,3 @@
-@comment $NetBSD: PLIST,v 1.4 2008/06/22 15:45:12 taca Exp $
+@comment $NetBSD: PLIST,v 1.5 2009/06/14 17:43:24 joerg Exp $
 ${RUBY_EG}/dbi/dbd-postgresql/sqlsh.rb.new
 ${RUBY_VENDORLIB}/DBD/Pg/Pg.rb
-@dirrm ${RUBY_EG}/dbi/dbd-postgresql
-@dirrm ${RUBY_VENDORLIB}/DBD/Pg

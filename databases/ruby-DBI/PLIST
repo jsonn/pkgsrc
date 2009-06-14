@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.12 2009/06/14 17:43:24 joerg Exp $
+@comment $NetBSD: PLIST,v 1.13 2009/06/14 18:36:20 joerg Exp $
 bin/sqlsh.rb
 ${RUBY_DOC}/dbi/ChangeLog
 ${RUBY_DOC}/dbi/LICENSE
@@ -11,4 +11,3 @@ ${RUBY_VENDORLIB}/dbi/sql.rb
 ${RUBY_VENDORLIB}/dbi/trace.rb
 ${RUBY_VENDORLIB}/dbi/utils.rb
 ${RUBY_VENDORLIB}/dbi/version.rb
-@unexec ${RMDIR} %D/${RUBY_VENDORLIB}/DBD 2>/dev/null || ${TRUE}

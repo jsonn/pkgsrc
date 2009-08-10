@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.47 2009/06/17 10:33:16 tnn Exp $
+# $NetBSD: Makefile,v 1.48 2009/08/10 12:14:50 tnn Exp $
 #
-DISTNAME=		transmission-1.72
-PKGNAME=		Transmission-1.72
+DISTNAME=		transmission-1.73
+PKGNAME=		Transmission-1.73
 CATEGORIES=		net
 MASTER_SITES=		http://download.m0k.org/transmission/files/
 EXTRACT_SUFX=		.tar.bz2
@@ -27,7 +27,8 @@ CONFIGURE_ARGS+=	--disable-wx
 CPPFLAGS+=		-DBSD
 .endif
 
-.if ${OPSYS} == "NetBSD"
+# Workaround for PR lib/40714, fixed since NetBSD-5.99.16
+.if !empty(MACHINE_PLATFORM:MNetBSD-[1-5].*)
 SUBST_CLASSES+=		tg
 SUBST_STAGE.tg=		pre-configure
 SUBST_MESSAGE.tg=	removing thousands grouping flag from %f (PR lib/40714)

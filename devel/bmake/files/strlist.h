@@ -1,11 +1,11 @@
-/*	$NetBSD: trace.h,v 1.1.1.5 2009/09/18 20:55:27 joerg Exp $	*/
+/*	$NetBSD: strlist.h,v 1.1.1.1 2009/09/18 20:55:27 joerg Exp $	*/
 
 /*-
- * Copyright (c) 2000 The NetBSD Foundation, Inc.
+ * Copyright (c) 2008 - 2009 The NetBSD Foundation, Inc.
  * All rights reserved.
  *
  * This code is derived from software contributed to The NetBSD Foundation
- * by Bill Sommerfeld
+ * by David Laight.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -15,6 +15,9 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of The NetBSD Foundation nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
  * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -29,21 +32,31 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*-
- * trace.h --
- *	Definitions pertaining to the tracing of jobs in parallel mode.
- */
+#ifndef _STRLIST_H
+#define _STRLIST_H
 
-typedef enum {
-	MAKESTART,
-	MAKEEND,
-	MAKEERROR,
-	JOBSTART,
-	JOBEND,
-	MAKEINTR
-} TrEvent;
+typedef struct {
+    char          *si_str;
+    unsigned int  si_info;
+} strlist_item_t;
 
-void Trace_Init(const char *);
-void Trace_Log(TrEvent, Job *);
-void Trace_End(void);
+typedef struct {
+    unsigned int    sl_num;
+    unsigned int    sl_max;
+    strlist_item_t  *sl_items;
+} strlist_t;
 
+void strlist_init(strlist_t *);
+void strlist_clean(strlist_t *);
+void strlist_add_str(strlist_t *, char *, unsigned int);
+
+#define strlist_num(sl) ((sl)->sl_num)
+#define strlist_str(sl, n)  ((sl)->sl_items[n].si_str)
+#define strlist_info(sl, n)  ((sl)->sl_items[n].si_info)
+#define strlist_set_info(sl, n, v)  ((void)((sl)->sl_items[n].si_info = (v)))
+
+#define STRLIST_FOREACH(v, sl, index) \
+    if ((sl)->sl_items != NULL) \
+	for (index = 0; (v = strlist_str(sl, index)) != NULL; index++)
+
+#endif /* _STRLIST_H */

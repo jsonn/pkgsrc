@@ -1,27 +1,25 @@
 MAKE(1)                 NetBSD General Commands Manual                 MAKE(1)
 
 NNAAMMEE
-     bbmmaakkee -- maintain program dependencies
+     mmaakkee -- maintain program dependencies
 
 SSYYNNOOPPSSIISS
-     bbmmaakkee [--BBeeiikkNNnnqqrrssttWWXX] [--CC _d_i_r_e_c_t_o_r_y] [--DD _v_a_r_i_a_b_l_e] [--dd _f_l_a_g_s]
-           [--ff _m_a_k_e_f_i_l_e] [--II _d_i_r_e_c_t_o_r_y] [--JJ _p_r_i_v_a_t_e] [--jj _m_a_x___j_o_b_s]
-           [--mm _d_i_r_e_c_t_o_r_y] [--TT _f_i_l_e] [--VV _v_a_r_i_a_b_l_e] [_v_a_r_i_a_b_l_e_=_v_a_l_u_e]
-           [_t_a_r_g_e_t _._._.]
+     mmaakkee [--BBeeiikkNNnnqqrrssttWWXX] [--CC _d_i_r_e_c_t_o_r_y] [--DD _v_a_r_i_a_b_l_e] [--dd _f_l_a_g_s]
+          [--ff _m_a_k_e_f_i_l_e] [--II _d_i_r_e_c_t_o_r_y] [--JJ _p_r_i_v_a_t_e] [--jj _m_a_x___j_o_b_s]
+          [--mm _d_i_r_e_c_t_o_r_y] [--TT _f_i_l_e] [--VV _v_a_r_i_a_b_l_e] [_v_a_r_i_a_b_l_e_=_v_a_l_u_e] [_t_a_r_g_e_t _._._.]
 
 DDEESSCCRRIIPPTTIIOONN
-     bbmmaakkee is a program designed to simplify the maintenance of other pro-
-     grams.  Its input is a list of specifications as to the files upon which
-     programs and other files depend.  If no --ff _m_a_k_e_f_i_l_e makefile option is
-     given, bbmmaakkee will try to open `_m_a_k_e_f_i_l_e' then `_M_a_k_e_f_i_l_e' in order to find
-     the specifications.  If the file `_._d_e_p_e_n_d' exists, it is read (see
-     mkdep(1)).
+     mmaakkee is a program designed to simplify the maintenance of other programs.
+     Its input is a list of specifications as to the files upon which programs
+     and other files depend.  If no --ff _m_a_k_e_f_i_l_e makefile option is given, mmaakkee
+     will try to open `_m_a_k_e_f_i_l_e' then `_M_a_k_e_f_i_l_e' in order to find the specifi-
+     cations.  If the file `_._d_e_p_e_n_d' exists, it is read (see mkdep(1)).
 
      This manual page is intended as a reference document only.  For a more
-     thorough description of bbmmaakkee and makefiles, please refer to _M_a_k_e _- _A
+     thorough description of mmaakkee and makefiles, please refer to _M_a_k_e _- _A
      _T_u_t_o_r_i_a_l.
 
-     bbmmaakkee will prepend the contents of the _M_A_K_E_F_L_A_G_S environment variable to
+     mmaakkee will prepend the contents of the _M_A_K_E_F_L_A_G_S environment variable to
      the command line arguments before parsing them.
 
      The options are as follows:
@@ -40,7 +38,7 @@ DDEESSCCRRIIPPTTIIOONN
              Define _v_a_r_i_a_b_l_e to be 1, in the global context.
 
      --dd _[_-_]_f_l_a_g_s
-             Turn on debugging, and specify which portions of bbmmaakkee are to
+             Turn on debugging, and specify which portions of mmaakkee are to
              print debugging information.  Unless the flags are preceded by
              `-' they are added to the _M_A_K_E_F_L_A_G_S environment variable and will
              be processed by any child make processes.  By default, debugging
@@ -144,7 +142,7 @@ DDEESSCCRRIIPPTTIIOONN
              in the build to cooperate to avoid overloading the system.
 
      --jj _m_a_x___j_o_b_s
-             Specify the maximum number of jobs that bbmmaakkee may have running at
+             Specify the maximum number of jobs that mmaakkee may have running at
              any one time.  Turns compatibility mode off, unless the _B flag is
              also specified.  When compatibility mode is off, all commands
              associated with a target are executed in a single shell invoca-
@@ -169,12 +167,12 @@ DDEESSCCRRIIPPTTIIOONN
 
              If a file or directory name in the --mm argument (or the
              MAKESYSPATH environment variable) starts with the string ".../"
-             then bbmmaakkee will search for the specified file or directory named
+             then mmaakkee will search for the specified file or directory named
              in the remaining part of the argument string.  The search starts
              with the current directory of the Makefile and then works upward
              towards the root of the filesystem.  If the search is successful,
              then the resulting directory replaces the ".../" specification in
-             the --mm argument.  If used, this feature allows bbmmaakkee to easily
+             the --mm argument.  If used, this feature allows mmaakkee to easily
              search in the current source tree for customized sys.mk files
              (e.g., by using ".../mk/sys.mk" as an argument).
 
@@ -203,7 +201,7 @@ DDEESSCCRRIIPPTTIIOONN
              to-date.
 
      --VV _v_a_r_i_a_b_l_e
-             Print bbmmaakkee's idea of the value of _v_a_r_i_a_b_l_e, in the global con-
+             Print mmaakkee's idea of the value of _v_a_r_i_a_b_l_e, in the global con-
              text.  Do not build any targets.  Multiple instances of this
              option may be specified; the variables will be printed one per
              line, with a blank line for each null or undefined variable.  If
@@ -243,18 +241,18 @@ FFIILLEE DDEEPPEENNDDEENNCCYY SSPPEECCIIFFIICCAATTIIOO
      ::     A target is considered out-of-date if its modification time is less
            than those of any of its sources.  Sources for a target accumulate
            over dependency lines when this operator is used.  The target is
-           removed if bbmmaakkee is interrupted.
+           removed if mmaakkee is interrupted.
 
      !!     Targets are always re-created, but not until all sources have been
            examined and re-created as necessary.  Sources for a target accumu-
            late over dependency lines when this operator is used.  The target
-           is removed if bbmmaakkee is interrupted.
+           is removed if mmaakkee is interrupted.
 
      ::::    If no sources are specified, the target is always re-created.  Oth-
            erwise, a target is considered out-of-date if any of its sources
            has been modified more recently than the target.  Sources for a
            target do not accumulate over dependency lines when this operator
-           is used.  The target will not be removed if bbmmaakkee is interrupted.
+           is used.  The target will not be removed if mmaakkee is interrupted.
 
      Targets and sources may contain the shell wildcard values `?', `*', `[]',
      and `{}'.  The values `?', `*', and `[]' may only be used as part of the
@@ -331,7 +329,7 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
      dence) are:
 
      Environment variables
-             Variables defined as part of bbmmaakkee's environment.
+             Variables defined as part of mmaakkee's environment.
 
      Global variables
              Variables defined in the makefile or in included makefiles.
@@ -376,7 +374,7 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
              and `_._M_E_M_B_E_R'.
 
    AAddddiittiioonnaall bbuuiilltt--iinn vvaarriiaabblleess
-     In addition, bbmmaakkee sets or knows about the following variables:
+     In addition, mmaakkee sets or knows about the following variables:
 
      _$               A single dollar sign `$', i.e.  `$$' expands to a single
                      dollar sign.
@@ -385,37 +383,37 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
                      evaluated during Makefile parsing, lists only those tar-
                      gets encountered thus far.
 
-     _._C_U_R_D_I_R         A path to the directory where bbmmaakkee was executed.  Refer
+     _._C_U_R_D_I_R         A path to the directory where mmaakkee was executed.  Refer
                      to the description of `PWD' for more details.
 
-     MAKE            The name that bbmmaakkee was executed with (_a_r_g_v_[_0_]).  For
-                     compatibility bbmmaakkee also sets _._M_A_K_E with the same value.
-                     The preferred variable to use is the environment variable
+     MAKE            The name that mmaakkee was executed with (_a_r_g_v_[_0_]).  For com-
+                     patibility mmaakkee also sets _._M_A_K_E with the same value.  The
+                     preferred variable to use is the environment variable
                      MAKE because it is more compatible with other versions of
-                     bbmmaakkee and cannot be confused with the special target with
+                     mmaakkee and cannot be confused with the special target with
                      the same name.
 
-     _._M_A_K_E_._E_X_P_O_R_T_E_D  The list of variables exported by bbmmaakkee.
+     _._M_A_K_E_._E_X_P_O_R_T_E_D  The list of variables exported by mmaakkee.
 
      _._M_A_K_E_._M_A_K_E_F_I_L_E_S
-                     The list of makefiles read by bbmmaakkee, which is useful for
+                     The list of makefiles read by mmaakkee, which is useful for
                      tracking dependencies.  Each makefile is recorded only
                      once, regardless of the number of times read.
 
-     _._M_A_K_E_._L_E_V_E_L     The recursion depth of bbmmaakkee.  The initial instance of
-                     bbmmaakkee will be 0, and an incremented value is put into the
+     _._M_A_K_E_._L_E_V_E_L     The recursion depth of mmaakkee.  The initial instance of
+                     mmaakkee will be 0, and an incremented value is put into the
                      environment to be seen by the next generation.  This
                      allows tests like: .if ${.MAKE.LEVEL} == 0 to protect
                      things which should only be evaluated in the initial
-                     instance of bbmmaakkee.
+                     instance of mmaakkee.
 
-     _._M_A_K_E_._P_I_D       The process-id of bbmmaakkee.
+     _._M_A_K_E_._P_I_D       The process-id of mmaakkee.
 
-     _._M_A_K_E_._P_P_I_D      The parent process-id of bbmmaakkee.
+     _._M_A_K_E_._P_P_I_D      The parent process-id of mmaakkee.
 
      _._M_A_K_E_._J_O_B_._P_R_E_F_I_X
-                     If bbmmaakkee is run with _j then output for each target is
-                     prefixed with a token `--- target ---' the first part of
+                     If mmaakkee is run with _j then output for each target is pre-
+                     fixed with a token `--- target ---' the first part of
                      which can be controlled via _._M_A_K_E_._J_O_B_._P_R_E_F_I_X.
                      For example:
                      .MAKE.JOB.PREFIX=${.newline}---${.MAKE:T}[${.MAKE.PID}]
@@ -424,10 +422,10 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
                      achieved.
 
      MAKEFLAGS       The environment variable `MAKEFLAGS' may contain anything
-                     that may be specified on bbmmaakkee's command line.  Anything
-                     specified on bbmmaakkee's command line is appended to the
+                     that may be specified on mmaakkee's command line.  Anything
+                     specified on mmaakkee's command line is appended to the
                      `MAKEFLAGS' variable which is then entered into the envi-
-                     ronment for all programs which bbmmaakkee executes.
+                     ronment for all programs which mmaakkee executes.
 
      _._M_A_K_E_O_V_E_R_R_I_D_E_S  This variable is used to record the names of variables
                      assigned to on the command line, so that they may be
@@ -439,7 +437,7 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
                      modified.
 
      _M_A_K_E___P_R_I_N_T___V_A_R___O_N___E_R_R_O_R
-                     When bbmmaakkee stops due to an error, it prints its name and
+                     When mmaakkee stops due to an error, it prints its name and
                      the value of `_._C_U_R_D_I_R' as well as the value of any vari-
                      ables named in `_M_A_K_E___P_R_I_N_T___V_A_R___O_N___E_R_R_O_R'.
 
@@ -478,7 +476,7 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
                      may be used.
 
                      `_._O_B_J_D_I_R' may be modified in the makefile as a global
-                     variable.  In all cases, bbmmaakkee will chdir(2) to `_._O_B_J_D_I_R'
+                     variable.  In all cases, mmaakkee will chdir(2) to `_._O_B_J_D_I_R'
                      and set `PWD' to that directory before executing any tar-
                      gets.
 
@@ -490,20 +488,20 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
                      `_M_a_k_e_f_i_l_e_s' are being parsed.
 
      _._P_A_T_H           A variable that represents the list of directories that
-                     bbmmaakkee will search for files.  The search list should be
+                     mmaakkee will search for files.  The search list should be
                      updated using the target `_._P_A_T_H' rather than the vari-
                      able.
 
-     PWD             Alternate path to the current directory.  bbmmaakkee normally
+     PWD             Alternate path to the current directory.  mmaakkee normally
                      sets `_._C_U_R_D_I_R' to the canonical path given by getcwd(3).
                      However, if the environment variable `PWD' is set and
-                     gives a path to the current directory, then bbmmaakkee sets
+                     gives a path to the current directory, then mmaakkee sets
                      `_._C_U_R_D_I_R' to the value of `PWD' instead.  This behaviour
                      is disabled if `MAKEOBJDIRPREFIX' is set or `MAKEOBJDIR'
                      contains a variable transform.  `PWD' is set to the value
-                     of `_._O_B_J_D_I_R' for all programs which bbmmaakkee executes.
+                     of `_._O_B_J_D_I_R' for all programs which mmaakkee executes.
 
-     VPATH           Colon-separated (``:'') lists of directories that bbmmaakkee
+     VPATH           Colon-separated (``:'') lists of directories that mmaakkee
                      will search for files.  The variable is supported for
                      compatibility with old make programs only, use `_._P_A_T_H'
                      instead.
@@ -568,7 +566,7 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
                 due uno quattro tre
 
      ::QQ   Quotes every shell meta-character in the variable, so that it can be
-          passed safely through recursive invocations of bbmmaakkee.
+          passed safely through recursive invocations of mmaakkee.
 
      ::RR   Replaces each word in the variable with everything but its suffix.
 
@@ -687,7 +685,7 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
           wanting to set a variable when shell commands are being parsed.
           These assignment modifiers always expand to nothing, so if appearing
           in a rule line by themselves should be preceded with something to
-          keep bbmmaakkee happy.
+          keep mmaakkee happy.
 
           The `::::' helps avoid false matches with the AT&T System V UNIX style
           ::== modifier and since substitution always occurs the ::::== form is
@@ -741,17 +739,17 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
 
 IINNCCLLUUDDEE SSTTAATTEEMMEENNTTSS,, CCOONNDDIITTIIOONNAALLSS AANNDD FFOORR LLOOOOPPSS
      Makefile inclusion, conditional structures and for loops  reminiscent of
-     the C programming language are provided in bbmmaakkee.  All such structures
-     are identified by a line beginning with a single dot (`.') character.
-     Files are included with either ..iinncclluuddee <_f_i_l_e> or ..iinncclluuddee "_f_i_l_e".  Vari-
-     ables between the angle brackets or double quotes are expanded to form
-     the file name.  If angle brackets are used, the included makefile is
-     expected to be in the system makefile directory.  If double quotes are
-     used, the including makefile's directory and any directories specified
-     using the --II option are searched before the system makefile directory.
-     For compatibility with other versions of bbmmaakkee `include file ...' is also
-     accepted.  If the include statement is written as ..--iinncclluuddee or as
-     ..ssiinncclluuddee then errors locating and/or opening include files are ignored.
+     the C programming language are provided in mmaakkee.  All such structures are
+     identified by a line beginning with a single dot (`.') character.  Files
+     are included with either ..iinncclluuddee <_f_i_l_e> or ..iinncclluuddee "_f_i_l_e".  Variables
+     between the angle brackets or double quotes are expanded to form the file
+     name.  If angle brackets are used, the included makefile is expected to
+     be in the system makefile directory.  If double quotes are used, the
+     including makefile's directory and any directories specified using the --II
+     option are searched before the system makefile directory.  For compati-
+     bility with other versions of mmaakkee `include file ...' is also accepted.
+     If the include statement is written as ..--iinncclluuddee or as ..ssiinncclluuddee then
+     errors locating and/or opening include files are ignored.
 
      Conditional expressions are also preceded by a single dot as the first
      character of a line.  The possible conditionals are as follows:
@@ -807,7 +805,7 @@ IINNCCLLUUDDEE SSTTAATTEEMMEENNTTSS,, CCOONNDDIITTIIOO
 
      &&&&     Logical AND; of higher precedence than ``||''.
 
-     As in C, bbmmaakkee will only evaluate a conditional as far as is necessary to
+     As in C, mmaakkee will only evaluate a conditional as far as is necessary to
      determine its value.  Parentheses may be used to change the order of
      evaluation.  The boolean operator `!!' may be used to logically negate an
      entire conditional.  It is of higher precedence than `&&&&'.
@@ -818,7 +816,7 @@ IINNCCLLUUDDEE SSTTAATTEEMMEENNTTSS,, CCOONNDDIITTIIOO
               the variable has been defined.
 
      mmaakkee     Takes a target name as an argument and evaluates to true if the
-              target was specified as part of bbmmaakkee's command line or was
+              target was specified as part of mmaakkee's command line or was
               declared the default target (either implicitly or explicitly,
               see _._M_A_I_N) before the line containing the conditional.
 
@@ -848,7 +846,7 @@ IINNCCLLUUDDEE SSTTAATTEEMMEENNTTSS,, CCOONNDDIITTIIOO
      is assumed that the expanded variable is being compared against 0 or an
      empty string in the case of a string comparison.
 
-     When bbmmaakkee is evaluating one of these conditional expressions, and it
+     When mmaakkee is evaluating one of these conditional expressions, and it
      encounters a (white-space separated) word it doesn't recognize, either
      the ``make'' or ``defined'' expression is applied to it, depending on the
      form of the conditional.  If the form is `..iiffddeeff', `..iiffnnddeeff', or `..iiff'
@@ -889,26 +887,26 @@ SSPPEECCIIAALL SSOOUURRCCEESS ((AATTTTRRIIBBUUTTEESS))
 
      ..MMAAKKEE     Execute the commands associated with this target even if the --nn
                or --tt options were specified.  Normally used to mark recursive
-               bbmmaakkee's.
+               mmaakkee's.
 
      ..NNOOPPAATTHH   Do not search for the target in the directories specified by
                ..PPAATTHH.
 
-     ..NNOOTTMMAAIINN  Normally bbmmaakkee selects the first target it encounters as the
+     ..NNOOTTMMAAIINN  Normally mmaakkee selects the first target it encounters as the
                default target to be built if no target was specified.  This
                source prevents this target from being selected.
 
      ..OOPPTTIIOONNAALL
-               If a target is marked with this attribute and bbmmaakkee can't fig-
-               ure out how to create it, it will ignore this fact and assume
-               the file isn't needed or already exists.
+               If a target is marked with this attribute and mmaakkee can't figure
+               out how to create it, it will ignore this fact and assume the
+               file isn't needed or already exists.
 
      ..PPHHOONNYY    The target does not correspond to an actual file; it is always
                considered to be out of date, and will not be created with the
                --tt option.
 
      ..PPRREECCIIOOUUSS
-               When bbmmaakkee is interrupted, it normally removes any partially
+               When mmaakkee is interrupted, it normally removes any partially
                made targets.  This source prevents the target from being
                removed.
 
@@ -918,7 +916,7 @@ SSPPEECCIIAALL SSOOUURRCCEESS ((AATTTTRRIIBBUUTTEESS))
      ..SSIILLEENNTT   Do not echo any of the commands associated with this target,
                exactly as if they all were preceded by an at sign (`@').
 
-     ..UUSSEE      Turn the target into bbmmaakkee's version of a macro.  When the tar-
+     ..UUSSEE      Turn the target into mmaakkee's version of a macro.  When the tar-
                get is used as a source for another target, the other target
                acquires the commands, sources, and attributes (except for
                ..UUSSEE) of the source.  If the target already has commands, the
@@ -957,10 +955,10 @@ SSPPEECCIIAALL TTAARRGGEETTSS
 
      ..DDEEFFAAUULLTT
               This is sort of a ..UUSSEE rule for any target (that was used only
-              as a source) that bbmmaakkee can't figure out any other way to cre-
-              ate.  Only the shell script is used.  The ..IIMMPPSSRRCC variable of a
-              target that inherits ..DDEEFFAAUULLTT's commands is set to the target's
-              own name.
+              as a source) that mmaakkee can't figure out any other way to create.
+              Only the shell script is used.  The ..IIMMPPSSRRCC variable of a target
+              that inherits ..DDEEFFAAUULLTT's commands is set to the target's own
+              name.
 
      ..EENNDD     Any command lines attached to this target are executed after
               everything else is done.
@@ -970,14 +968,14 @@ SSPPEECCIIAALL TTAARRGGEETTSS
               --ii option.
 
      ..IINNTTEERRRRUUPPTT
-              If bbmmaakkee is interrupted, the commands for this target will be
+              If mmaakkee is interrupted, the commands for this target will be
               executed.
 
-     ..MMAAIINN    If no target is specified when bbmmaakkee is invoked, this target
-              will be built.
+     ..MMAAIINN    If no target is specified when mmaakkee is invoked, this target will
+              be built.
 
      ..MMAAKKEEFFLLAAGGSS
-              This target provides a way to specify flags for bbmmaakkee when the
+              This target provides a way to specify flags for mmaakkee when the
               makefile is used.  The flags are as if typed to the shell,
               though the --ff option will have no effect.
 
@@ -1015,7 +1013,7 @@ SSPPEECCIIAALL TTAARRGGEETTSS
               sources are specified, the ..PPRREECCIIOOUUSS attribute is applied to
               every target in the file.
 
-     ..SSHHEELLLL   Sets the shell that bbmmaakkee will use to execute commands.  The
+     ..SSHHEELLLL   Sets the shell that mmaakkee will use to execute commands.  The
               sources are a set of _f_i_e_l_d_=_v_a_l_u_e pairs.
 
               _n_a_m_e        This is the minimal specification, used to select
@@ -1057,9 +1055,9 @@ SSPPEECCIIAALL TTAARRGGEETTSS
               command in the file.
 
      ..SSUUFFFFIIXXEESS
-              Each source specifies a suffix to bbmmaakkee.  If no sources are
-              specified, any previously specified suffixes are deleted.  It
-              allows the creation of suffix-transformation rules.
+              Each source specifies a suffix to mmaakkee.  If no sources are spec-
+              ified, any previously specified suffixes are deleted.  It allows
+              the creation of suffix-transformation rules.
 
               Example:
 
@@ -1068,12 +1066,12 @@ SSPPEECCIIAALL TTAARRGGEETTSS
                       cc -o ${.TARGET} -c ${.IMPSRC}
 
 EENNVVIIRROONNMMEENNTT
-     bbmmaakkee uses the following environment variables, if they exist: MACHINE,
+     mmaakkee uses the following environment variables, if they exist: MACHINE,
      MACHINE_ARCH, MAKE, MAKEFLAGS, MAKEOBJDIR, MAKEOBJDIRPREFIX, MAKESYSPATH,
      PWD, and TMPDIR.
 
      MAKEOBJDIRPREFIX and MAKEOBJDIR may only be set in the environment or on
-     the command line to bbmmaakkee and not as makefile variables; see the descrip-
+     the command line to mmaakkee and not as makefile variables; see the descrip-
      tion of `_._O_B_J_D_I_R' for more details.
 
 FFIILLEESS
@@ -1101,7 +1099,15 @@ SSEEEE AALLSSOO
      mkdep(1)
 
 HHIISSTTOORRYY
-     bbmmaakkee is derived from NetBSD's make(1).  It uses autoconf to facilitate
-     portability to other platforms.
+     A mmaakkee command appeared in Version 7 AT&T UNIX.
 
-NetBSD 4.0                     September 7, 2009                    NetBSD 4.0
+BBUUGGSS
+     The mmaakkee syntax is difficult to parse without actually acting of the
+     data.  For instance finding the end of a variable use should involve
+     scanning each the modifiers using the correct terminator for each field.
+     In many places mmaakkee just counts {} and () in order to find the end of a
+     variable expansion.
+
+     There is no way of escaping a space character in a filename.
+
+NetBSD 5.0                     September 7, 2009                    NetBSD 5.0

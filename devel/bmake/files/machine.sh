@@ -2,7 +2,7 @@
 # derrived from /etc/rc_d/os.sh
 
 # RCSid:
-#	$Id: machine.sh,v 1.1.1.2 2008/11/11 19:32:23 joerg Exp $
+#	$Id: machine.sh,v 1.1.1.3 2009/09/18 20:55:27 joerg Exp $
 #
 #	@(#) Copyright (c) 1994-2002 Simon J. Gerraty
 #

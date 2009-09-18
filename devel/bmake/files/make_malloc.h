@@ -1,11 +1,8 @@
-/*	$NetBSD: trace.h,v 1.1.1.5 2009/09/18 20:55:27 joerg Exp $	*/
+/*	$NetBSD: make_malloc.h,v 1.1.1.1 2009/09/18 20:55:23 joerg Exp $	*/
 
 /*-
- * Copyright (c) 2000 The NetBSD Foundation, Inc.
+ * Copyright (c) 2009 The NetBSD Foundation, Inc.
  * All rights reserved.
- *
- * This code is derived from software contributed to The NetBSD Foundation
- * by Bill Sommerfeld
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,21 +26,16 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*-
- * trace.h --
- *	Definitions pertaining to the tracing of jobs in parallel mode.
- */
-
-typedef enum {
-	MAKESTART,
-	MAKEEND,
-	MAKEERROR,
-	JOBSTART,
-	JOBEND,
-	MAKEINTR
-} TrEvent;
-
-void Trace_Init(const char *);
-void Trace_Log(TrEvent, Job *);
-void Trace_End(void);
+#ifndef USE_EMALLOC
+void *bmake_malloc(size_t);
+void *bmake_realloc(void *, size_t);
+char *bmake_strdup(const char *);
+char *bmake_strndup(const char *, size_t);
+#else
+#include <util.h>
+#define bmake_malloc(x)         emalloc(x)
+#define bmake_realloc(x,y)      erealloc(x,y)
+#define bmake_strdup(x)         estrdup(x)
+#define bmake_strndup(x,y)      estrndup(x,y)
+#endif
 

@@ -1,4 +1,4 @@
-/*	$NetBSD: cdefs.h,v 1.1.1.3 2008/11/11 19:32:33 joerg Exp $	*/
+/*	$NetBSD: cdefs.h,v 1.1.1.4 2009/09/18 20:55:34 joerg Exp $	*/
 
 /*
  * Copyright (c) 1991, 1993

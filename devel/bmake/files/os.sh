@@ -17,7 +17,7 @@
 #	Simon J. Gerraty <sjg@crufty.net>
 
 # RCSid:
-#	$Id: os.sh,v 1.1.1.3 2008/11/11 19:32:27 joerg Exp $
+#	$Id: os.sh,v 1.1.1.4 2009/09/18 20:55:22 joerg Exp $
 #
 #	@(#) Copyright (c) 1994 Simon J. Gerraty
 #

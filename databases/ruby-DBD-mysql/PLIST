@@ -1,2 +1,0 @@
-@comment $NetBSD: PLIST,v 1.4 2009/06/14 17:43:24 joerg Exp $
-${RUBY_VENDORLIB}/DBD/Mysql/Mysql.rb

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.51 2009/10/11 11:19:15 tnn Exp $
+# $NetBSD: Makefile,v 1.52 2009/10/27 21:00:34 drochner Exp $
 #
 DISTNAME=		transmission-1.75
 PKGNAME=		Transmission-1.75
@@ -41,7 +41,7 @@ PLIST_SRC+=		${PKGDIR}/PLIST.common
 
 .include "options.mk"
 
-BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.4.12
+BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.4.11
 .include "../../devel/libevent/buildlink3.mk"
 ALL_ENV+=		"OPENSSL_CFLAGS=-I${SSLBASE}/include"
 ALL_ENV+=		"OPENSSL_LIBS=-L${SSLBASE}/lib -lcrypto -lssl"

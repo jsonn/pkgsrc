@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.4 2009/06/14 18:09:39 joerg Exp $
+@comment $NetBSD: PLIST,v 1.5 2009/12/16 21:22:02 drochner Exp $
 bin/weather-${PYVERSSUFFIX}.py
 ${PYSITELIB}/pymetar.py
 ${PYSITELIB}/pymetar.pyc
@@ -6,6 +6,4 @@ ${PYSITELIB}/pymetar.pyo
 share/doc/pymetar-${PYVERSSUFFIX}-${PKGVERSION}/COPYING
 share/doc/pymetar-${PYVERSSUFFIX}-${PKGVERSION}/README
 share/doc/pymetar-${PYVERSSUFFIX}-${PKGVERSION}/THANKS
-share/doc/pymetar-${PYVERSSUFFIX}-${PKGVERSION}/TODO
-share/doc/pymetar-${PYVERSSUFFIX}-${PKGVERSION}/example.py
 share/doc/pymetar-${PYVERSSUFFIX}-${PKGVERSION}/librarydoc.txt

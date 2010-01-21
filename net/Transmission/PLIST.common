@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.common,v 1.8 2009/06/14 18:09:20 joerg Exp $
+@comment $NetBSD: PLIST.common,v 1.9 2010/01/21 10:19:21 tnn Exp $
 bin/transmission-daemon
 bin/transmission-remote
 bin/transmissioncli
@@ -6,6 +6,7 @@ man/man1/transmission-daemon.1
 man/man1/transmission-remote.1
 man/man1/transmissioncli.1
 share/transmission/web/LICENSE
+share/transmission/web/images/buttons/cancel.png
 share/transmission/web/images/buttons/file_priority_buttons.png
 share/transmission/web/images/buttons/file_wanted_buttons.png
 share/transmission/web/images/buttons/info_activity.png

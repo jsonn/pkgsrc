@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.1 2009/12/21 19:18:25 reed Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2010/01/26 01:11:53 reed Exp $
 #
 
 DISTNAME=	gtest-1.4.0
@@ -16,5 +16,11 @@ PKG_DESTDIR_SUPPORT=	user-destdir
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	c++ c
 USE_LIBTOOL=	yes
+
+SUBST_CLASSES+=		rpathfix
+SUBST_FILES.rpathfix=	scripts/gtest-config.in
+SUBST_MESSAGE.rpathfix=	Adding rpath to gtest-config
+SUBST_SED.rpathfix=	-e 's/-L$${libdir}/${COMPILER_RPATH_FLAG}$${libdir} -L$${libdir}/g'
+SUBST_STAGE.rpathfix=	pre-configure
 
 .include "../../mk/bsd.pkg.mk"

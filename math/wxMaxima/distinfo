@@ -1,0 +1,5 @@
+$NetBSD: distinfo,v 1.1.1.1 2010/02/03 23:38:50 wiz Exp $
+
+SHA1 (wxMaxima-0.8.4.tar.gz) = d0e9dedafb839305988efae63dd22bd9eabb43f8
+RMD160 (wxMaxima-0.8.4.tar.gz) = 89ff230a628e4957c2f5a48b09ff99166ec9acc9
+Size (wxMaxima-0.8.4.tar.gz) = 1176713 bytes

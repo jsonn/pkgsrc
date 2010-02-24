@@ -1,5 +1,5 @@
-@comment $NetBSD: PLIST,v 1.5 2009/12/16 21:22:02 drochner Exp $
-bin/weather-${PYVERSSUFFIX}.py
+@comment $NetBSD: PLIST,v 1.6 2010/02/24 18:43:34 drochner Exp $
+bin/pymetar${PYVERSSUFFIX}
 ${PYSITELIB}/pymetar.py
 ${PYSITELIB}/pymetar.pyc
 ${PYSITELIB}/pymetar.pyo

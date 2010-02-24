@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.4 2009/12/16 21:22:02 drochner Exp $
+$NetBSD: distinfo,v 1.5 2010/02/24 18:43:34 drochner Exp $
 
-SHA1 (pymetar-0.15.tar.gz) = b59d5da5286add38433d4172369d72e8361d3b2b
-RMD160 (pymetar-0.15.tar.gz) = 02be0c857494789cfc426c2fcd679d74afcf7281
-Size (pymetar-0.15.tar.gz) = 21864 bytes
-SHA1 (patch-aa) = 1659127eeabb3a0b6ed90a9287bdcb7edcbf0436
+SHA1 (pymetar-0.16.tar.gz) = 4f81e37ee1f0c77242edf2c4a35b29d159bbd103
+RMD160 (pymetar-0.16.tar.gz) = dc840a14e31b0a0900084f95ba0d9a754eef5dc4
+Size (pymetar-0.16.tar.gz) = 22653 bytes
+SHA1 (patch-aa) = af2057c08ee9217ad47a3cf3d74784f4841da561

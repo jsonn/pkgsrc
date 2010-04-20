@@ -1,18 +1,18 @@
-/*	$NetBSD: util.c,v 1.1.1.5 2009/09/18 20:55:31 joerg Exp $	*/
+/*	$NetBSD: util.c,v 1.1.1.6 2010/04/20 13:32:36 joerg Exp $	*/
 
 /*
  * Missing stuff from OS's
  *
- *	$Id: util.c,v 1.1.1.5 2009/09/18 20:55:31 joerg Exp $
+ *	$Id: util.c,v 1.1.1.6 2010/04/20 13:32:36 joerg Exp $
  */
 
 #include "make.h"
 
 #ifndef MAKE_NATIVE
-static char rcsid[] = "$NetBSD: util.c,v 1.1.1.5 2009/09/18 20:55:31 joerg Exp $";
+static char rcsid[] = "$NetBSD: util.c,v 1.1.1.6 2010/04/20 13:32:36 joerg Exp $";
 #else
 #ifndef lint
-__RCSID("$NetBSD: util.c,v 1.1.1.5 2009/09/18 20:55:31 joerg Exp $");
+__RCSID("$NetBSD: util.c,v 1.1.1.6 2010/04/20 13:32:36 joerg Exp $");
 #endif
 #endif
 
@@ -385,7 +385,7 @@ getcwd(path, sz)
 }
 #endif
 
-#if defined(sun) && defined(__svr4__)
+#if defined(sun) && defined(__svr4__) && !defined(FORCE_POSIX_SIGNALS)
 #include <signal.h>
 
 /* turn into bsd signals */

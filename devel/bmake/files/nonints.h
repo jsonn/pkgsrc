@@ -1,4 +1,4 @@
-/*	$NetBSD: nonints.h,v 1.1.1.5 2009/09/18 20:55:30 joerg Exp $	*/
+/*	$NetBSD: nonints.h,v 1.1.1.6 2010/04/20 13:32:32 joerg Exp $	*/
 
 /*-
  * Copyright (c) 1988, 1989, 1990, 1993
@@ -108,6 +108,7 @@ void For_Run(int);
 
 /* main.c */
 void Main_ParseArgLine(const char *);
+void MakeMode(const char *);
 int main(int, char **);
 char *Cmd_Exec(const char *, const char **);
 void Error(const char *, ...) __attribute__((__format__(__printf__, 1, 2)));
@@ -193,3 +194,4 @@ void Var_End(void);
 void Var_Dump(GNode *);
 void Var_ExportVars(void);
 void Var_Export(char *, int);
+void Var_UnExport(char *);

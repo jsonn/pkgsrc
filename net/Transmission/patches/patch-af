@@ -1,0 +1,13 @@
+$NetBSD: patch-af,v 1.1 2010/07/14 14:07:27 tnn Exp $
+
+--- configure.orig	2010-07-14 13:43:29.000000000 +0000
++++ configure
+@@ -17084,7 +17084,7 @@ if test -n "$LIBEVENT_LIBS"; then
+ elif test -n "$LIBEVENT_CFLAGS"; then
+     user_specified_libevent=yes
+ fi
+-if test "x$user_specified_libevent" == "xyes"; then
++if test "x$user_specified_libevent" = "xyes"; then
+     { $as_echo "$as_me:${as_lineno-$LINENO}: Using user-specified LIBEVENT_LIBS and LIBEVENT_CFLAGS" >&5
+ $as_echo "$as_me: Using user-specified LIBEVENT_LIBS and LIBEVENT_CFLAGS" >&6;}
+ else

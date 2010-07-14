@@ -1,10 +1,10 @@
-$NetBSD: patch-ae,v 1.6 2009/05/15 09:43:55 tnn Exp $
+$NetBSD: patch-ae,v 1.7 2010/07/14 14:07:27 tnn Exp $
 
---- qt/qtr.pro.orig	2009-05-12 02:32:27.000000000 +0200
+--- qt/qtr.pro.orig	2010-06-27 01:28:17.000000000 +0000
 +++ qt/qtr.pro
 @@ -9,7 +9,9 @@ INSTALLS += target
  
- CONFIG += qt thread debug link_pkgconfig
+ CONFIG += qt qdbus thread debug link_pkgconfig
  QT += network
 -PKGCONFIG = fontconfig libcurl openssl
 +PKGCONFIG = fontconfig libcurl

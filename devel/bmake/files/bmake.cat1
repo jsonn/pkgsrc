@@ -321,10 +321,37 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
      If the result of expanding a variable contains a dollar sign (`$') the
      string is expanded again.
 
-     Variable substitution occurs at two distinct times, depending on where
-     the variable is being used.  Variables in dependency lines are expanded
-     as the line is read.  Variables in shell commands are expanded when the
-     shell command is executed.
+     Variable substitution occurs at three distinct times, depending on where
+     the variable is being used.
+
+     1.   Variables in dependency lines are expanded as the line is read.
+
+     2.   Variables in shell commands are expanded when the shell command is
+          executed.
+
+     3.   ``.for'' loop index variables are expanded on each loop iteration.
+          Note that other variables are not expanded inside loops so the fol-
+          lowing example code:
+
+
+                .for i in 1 2 3
+                a+=     ${i}
+                j=      ${i}
+                b+=     ${j}
+                .endfor
+
+                all:
+                        @echo ${a}
+                        @echo ${b}
+
+          will print:
+
+                1 2 3
+                3 3 3
+
+          Because while ${a} contains ``1 2 3'' after the loop is executed,
+          ${b} contains ``${j} ${j} ${j}'' which expands to ``3 3 3'' since
+          after the loop completes ${j} contains ``3''.
 
    VVaarriiaabbllee ccllaasssseess
      The four different classes of variables (in order of increasing prece-
@@ -358,7 +385,7 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
              _._O_O_D_A_T_E   The list of sources for this target that were deemed
                        out-of-date; also known as `_?'.
 
-             _._P_R_E_F_I_X   The file prefix of the file, containing only the file
+             _._P_R_E_F_I_X   The file prefix of the target, containing only the file
                        portion, no suffix or preceding directory components;
                        also known as `_*'.
 
@@ -487,8 +514,9 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
 
                      Variable expansion is performed on the value before it's
                      used, so expressions such as
-                           ${.CURDIR:C,^/usr/src,/var/obj,}
-                     may be used.
+                           ${.CURDIR:S,^/usr/src,/var/obj,}
+                     may be used.  This is especially useful with
+                     `MAKEOBJDIR'.
 
                      `_._O_B_J_D_I_R' may be modified in the makefile as a global
                      variable.  In all cases, bbmmaakkee will chdir(2) to `_._O_B_J_D_I_R'
@@ -515,6 +543,9 @@ VVAARRIIAABBLLEE AASSSSIIGGNNMMEENNTTSS
                      is disabled if `MAKEOBJDIRPREFIX' is set or `MAKEOBJDIR'
                      contains a variable transform.  `PWD' is set to the value
                      of `_._O_B_J_D_I_R' for all programs which bbmmaakkee executes.
+
+     .TARGETS        The list of targets explicitly specified on the command
+                     line, if any.
 
      VPATH           Colon-separated (``:'') lists of directories that bbmmaakkee
                      will search for files.  The variable is supported for
@@ -790,6 +821,11 @@ IINNCCLLUUDDEE SSTTAATTEEMMEENNTTSS,, CCOONNDDIITTIIOO
              Appending a variable name to _._M_A_K_E_._E_X_P_O_R_T_E_D is equivalent to
              exporting a variable.
 
+     ..eexxppoorrtt--eennvv _v_a_r_i_a_b_l_e _._._.
+             The same as `.export', except that the variable is not appended
+             to _._M_A_K_E_._E_X_P_O_R_T_E_D.  This allows exporting a value to the environ-
+             ment which is different from that used by bbmmaakkee internally.
+
      ..iinnffoo _m_e_s_s_a_g_e
              The message is printed along with the name of the makefile and
              line number.
@@ -963,7 +999,8 @@ SSPPEECCIIAALL SSOOUURRCCEESS ((AATTTTRRIIBBUUTTEESS))
 
      ..PPHHOONNYY    The target does not correspond to an actual file; it is always
                considered to be out of date, and will not be created with the
-               --tt option.
+               --tt option.  Suffix-transformation rules are not applied to
+               ..PPHHOONNYY targets.
 
      ..PPRREECCIIOOUUSS
                When bbmmaakkee is interrupted, it normally removes any partially
@@ -1166,4 +1203,4 @@ HHIISSTTOORRYY
      bbmmaakkee is derived from NetBSD's make(1).  It uses autoconf to facilitate
      portability to other platforms.
 
-NetBSD 5.0_STABLE               April 21, 2010               NetBSD 5.0_STABLE
+NetBSD 5.0_STABLE                June 30, 2010               NetBSD 5.0_STABLE

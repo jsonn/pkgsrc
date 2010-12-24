@@ -1,6 +1,6 @@
 #!@RCD_SCRIPTS_SHELL@
 #
-# $NetBSD: amavisd.sh,v 1.1.1.1 2004/08/06 14:56:40 jlam Exp $
+# $NetBSD: amavisd.sh,v 1.1.1.2 2010/12/24 07:16:26 kefren Exp $
 #
 # PROVIDE: amavisd
 # REQUIRE: DAEMON

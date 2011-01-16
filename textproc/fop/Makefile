@@ -1,29 +1,43 @@
-# $NetBSD: Makefile,v 1.1.1.1 2000/05/31 14:38:10 jwise Exp $
+# $NetBSD: Makefile,v 1.1.1.2 2011/01/16 09:55:59 wiz Exp $
 #
 # Note: we currently use the pre-built (-bin) distribution of FOP,
-# because although FOP runs fine under JDK 1.1, JDK 1.2 or greater is
-# required to build it.
+#
 
-DISTNAME=	fop-0_12_1
-PKGNAME=	fop-0.12.1
+DISTNAME=	fop-${VERSION}-bin
+PKGNAME=	fop-${VERSION}
+VERSION=	1.0
 CATEGORIES=	textproc www
-MASTER_SITES=	http://xml.apache.org/dist/fop/
+MASTER_SITES=	${MASTER_SITE_APACHE:=xmlgraphics/fop/binaries/}
 
-MAINTAINER=	jwise@netbsd.org
-HOMEPAGE=	http://xml.apache.org/fop/
+MAINTAINER=	ftigeot@users.sourceforge.net
+HOMEPAGE=	http://xmlgraphics.apache.org/fop/
+COMMENT=	Print formatter driven by XSL Formatting Objects (XSL-FO)
+LICENSE=	apache-2.0
 
-DEPENDS+=	xalan-j-*:../../textproc/xalan-j
+PKG_DESTDIR_SUPPORT=	user-destdir
 
-USE_JAVA=	yes
-NO_PATCH=
-NO_CONFIGURE=
-NO_BUILD=
+USE_JAVA=	run
+USE_TOOLS+=	pax
+NO_CONFIGURE=	yes
+NO_BUILD=	yes
+INSTALLATION_DIRS=	bin share/java/fop
 
-WRKSRC=		${WRKDIR}/fop-0_12_1
+WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
+
+PLIST_SRC=	${PKGDIR}/PLIST
+
+SUBST_CLASSES+=			java_home
+SUBST_STAGE.java_home=		post-patch
+SUBST_MESSAGE.java_home=	Setting JAVA_HOME to a sane value.
+SUBST_FILES.java_home=		fop
+SUBST_SED.java_home=		-e 's,@JAVA_HOME@,${PKG_JAVA_HOME},g'
+
+.include "options.mk"
 
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/fop_bin_0_12_1.jar ${PREFIX}/lib/java/fop.jar
-	${MKDIR} ${PREFIX}/share/doc/java/fop
-	cd ${WRKSRC}/docs ; ${GTAR} pcf - . | ( cd ${PREFIX}/share/doc/java/fop ; ${GTAR} pvxf - )
+	cd ${WRKSRC} && ${PAX} -rw . ${DESTDIR}${PREFIX}/share/java/fop
+	${LN} -sf ../share/java/fop/fop ${DESTDIR}${PREFIX}/bin
+	${RM} -f ${DESTDIR}${PREFIX}/share/java/fop/fop.orig
 
+.include "../../mk/java-vm.mk"
 .include "../../mk/bsd.pkg.mk"

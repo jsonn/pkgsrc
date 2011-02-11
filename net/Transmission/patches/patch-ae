@@ -1,13 +1,13 @@
-$NetBSD: patch-ae,v 1.8 2010/10/30 20:31:20 tnn Exp $
+$NetBSD: patch-ae,v 1.9 2011/02/11 21:41:22 tnn Exp $
 
---- qt/qtr.pro.orig	2010-10-17 00:14:40.000000000 +0000
+--- qt/qtr.pro.orig	2011-02-08 21:14:20.000000000 +0000
 +++ qt/qtr.pro
 @@ -13,7 +13,9 @@ man.files = transmission-qt.1
  
  CONFIG += qt qdbus thread debug link_pkgconfig
  QT += network
--PKGCONFIG = fontconfig libcurl openssl dbus-1
-+PKGCONFIG = fontconfig libcurl dbus-1
+-PKGCONFIG = fontconfig libcurl openssl libevent
++PKGCONFIG = fontconfig libcurl libevent
 +INCLUDEPATH += $${OPENSSL_CFLAGS}
 +LIBS +=  $${OPENSSL_LIBS}
  

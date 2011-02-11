@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.15 2010/07/15 08:44:56 tnn Exp $
+# $NetBSD: options.mk,v 1.16 2011/02/11 21:41:21 tnn Exp $
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -13,10 +13,10 @@ PKG_SUGGESTED_OPTIONS=	gtk
 . include "../../sysutils/libnotify/buildlink3.mk"
 . include "../../x11/gtk2/buildlink3.mk"
 . include "../../sysutils/desktop-file-utils/desktopdb.mk"
-CONFIGURE_ARGS+=	--with-gtk
+CONFIGURE_ARGS+=	--enable-gtk
 PLIST_SRC+=		${PKGDIR}/PLIST.gtk
 .else
-CONFIGURE_ARGS+=	--without-gtk
+CONFIGURE_ARGS+=	--disable-gtk
 pre-configure:
 	touch ${WRKSRC}/po/Makefile
 .endif

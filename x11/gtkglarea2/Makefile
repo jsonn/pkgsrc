@@ -1,26 +1,22 @@
-# $NetBSD: Makefile,v 1.1.1.1 2003/05/09 14:40:17 drochner Exp $
-#
+# $NetBSD: Makefile,v 1.1.1.2 2011/02/19 15:47:28 wiz Exp $
 
-DISTNAME=	gtkglarea-1.99.0
-PKGNAME=	${DISTNAME:S/-/2-/}
+DISTNAME=	gtkglarea-2.0.1
+PKGNAME=	${DISTNAME:S/gtkglarea/gtkglarea2/}
 CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtkglarea/1.99/}
-EXTRACT_SUFX=	.tar.bz2
+MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtkglarea/2.0/}
 
-MAINTAINER=	marc@informatik.uni-bremen.de
-HOMEPAGE=	http://www.gnome.org/
+MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	OpenGL widget for the GTK+2 GUI toolkit
+LICENSE=	gnu-lgpl-v2
 
-WRKSRC=		${WRKDIR}/gtkglarea-1.99.0
-USE_BUILDLINK2=	YES
-USE_LIBTOOL=	YES
-LIBTOOL_OVERRIDE=	${WRKSRC}/libtool
-PKGCONFIG_OVERRIDE+=	${WRKSRC}/gtkgl-2.0.pc.in
-GNU_CONFIGURE=	YES
+PKG_DESTDIR_SUPPORT=	user-destdir
 
-CONFIGURE_ARGS+=	--with-lib-GL
-CONFIGURE_ARGS+=	--with-GL-prefix=${BUILDLINK_PREFIX.MesaLib}
+GNU_CONFIGURE=	yes
+USE_LIBTOOL=	yes
+USE_TOOLS+=	pkg-config
 
-.include "../../graphics/Mesa/buildlink2.mk"
-.include "../../x11/gtk2/buildlink2.mk"
+PKGCONFIG_OVERRIDE=	gtkgl-2.0.pc.in
+
+.include "../../graphics/MesaLib/buildlink3.mk"
+.include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

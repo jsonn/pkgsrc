@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.common,v 1.13 2011/02/11 21:41:21 tnn Exp $
+@comment $NetBSD: PLIST.common,v 1.14 2011/03/25 21:37:02 abs Exp $
 bin/transmission-cli
 bin/transmission-create
 bin/transmission-daemon
@@ -20,8 +20,8 @@ share/transmission/web/images/buttons/info_files.png
 share/transmission/web/images/buttons/info_general.png
 share/transmission/web/images/buttons/info_peers.png
 share/transmission/web/images/buttons/info_trackers.png
-share/transmission/web/images/buttons/tab_backgrounds_highlight.png
 share/transmission/web/images/buttons/tab_backgrounds.png
+share/transmission/web/images/buttons/tab_backgrounds_highlight.png
 share/transmission/web/images/buttons/toolbar_buttons.png
 share/transmission/web/images/buttons/torrent_buttons.png
 share/transmission/web/images/favicon.ico

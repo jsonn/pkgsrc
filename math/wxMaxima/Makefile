@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.7 2011/01/13 13:38:43 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2011/04/22 13:44:08 obache Exp $
 
 DISTNAME=	wxMaxima-0.8.6
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	math
 MASTER_SITES=	$(MASTER_SITE_SOURCEFORGE:=wxmaxima/)
 

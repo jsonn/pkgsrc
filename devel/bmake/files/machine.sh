@@ -2,7 +2,7 @@
 # derrived from /etc/rc_d/os.sh
 
 # RCSid:
-#	$Id: machine.sh,v 1.1.1.3 2009/09/18 20:55:27 joerg Exp $
+#	$Id: machine.sh,v 1.1.1.4 2011/06/18 22:17:59 bsiegert Exp $
 #
 #	@(#) Copyright (c) 1994-2002 Simon J. Gerraty
 #
@@ -23,8 +23,10 @@ OSMAJOR=`IFS=.; set $OSREL; echo $1`
 machine=`uname -p 2>/dev/null || uname -m`
 MACHINE=
 
+# there is at least one case of `uname -p` outputting
+# a bunch of usless drivel
 case "$machine" in
-unknown)
+unknown|*[!A-Za-z0-9_-]*)
         machine=`uname -m`
         ;;
 esac

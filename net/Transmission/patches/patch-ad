@@ -1,12 +1,12 @@
-$NetBSD: patch-ad,v 1.7 2011/02/11 21:41:22 tnn Exp $
+$NetBSD: patch-ad,v 1.8 2011/07/11 09:18:55 tnn Exp $
 
---- ./libtransmission/torrent.c.orig	2011-02-08 21:14:19.000000000 +0000
-+++ ./libtransmission/torrent.c
-@@ -27,6 +27,7 @@
- #include <stdarg.h>
- #include <string.h> /* memcmp */
- #include <stdlib.h> /* qsort */
-+#include <signal.h> /* SIGCHLD */
+--- libtransmission/peer-msgs.c.orig	2011-06-29 01:14:37.000000000 +0000
++++ libtransmission/peer-msgs.c
+@@ -16,7 +16,6 @@
+ #include <stdlib.h>
+ #include <string.h>
  
- #include <event2/util.h> /* evutil_vsnprintf() */
+-#include <alloca.h>
  
+ #include <event2/buffer.h>
+ #include <event2/bufferevent.h>

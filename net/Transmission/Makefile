@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.72 2011/07/11 09:18:55 tnn Exp $
+# $NetBSD: Makefile,v 1.73 2011/08/23 14:49:56 tnn Exp $
 #
 DISTNAME=		transmission-2.32
 PKGNAME=		Transmission-2.32
@@ -24,7 +24,7 @@ LDFLAGS+=		${BUILDLINK_LDADD.getopt} ${BUILDLINK_LDADD.gettext}
 LDFLAGS+=		-static
 
 .include "../../mk/bsd.prefs.mk"
-.if !empty(OPSYS:M*BSD)
+.if !empty(OPSYS:M*BSD) || !empty(OPSYS:MDragonFly)
 CPPFLAGS+=		-DBSD
 .endif
 

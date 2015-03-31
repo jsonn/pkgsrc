@@ -32,8 +32,9 @@ CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
 .include "../../mk/bsd.prefs.mk"
 
-.if !empty(MACHINE_PLATFORM:MSunOS-5.11-*) && exists(/usr/bin/bash)
-CONFIGURE_ARGS+=	--with-defshell=/usr/bin/bash
+.if !empty(MACHINE_PLATFORM:MSunOS-5.11-*)
+DEPENDS+= mksh-[0-9]*:../../shells/mksh
+CONFIGURE_ARGS+= --with-defshell=${PREFIX}/bin/mksh
 .elif ${OPSYS} == "SunOS" || ${OPSYS} == "OSF1" || ${OPSYS} == "IRIX"
 DEPENDS+=		pdksh-[0-9]*:../../shells/pdksh
 CONFIGURE_ARGS+=	--with-defshell=${PREFIX}/bin/pdksh

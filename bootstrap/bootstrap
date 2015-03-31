@@ -1112,18 +1112,19 @@ run_cmd "(cd $wrkdir/libnbcompat; $shprog ./configure $configure_quiet_flags -C 
 
 # bootstrap ksh if necessary
 case "$need_ksh" in
-yes)	echo_msg "Bootstrapping ksh"
-	copy_src $pkgsrcdir/shells/pdksh/files ksh
-	test -n "$CC" || CC=gcc	# default to gcc if no compiler is specified
-	run_cmd "(cd $wrkdir/ksh && env $BSTRAP_ENV $shprog ./configure $configure_quiet_flags --prefix=$prefix --infodir=$infodir --mandir=$mandir --sysconfdir=$sysconfdir && $bmake -j$make_jobs)"
-	run_cmd "$install_sh -c -o $user -g $group -m 755 $wrkdir/ksh/ksh $wrkdir/bin/pdksh"
-	echo "TOOLS_PLATFORM.sh?=		$prefix/bin/pdksh" >> ${TARGET_MKCONF}
-	echo "TOOLS_PLATFORM.sh?=		$wrkdir/bin/pdksh" >> ${BOOTSTRAP_MKCONF}
-	echo "TOOLS_PLATFORM.ksh?=		$prefix/bin/pdksh" >> ${TARGET_MKCONF}
-	echo "TOOLS_PLATFORM.ksh?=		$wrkdir/bin/pdksh" >> ${BOOTSTRAP_MKCONF}
+yes) echo_msg "Bootstrapping ksh"
+	copy_src $pkgsrcdir/shells/mksh/files ksh
+	test -n "$CC" || CC=gcc # default to gcc if no compiler is specified
+	mksh_para=""; test $make_jobs -lt 2 || mksh_para="-j"
+	run_cmd "(cd $wrkdir/ksh && env $BSTRAP_ENV $shprog ./Build.sh -r $mksh_para)"
+	run_cmd "$install_sh -c -o $user -g $group -m 755 $wrkdir/ksh/mksh $wrkdir/bin/mksh"
+	echo "TOOLS_PLATFORM.sh?= $prefix/bin/mksh" >> ${TARGET_MKCONF}
+	echo "TOOLS_PLATFORM.sh?= $wrkdir/bin/mksh" >> ${BOOTSTRAP_MKCONF}
+	echo "TOOLS_PLATFORM.ksh?= $prefix/bin/mksh" >> ${TARGET_MKCONF}
+	echo "TOOLS_PLATFORM.ksh?= $wrkdir/bin/mksh" >> ${BOOTSTRAP_MKCONF}
 # Now rebootstrap bmake for ksh
 	echo_msg "Rebootstrapping bmake for ksh"
-	bmakexargs="$bmakexargs --with-defshell=$wrkdir/bin/pdksh"
+	bmakexargs="$bmakexargs --with-defshell=$wrkdir/bin/mksh"
 	bootstrap_bmake
 	;;
 esac
@@ -1255,7 +1256,7 @@ yes)
 	;;
 esac
 case "$need_ksh" in
-yes)	build_package "shells/pdksh";;
+yes)	build_package "shells/mksh";;
 esac
 build_package "devel/bmake"
 case "$need_awk" in

@@ -1,18 +1,21 @@
-/*	$NetBSD: util.c,v 1.1.1.9 2011/06/18 22:18:10 bsiegert Exp $	*/
+/*	$NetBSD: util.c,v 1.1.1.10 2015/05/19 21:36:44 joerg Exp $	*/
 
 /*
  * Missing stuff from OS's
  *
- *	$Id: util.c,v 1.1.1.9 2011/06/18 22:18:10 bsiegert Exp $
+ *	$Id: util.c,v 1.1.1.10 2015/05/19 21:36:44 joerg Exp $
  */
+#if defined(__MINT__) || defined(__linux__)
+#include <signal.h>
+#endif
 
 #include "make.h"
 
 #ifndef MAKE_NATIVE
-static char rcsid[] = "$NetBSD: util.c,v 1.1.1.9 2011/06/18 22:18:10 bsiegert Exp $";
+static char rcsid[] = "$NetBSD: util.c,v 1.1.1.10 2015/05/19 21:36:44 joerg Exp $";
 #else
 #ifndef lint
-__RCSID("$NetBSD: util.c,v 1.1.1.9 2011/06/18 22:18:10 bsiegert Exp $");
+__RCSID("$NetBSD: util.c,v 1.1.1.10 2015/05/19 21:36:44 joerg Exp $");
 #endif
 #endif
 
@@ -37,7 +40,7 @@ strerror(int e)
 }
 #endif
 
-#if !defined(HAVE_SETENV) || !defined(HAVE_UNSETENV)
+#if !defined(HAVE_GETENV) || !defined(HAVE_SETENV) || !defined(HAVE_UNSETENV)
 extern char **environ;
 
 static char *
@@ -46,11 +49,12 @@ findenv(const char *name, int *offset)
 	size_t i, len;
 	char *p, *q;
 
+	len = strlen(name);
 	for (i = 0; (q = environ[i]); i++) {
 		p = strchr(q, '=');
-		if (p == NULL)
+		if (p == NULL || p - q != len)
 			continue;
-		if (strncmp(name, q, len = p - q) == 0) {
+		if (strncmp(name, q, len) == 0) {
 			*offset = i;
 			return q + len + 1;
 		}
@@ -58,9 +62,15 @@ findenv(const char *name, int *offset)
 	*offset = i;
 	return NULL;
 }
-#endif
 
-#if !defined(HAVE_UNSETENV)
+char *
+getenv(const char *name)
+{
+    int offset;
+
+    return(findenv(name, &offset));
+}
+
 int
 unsetenv(const char *name)
 {
@@ -79,13 +89,10 @@ unsetenv(const char *name)
 	}
 	return 0;
 }
-#endif
 
-#if !defined(HAVE_SETENV)
 int
 setenv(const char *name, const char *value, int rewrite)
 {
-	static char **saveenv;	/* copy of previously allocated space */
 	char *c, **newenv;
 	const char *cc;
 	size_t l_value, size;
@@ -108,20 +115,20 @@ setenv(const char *name, const char *value, int rewrite)
 			goto copy;
 	} else {					/* create new slot */
 		size = sizeof(char *) * (offset + 2);
-		if (saveenv == environ) {		/* just increase size */
-			if ((newenv = realloc(saveenv, size)) == NULL)
+		if (savedEnv == environ) {		/* just increase size */
+			if ((newenv = realloc(savedEnv, size)) == NULL)
 				return -1;
-			saveenv = newenv;
+			savedEnv = newenv;
 		} else {				/* get new space */
 			/*
 			 * We don't free here because we don't know if
 			 * the first allocation is valid on all OS's
 			 */
-			if ((saveenv = malloc(size)) == NULL)
+			if ((savedEnv = malloc(size)) == NULL)
 				return -1;
-			(void)memcpy(saveenv, environ, size - sizeof(char *));
+			(void)memcpy(savedEnv, environ, size - sizeof(char *));
 		}
-		environ = saveenv;
+		environ = savedEnv;
 		environ[offset + 1] = NULL;
 	}
 	for (cc = name; *cc && *cc != '='; ++cc)	/* no `=' in name */

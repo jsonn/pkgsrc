@@ -1,8 +1,10 @@
-#	$NetBSD: Makefile,v 1.1.1.3 2009/09/18 20:55:32 joerg Exp $
+#	$NetBSD: Makefile,v 1.1.1.4 2015/05/19 21:36:44 joerg Exp $
 #	@(#)Makefile	8.1 (Berkeley) 8/14/93
 
-DIR=	psd/12.make
+SECTION=reference/ref1
+ARTICLE=make
 SRCS=	tutorial.ms
 MACROS=	-ms
+EXTRAHTMLFILES=make1.png make2.png
 
 .include <bsd.doc.mk>

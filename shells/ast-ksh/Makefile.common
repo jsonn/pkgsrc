@@ -47,6 +47,7 @@ KSH93_MAKEFLAGS+=	CCFLAGS=-lm
 # for things like mamake, ratz and some others for now.
 USE_LANGUAGES+=	c99
 KSH93_MAKEFLAGS+=	LDFLAGS=-lm CCFLAGS="-D_XPG6 -D__EXTENSIONS__"
+USE_GCC_RUNTIME=        yes
 .endif
 
 PKG_SHELL=	bin/ksh93
